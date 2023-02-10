@@ -1,2 +1,2 @@
 # This is JS class repo
-n this repo you will find JS Class Homeworks
+In this repo you will find some JS Class homeworks
