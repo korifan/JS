@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 2 Task 6</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson2/index.html">Lesson 2</a> /
+   Task 6
+
+   <h1>Task 6</h1>
+   <p>Задача 6. З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару
+      окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
+   </p>
+
+
+   <h2>Receipt</h2>
+
+   <p><span class="item1"></span></p>
+   <p><span class="item2"></span></p>
+   <p><span class="item3"></span></p>
+   <hr>
+   <p><strong><span class="total"></span></strong></p>
+
+   <script>
+
+      // Enter variables 
+      let item1Price = parseFloat(prompt("Enter item#1 price $", "0"))
+      let item1Quantity = parseInt(prompt("Enter quantity of the item #1", "0"))
+      let item1Total = item1Price * item1Quantity;
+
+      let item2Price = parseFloat(prompt("Enter item#2 price $", "0"))
+      let item2Quantity = parseInt(prompt("Enter quantity of the item #2", "0"))
+      let item2Total = item2Price * item2Quantity;
+
+      let item3Price = parseFloat(prompt("Enter item#3 price $", "0"))
+      let item3Quantity = parseInt(prompt("Enter quantity of the item #3", "0"))
+      let item3Total = item3Price * item3Quantity;
+
+      let grandTotal = item1Total + item2Total + item3Total
+
+
+      // Show items in console
+      console.log(`Item #1 price: $${item1Price} dollars \n Item #1 quantity: ${item1Quantity}\n Item #1 total: $${item1Total} dollars \n\n\ Item #2 price: $${item2Price} dollars \n Item #2 quantity: ${item2Quantity}\n Item #2 total: $${item2Total} dollars \n\n\ Item #3 price: $${item3Price} dollars \n Item #3 quantity: ${item3Quantity}\n Item #3 total: $${item3Total} dollars \n\n\n Grand total: $${grandTotal} dollars`)
+
+
+      // Show items in HTML
+      let item1Text = document.querySelector(".item1").innerHTML = `Item #1 .... $${item1Price}<br>`
+      let item2Text = document.querySelector(".item2").innerHTML = `Item #2 .... $${item2Price}<br>`
+      let item3Text = document.querySelector(".item3").innerHTML = `Item #3 .... $${item3Price}<br>`
+
+      let total = document.querySelector(".total").innerHTML = `Total .... $${grandTotal}<br>`
+
+
+      // Repeat items... Found it on Google... I have no idea how it works, but it does
+
+      function multiplyNode(node, count, deep) {
+         for (var i = 0, copy; i < count - 1; i++) {
+            copy = node.cloneNode(deep);
+            node.parentNode.insertBefore(copy, node);
+         }
+      }
+
+      multiplyNode(document.querySelector('.item1'), item1Quantity, true)
+      multiplyNode(document.querySelector('.item2'), item2Quantity, true)
+      multiplyNode(document.querySelector('.item3'), item3Quantity, true)
+
+   </script>
+</body>
+
+</html>

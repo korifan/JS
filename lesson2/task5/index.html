@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 2 Task 5</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson2/index.html">Lesson 2</a> /
+   Task 5
+
+   <h1>Task 5</h1>
+   <p>Задача 5. Дано кількість секунд, що пройшла від початку доби. Визначити скільки це годин і хвилин.
+   </p>
+
+
+   <h2>RESULTS</h2>
+
+   <p><span class="sec"></span> seconds have passed from the beginning of the day</p>
+   <p><span class="min"></span> minutes have passed from the beginning of the day</p>
+   <p><span class="hrs"></span> hours have passed from the beginning of the day</p>
+
+   <script>
+      // Find how many seconds from the beginning of the day
+      let dt = new Date();
+      let secs = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
+
+      // Calculate number of minutes and hours
+      let min = secs / 60
+      let hours = min / 60
+
+
+
+      // Show time in console
+      console.log(`${secs} seconds have passed from the beginning of the day \n
+      ${min.toFixed(2)} minutes have passed from the beginning of the day  \n
+      ${hours.toFixed(4)} hours have passed from the beginning of the day`);
+
+      // Display your results in the HTML
+      let secText = document.querySelector(".sec").innerHTML = `${secs}`
+      let minText = document.querySelector(".min").innerHTML = `${min.toFixed(2)}`
+      let hrsText = document.querySelector(".hrs").innerHTML = `${hours.toFixed(4)}`
+
+   </script>
+</body>
+
+</html>

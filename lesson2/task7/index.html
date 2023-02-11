@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 2 Task 7</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson2/index.html">Lesson 2</a> /
+   Task 7
+
+   <h1>Task 7</h1>
+   <p>Задача 7. Знайти суму випадкового номера місяця (від 1 до 12) та випадкового номера дня (від 0 до 6).
+   </p>
+
+
+   <h2>Results (refresh the page to show different results)</h2>
+
+   <p>Random month number: <span class="month"></span></p>
+   <p>Random day number: <span class="day"></span></p>
+   <p>The sum is of those numbers: <span class="sum"></span></p>
+   <hr>
+   <p><strong><span class="total"></span></strong></p>
+
+   <script>
+
+      // Insert variables for day
+      let monthMin = 1
+      let monthMax = 12
+      // get month random
+      let monthRandom = Math.floor(Math.random() * monthMax) + monthMin;
+      let dayMin = 0
+      let dayMax = 6
+      // get day random
+      let dayRandom = Math.floor(Math.random() * dayMax) + dayMin;
+
+      // get  sum of random month and random day 
+      let sum = monthRandom + dayRandom;
+
+      // show the reults in comsole
+      console.log(`Random month number: ${monthRandom} \nRandom day number: ${dayRandom} \nThe sum is of those numbers ${sum}`);
+
+      // Show results in HTML
+      let dayText = document.querySelector(".day").innerHTML = `${dayRandom}`
+      let monthText = document.querySelector(".month").innerHTML = `${monthRandom}`
+      let sumText = document.querySelector(".sum").innerHTML = `${sum}`
+   </script>
+</body>
+
+</html>

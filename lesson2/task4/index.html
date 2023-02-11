@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 2 Task 4</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson2/index.html">Lesson 2</a> /
+   Task 4
+
+   <h1>Task 4</h1>
+   <p>Задача 4. Дано довжину у сантиметрах. Визначати скільки це метрів і кілометрів.
+   </p>
+
+
+   <h2>RESULTS</h2>
+   <p>Cantimeters: <span class="cm"></span></p>
+   <p>Meters: <span class="m"></span></p>
+   <p>Kilometers: <span class="km"></span></p>
+
+   <script>
+      // Enter cm variable
+      let cm = parseFloat(prompt("Enter namber of centimeters", "0 cm"))
+
+      // Calculate total price and 5% tax 
+      let m = cm / 100
+      let km = cm / 100000
+
+      // Show the difference in the console
+      console.log(`Centimeters ${cm}cm \nMeters ${m.toFixed(2)}m \nkilometers ${km.toFixed(6)}km`);
+
+      // Display your results in the HTML
+      let cantimeters = document.querySelector(".cm").innerText = `${cm} cm`
+      let meters = document.querySelector(".m").innerText = `${m} m`
+      let kilometers = document.querySelector(".km").innerText = `${km} km`
+   </script>
+</body>
+
+</html>
