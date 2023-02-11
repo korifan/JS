@@ -9,6 +9,31 @@
  <script>
 
 
+
+  /* QUESTION!!!  
+  For some reason innerHTML is working only inside of window onload function. Why? */
+  window.onload = function table() {
+
+   // Enter two whole numbers
+   let x = parseInt(prompt("Enter the whole number x", "0"))
+   let y = parseInt(prompt("Enter the whole number y", "0"))
+   let sum
+   let multiplication
+   let division
+
+   // Calculate the sum, the multiplication, and dividion of those numbers
+   sum = x + y
+   multiplication = x * y
+   division = x / y
+   division
+
+   // Display the results in HTML
+   let xNum = document.querySelector(".x").innerHTML = `${x}`
+   let yNum = document.querySelector(".y").innerHTML = `${y}`
+   let sumCell = document.querySelector(".sum").innerHTML = `${sum}`
+   let multiplicationCell = document.querySelector(".multiplication").innerHTML = `${multiplication}`
+   let divisionCell = document.querySelector(".division").innerHTML = `${division.toFixed(2)}`
+  };
  </script>
 </head>
 
@@ -20,6 +45,25 @@
  <h1>Task 1</h1>
  <p>Задача 1. Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у формі таблиці</p>
 
+ <h2>Your chosen numbers</h2>
+
+ <p>x = <span class="x"></span></p>
+ <p>y = <span class="y"></span></p>
+
+
+ <h2>Table displaying the calculations</h2>
+ <table>
+  <tr>
+   <th>Sum</th>
+   <th>Multiplication</th>
+   <th>Division</th>
+  </tr>
+  <tr>
+   <td class="sum"></td>
+   <td class="multiplication"></td>
+   <td class="division"></td>
+  </tr>
+ </table>
 </body>
 
 </html>

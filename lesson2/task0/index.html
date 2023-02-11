@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Lesson 2 Task 0</title>
+ <script>
+
+  /* QUESTION!!!  
+    For some reason innerHTML is working only inside of window onload function. Why? */
+  window.onload = function calulations() {
+   // Enter the variable naumbers
+   let a = parseFloat(prompt("Enter the number a", "0"))
+   let b = parseFloat(prompt("Enter the number b", "0"))
+   let c = parseFloat(prompt("Enter the number c", "0"))
+
+
+   // Define and calulate the results
+   let s1 = a + 12 + b
+   let s2 = Math.sqrt((a + b) / (2 * a))
+   let s3 = Math.cbrt((a + b) * c)
+   let s4 = Math.sin(a / (b * -1))
+
+   // Display the results 
+   let s1Display = document.querySelector(".s1").innerHTML = `${s1}`
+   let s2Display = document.querySelector(".s2").innerHTML = `${s2}`
+   let S3Display = document.querySelector(".s3").innerHTML = `${s3}`
+   let s4Display = document.querySelector(".s4").innerHTML = `${s4}`
+  }
+
+
+
+ </script>
+</head>
+
+<body>
+ <a href="../../index.html">JS Homeworks</a> /
+ <a href="../../lesson2/index.html">Lesson 2</a> /
+ Task 0
+
+ <h1>Task 0</h1>
+ <p>Задача 0. Обчислити значення виразів</p>
+ <img src="img/image.jpg">
+
+ <h2>TOTALS</h2>
+ <p>S1 = <span class="s1"></span></p>
+ <p>S2 = <span class="s2"></span></p>
+ <p>S3 = <span class="s3"></span></p>
+ <p>S4 = <span class="s4"></span></p>
+
+
+</body>
+
+</html>
