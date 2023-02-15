@@ -15,17 +15,15 @@
       window.onload = function table() {
 
          // Enter two whole numbers
-         let x = parseInt(prompt("Enter the whole number x", "0"))
-         let y = parseInt(prompt("Enter the whole number y", "0"))
-         let sum
-         let multiplication
-         let division
+         let x = parseFloat(prompt("Enter the whole number x", "0"))
+         let y = parseFloat(prompt("Enter the whole number y", "0"))
+
 
          // Calculate the sum, the multiplication, and dividion of those numbers
          sum = x + y
          multiplication = x * y
          division = x / y
-         division
+
 
          // Display the results in HTML
          let xNum = document.querySelector(".x").innerHTML = `${x}`

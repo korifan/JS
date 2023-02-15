@@ -33,11 +33,12 @@
       let monthMin = 1
       let monthMax = 12
       // get month random
-      let monthRandom = Math.floor(Math.random() * monthMax) + monthMin;
+      let monthRandom = Math.floor(Math.random() * (monthMax - monthMin + 1) + monthMin);
+
       let dayMin = 0
       let dayMax = 6
       // get day random
-      let dayRandom = Math.floor(Math.random() * dayMax) + dayMin;
+      let dayRandom = Math.floor(Math.random() * (dayMax - dayMin + 1) + dayMin);
 
       // get  sum of random month and random day 
       let sum = monthRandom + dayRandom;

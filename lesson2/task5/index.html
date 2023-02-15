@@ -21,30 +21,31 @@
 
    <h2>RESULTS</h2>
 
-   <p><span class="sec"></span> seconds have passed from the beginning of the day</p>
-   <p><span class="min"></span> minutes have passed from the beginning of the day</p>
-   <p><span class="hrs"></span> hours have passed from the beginning of the day</p>
+   <p><span class="sec"></span> seconds </p>
+   <p><span class="min"></span> minutes </p>
+   <p><span class="hrs"></span> hours </p>
 
    <script>
       // Find how many seconds from the beginning of the day
-      let dt = new Date();
-      let secs = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
+      //let dt = new Date();
+      //let secs = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
 
+      let secs = parseInt(prompt('Enter number of seconds', '0'))
       // Calculate number of minutes and hours
       let min = secs / 60
-      let hours = min / 60
+      let hours = secs / 60 / 60
 
 
 
       // Show time in console
-      console.log(`${secs} seconds have passed from the beginning of the day \n
-      ${min.toFixed(2)} minutes have passed from the beginning of the day  \n
-      ${hours.toFixed(4)} hours have passed from the beginning of the day`);
+      console.log(`${secs} seconds \n
+      ${Math.floor(min)} number of minutes   \n
+      ${Math.floor(hours)} Number of hours`);
 
       // Display your results in the HTML
       let secText = document.querySelector(".sec").innerHTML = `${secs}`
-      let minText = document.querySelector(".min").innerHTML = `${min.toFixed(2)}`
-      let hrsText = document.querySelector(".hrs").innerHTML = `${hours.toFixed(4)}`
+      let minText = document.querySelector(".min").innerHTML = `${Math.floor(min)}`
+      let hrsText = document.querySelector(".hrs").innerHTML = `${Math.floor(hours)}`
 
    </script>
 </body>
