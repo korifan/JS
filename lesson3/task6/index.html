@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 3 Task 6</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson3/index.html">Lesson 3</a> /
+   Task 6
+
+   <h1>Task 6</h1>
+   <p>З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.
+   </p>
+
+
+   <h2>RESULTS</h2>
+   <p class="results"></p>
+
+   <script>
+      // Enter variables
+      const dayNumber = parseInt(prompt("Enter the week day number (from 1 to 7)", 0))
+
+      // Make the results instance variable
+      const results = document.querySelector(".results")
+
+      // Whitch conditional statement
+      switch (dayNumber) {
+         // if number is zero
+         case 0: console.log("0 is wrong number. Use numbers between 1 and 7")
+            // show results
+            results.innerHTML = `0 is wrong number. Use numbers between 1 and 7`
+            break;
+         // if number is 1
+         case 1:
+            console.log("Monday!")
+            // show results
+            results.innerHTML = `Monday`
+            break;
+         // if number is 2
+         case 2:
+            console.log("Tuesday!")
+            // show results
+            results.innerHTML = `Tuesday`
+            break;
+         // if number is 3
+         case 3:
+            console.log("Wednesday!")
+            // show results
+            results.innerHTML = `Wednesday`
+            break;
+         // if number is 4
+         case 4:
+            console.log("Thursday!")
+            // show results
+            results.innerHTML = `Thursday`
+            break;
+         // if number is 5
+         case 5:
+            console.log("Friday!")
+            // show results
+            results.innerHTML = `Friday`
+            break;
+         // if number is 6
+         case 6:
+            console.log("Saturday!")
+            // show results
+            results.innerHTML = `Saturday`
+            break;
+         // if number is 7
+         case 7:
+            console.log("Sunday!")
+            // show results
+            results.innerHTML = `Sunday`
+            break;
+         default:
+            console.log("Bad input. use numbers between 1 and 7")
+            // show results
+            results.innerHTML = `Bad input. use numbers between 1 and 7`
+            break;
+
+      }
+
+   </script>
+</body>
+
+</html>

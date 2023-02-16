@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 3 Task 5</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson3/index.html">Lesson 3</a> /
+   Task 5
+
+   <h1>Task 5</h1>
+   <p>З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести
+      на екран назву транспортного засобу, яким він може керувати.
+   </p>
+
+
+   <h2>RESULTS</h2>
+   <p class="results"></p>
+
+
+
+   <script>
+      // Enter variables
+      const driverCategory = prompt("Enter the driver's category (use letters A,B or C)", "")
+      const categoryA = "A"
+      const categoryB = "B"
+      const categoryC = "C"
+      // Make the results instance variable
+      const results = document.querySelector(".results")
+
+
+      // Conditional statements
+      // Category A condition
+      if (driverCategory.toUpperCase() === categoryA) {
+         console.log('motorcycle');
+         results.innerHTML = `Your driver category is <strong>${driverCategory.toUpperCase()}</strong>. <br>That means you can use ride only a <strong>motorcycle</strong>`;
+      }
+      // Category B condition
+      else if (driverCategory.toUpperCase() === categoryB) {
+         // show results
+         console.log('car')
+         results.innerHTML = `Your driver category is <strong>${driverCategory.toUpperCase()}</strong>. <br>That means you can use drive  a <strong>car</strong>`
+      }
+      // Category A condition
+      else if (driverCategory.toUpperCase() === categoryC) {
+         // show results
+         console.log('truck')
+         results.innerHTML = `Your driver category is <strong>${driverCategory.toUpperCase()}</strong>. <br>That means you can use drive a <strong>heavy truck</strong>`
+      }
+      // Bad entry condition
+      else {
+         // show results
+         console.log('bad entry, try letters A, B or C');
+         results.innerHTML = `The <strong>"${driverCategory}"</strong> is a bad entry. <br>Try letters A, B or C`
+      }
+
+
+
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 3 Task 3</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson3/index.html">Lesson 3</a> /
+   Task 3
+
+   <h1>Task 3</h1>
+   <p>Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+   </p>
+
+   <h2>Results</h2>
+   <p class="results"></p>
+
+   <script>
+      // Generate variables
+      // Insert number max and min variables
+      const numberMin = 1
+      const numberMax = 5
+      // Generate random number
+      let numberRandom = Math.floor(Math.random() * (numberMax - numberMin + 1) + numberMin);
+
+      // Generate guess variables
+      const firstGuess = parseInt(prompt("Enter your first guess number", 0))
+      const secondGuess = parseInt(prompt("Enter your second guess number", 0))
+
+      // Make the results instance
+      const results = document.querySelector(".results")
+
+
+      // Enter condition 
+      // if first or second guess were corect
+      if (firstGuess == numberRandom || secondGuess == numberRandom) {
+         // Display the results in console
+         console.log(`Congrats! you've guessed it correctly.\n The correct mumber is ${numberRandom}`);
+
+         // if first guess was correct
+         if (firstGuess == numberRandom) {
+            // show the results
+            results.innerHTML = `Congrats! you have guessed it correctly.\n The correct mumber is ${numberRandom}. You have guessed it from the first time!<br><br>Your first guess was: ${firstGuess}<br><br>Your second guess was: ${secondGuess}`;
+         }
+
+         // if second guess was correct
+         else {
+            // show the results
+            results.innerHTML = `Congrats! you've guessed it correctly.\n The correct mumber is ${numberRandom}. You have guessed it from the second time!<br><br>Your first guess was: ${firstGuess}<br><br>Your second guess was: ${secondGuess}`
+         }
+
+      }
+
+      // If none of the guesses were correct 
+      else {
+         // Display the results
+         console.log(`Oops, sorry! \n\n None of your guesses were right. \nNeither ${firstGuess} or ${secondGuess} are the correct numbers.\n The correct number is ${numberRandom}`);
+
+         results.innerHTML = `Oops, sorry! <br><br>None of your guesses were right. <br>Unfortunately, neither ${firstGuess} or ${secondGuess} are the correct numbers. <br><br>The correct number is ${numberRandom}`
+      }
+
+
+
+
+   </script>
+</body>
+
+</html>

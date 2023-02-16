@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 3 Task 2</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson3/index.html">Lesson 3</a> /
+   Task 2
+
+   <h1>Task 2</h1>
+   <p>З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше,
+      якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.</p>
+
+   <h2>Results</h2>
+
+   <p class="results"></p>
+
+   <script>
+      // Inserting the variables 
+      const itemCost = parseFloat(prompt("Item price", 0))
+      const moneyAmount = parseFloat(prompt("How much money do you have?", 0))
+
+      const results = document.querySelector(".results")
+
+      // Insert condition statement
+
+      // if amount and item price is not the same
+      if (itemCost !== moneyAmount) {
+
+         // if there are not enough money
+         if (itemCost > moneyAmount) {
+            // display results 
+            console.log('Sorry, but you can not buy this item, you have not enough money :(');
+
+            results.innerHTML = `Sorry, but you cannot buy this item, you have not enough money :(<br><br>The item's price is $${itemCost}, and you have only $${moneyAmount}`
+         }
+         // if there are more money left
+         else {
+            // display results 
+            console.log('Thank you!\nBy the way, our lottery tickets are available for $4');
+
+            results.innerHTML = `Item's price $${itemCost}<br>Money amount: $${moneyAmount}<br><br>Thank you for shopping!<br>By the way, our lottery tickets are available for $4`
+         }
+
+      }
+
+      // if amount and item price are the same (if there are enough money but no more left)
+      else {
+         // display results 
+         console.log('Thank you for shopping in our store!')
+
+         results.innerHTML = `Item's price $${itemCost}<br>Money amount: $${moneyAmount}<br><br>Thank you for shopping at our store!<br>We wanted to offer you our tottery tickets for $4, but it looks like you have no more money left`
+      }
+
+
+
+
+   </script>
+</body>
+
+</html>

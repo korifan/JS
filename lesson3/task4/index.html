@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 3 Task 4</title>
+
+</head>
+
+<body>
+   <a href="../../index.html">JS Homeworks</a> /
+   <a href="../../lesson3/index.html">Lesson 3</a> /
+   Task 4
+
+   <h1>Task 4</h1>
+   <p>З клавіатури вводиться вік людини. Вивести на екран ким він є (дитиною у садочку, школярем, студентом,
+      працівником, пенсіонером).
+   </p>
+
+
+   <h2>RESULTS</h2>
+   <p class="results"></p>
+
+   <script>
+      // Generate variables
+      const personAge = parseInt(prompt("Enter your age", 0))
+      const kindergardenMinAge = 0
+      const schoolMinAge = 7
+      const studentMinAge = 18
+      const workerMinAge = 24
+      const retiredMinAge = 66
+
+      // Make the results instance
+      const results = document.querySelector(".results")
+
+      // Enter conditions
+      // kindergarden age condition
+      if ((personAge >= kindergardenMinAge) && (personAge < schoolMinAge)) {
+         console.log(`Your age is ${personAge} years old. \nIt means you are kindergardener`);
+         // show results
+         results.innerHTML = `Your age is ${personAge} years old. <br>It means you are the <strong>kindergardener</strong>`;
+      }
+      // school student age condition
+      else if ((personAge >= schoolMinAge) && (personAge < studentMinAge)) {
+         console.log(`Your age is ${personAge} years old. \nIt means you are school student`);
+         // show results
+         results.innerHTML = `Your age is ${personAge} years old. <br>It means you are the <strong>school student</strong>`;
+      }
+      // college student age condition
+      else if ((personAge >= studentMinAge) && (personAge < workerMinAge)) {
+         console.log(`Your age is ${personAge} years old. \nIt means you are college student`);
+         // show results
+         results.innerHTML = `Your age is ${personAge} years old. <br>It means you are the <strong>college student</strong>`;
+      }
+      // employee age condition
+      else if ((personAge >= workerMinAge) && (personAge < retiredMinAge)) {
+         console.log(`Your age is ${personAge} years old. \nIt means you are the employee`);
+         // show results
+         results.innerHTML = `Your age is ${personAge} years old. <br>It means you are the <strong>employee</strong>`;
+      }
+      // retired person age condition
+      else {
+         console.log(`Your age is ${personAge} years old. \nIt means you are the retired`);
+         // show results
+         results.innerHTML = `Your age is ${personAge} years old. <br>It means you are the <strong>retired person</strong> (or dead, so, r.i.p.)`;
+      }
+
+   </script>
+</body>
+
+</html>
