@@ -1,64 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 3 Task 1</title>
+  </head>
 
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Lesson 3 Task 1</title>
+  <body>
+    <a href="../../index.html">JS Homeworks</a> /
+    <a href="../../lesson3/index.html">Lesson 3</a> / Task 1
 
-</head>
+    <h1>Task 1</h1>
+    <p>
+      З клавіатури вводяться імена двох дітей та кількість у них цукерок.
+      Вивести не екран ім’я тієї дитини, у якої кількість цукерок є більшою, або
+      вивести, що кількість однакова.
+    </p>
 
-<body>
-   <a href="../../index.html">JS Homeworks</a> /
-   <a href="../../lesson3/index.html">Lesson 3</a> /
-   Task 1
+    <h2>Results</h2>
 
-   <h1>Task 1</h1>
-   <p>З клавіатури вводяться імена двох дітей та кількість у них цукерок. Вивести не екран ім’я тієї дитини, у якої
-      кількість цукерок є більшою, або вивести, що кількість однакова.</p>
+    <p class="results"></p>
+    <script>
+      // Enter variables
+      const firstChildName = prompt("Enter the first child name", "");
+      const firstChildCandiesNumber = parseInt(
+        prompt(`Enter how many candies ${firstChildName} has`, 0)
+      );
+      const secondChildName = prompt("Enter the second child name", "");
+      const secondChildCandiesNumber = parseInt(
+        prompt(`Enter how many candies ${secondChildName} has`, 0)
+      );
 
+      const results = document.querySelector(".results");
 
-   <h2>Results</h2>
+      // if first kid has more candies
+      if (firstChildCandiesNumber > secondChildCandiesNumber) {
+        console.log(
+          `${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.\nSo, ${firstChildName} has more candies than ${secondChildName}`
+        );
+        // results
+        results.innerHTML = `${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.<br>So, ${firstChildName} has more candies than ${secondChildName}`;
 
-   <p class="results"></p>
-   <script>
-
-      // Enter variables 
-      const firstChildName = prompt("Enter the first child name", "")
-      const firstChildCandiesNumber = parseInt(prompt(`Enter how many candies ${firstChildName} has`, 0))
-      const secondChildName = prompt("Enter the second child name", "")
-      const secondChildCandiesNumber = parseInt(prompt(`Enter how many candies ${secondChildName} has`, 0))
-
-      const results = document.querySelector(".results")
-
-      // Enter conditions and results
-      if (firstChildCandiesNumber !== secondChildCandiesNumber) {
-         // if first kid has more candies
-         if (firstChildCandiesNumber > secondChildCandiesNumber) {
-            console.log(`${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.\nSo, ${firstChildName} has more candies than ${secondChildName}`);
-
-            results.innerHTML = `${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.<br>So, ${firstChildName} has more candies than ${secondChildName}`;
-         }
-
-         // if first kid has less candies
-         else if (firstChildCandiesNumber < secondChildCandiesNumber) {
-            console.log(`${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.\nSo, ${firstChildName} has less candies than ${secondChildName}`);
-
-            results.innerHTML = `${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.<br>So, ${firstChildName} has less candies than ${secondChildName}.`;
-         }
-
+        // same number of cadies & second kid has more candies
+      } else {
+        // same number
+        if (firstChildCandiesNumber === secondChildCandiesNumber) {
+          console.log(
+            `${firstChildName} and ${secondChildName} both have the same number of candies, which is ${firstChildCandiesNumber} candies.`
+          );
+          results.innerHTML = `${firstChildName} and ${secondChildName} both have the same number of candies, which is ${firstChildCandiesNumber}.`;
+          // second has more
+        } else {
+          console.log(
+            `${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.\nSo, ${firstChildName} has less candies than ${secondChildName}`
+          );
+          results.innerHTML = `${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.<br>So, ${firstChildName} has less candies than ${secondChildName}.`;
+        }
       }
+
+      // // Enter conditions and results
+      // if (firstChildCandiesNumber !== secondChildCandiesNumber) {
+      //    // if first kid has more candies
+      //    if (firstChildCandiesNumber > secondChildCandiesNumber) {
+      //       console.log(`${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.\nSo, ${firstChildName} has more candies than ${secondChildName}`);
+
+      //    }
+
+      //    // if first kid has less candies
+      //    else if (firstChildCandiesNumber < secondChildCandiesNumber) {
+      //       console.log(`${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.\nSo, ${firstChildName} has less candies than ${secondChildName}`);
+
+      //       results.innerHTML = `${firstChildName} has ${firstChildCandiesNumber} candies and ${secondChildName} has ${secondChildCandiesNumber} candies.<br>So, ${firstChildName} has less candies than ${secondChildName}.`;
+      //    }
+
+      // }
 
       // if both kids have the same amount of candies
-      else {
-         console.log(`${firstChildName} and ${secondChildName} both have the same number of candies, which is ${firstChildCandiesNumber} candies.`);
+      // else {
+      //    console.log(`${firstChildName} and ${secondChildName} both have the same number of candies, which is ${firstChildCandiesNumber} candies.`);
 
-         results.innerHTML = `${firstChildName} and ${secondChildName} both have the same number of candies, which is ${firstChildCandiesNumber}.`;
-      }
-
-
-   </script>
-</body>
-
+      //    results.innerHTML = `${firstChildName} and ${secondChildName} both have the same number of candies, which is ${firstChildCandiesNumber}.`;
+      // }
+    </script>
+  </body>
 </html>

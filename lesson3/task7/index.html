@@ -1,73 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 3 Task 7</title>
+  </head>
 
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Lesson 3 Task 7</title>
+  <body>
+    <a href="../../index.html">JS Homeworks</a> /
+    <a href="../../lesson3/index.html">Lesson 3</a> / Task 7
 
-</head>
+    <h1>Task 7</h1>
+    <p>
+      З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься
+    </p>
 
-<body>
-   <a href="../../index.html">JS Homeworks</a> /
-   <a href="../../lesson3/index.html">Lesson 3</a> /
-   Task 7
+    <h2>RESULTS</h2>
+    <p class="results"></p>
 
-   <h1>Task 7</h1>
-   <p>З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься
-   </p>
-
-   <h2>RESULTS</h2>
-   <p class="results"></p>
-
-
-   <script>
-
+    <script>
       // Insert variables
-      const monthNumber = parseInt(prompt("Enter a month number (from 1 to 12)", 0))
-      const winterMinNumber = 1
-      const springMinNumber = 4
-      const summerMinNumber = 6
-      const fallMinNumber = 9
-      const decenberNumber = 12
+      const monthNumber = parseInt(
+        prompt("Enter a month number (from 1 to 12)", 0)
+      );
+      const winterMinNumber = 1;
+      const springMinNumber = 3;
+      const summerMinNumber = 6;
+      const fallMinNumber = 9;
+      const decenberNumber = 12;
 
       // Make the results instance variable
-      const results = document.querySelector(".results")
+      const results = document.querySelector(".results");
 
       // Winter
-      if ((monthNumber >= winterMinNumber) && (monthNumber < springMinNumber)) {
-         // show results
-         results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Winter</strong>`;
+      if (monthNumber < springMinNumber || monthNumber === decenberNumber) {
+        // show results
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Winter</strong>`;
       }
       // Spring condition
-      else if ((monthNumber >= springMinNumber) && (monthNumber < summerMinNumber)) {
-         // show results
-         results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Spring</strong>`;
+      else if (monthNumber < summerMinNumber) {
+        // show results
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Spring</strong>`;
       }
       // Summer condition
-      else if ((monthNumber >= summerMinNumber) && (monthNumber < fallMinNumber)) {
-         // show results
-         results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Summer</strong>`;
+      else if (monthNumber < fallMinNumber) {
+        // show results
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Summer</strong>`;
       }
       // Fall condition
-      else if ((monthNumber >= fallMinNumber) && (monthNumber < decenberNumber)) {
-         // show results
-         results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Fall</strong>`;
+      else if (monthNumber < decenberNumber) {
+        // show results
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Fall</strong>`;
       }
-      // December condition
-      else if ((monthNumber === decenberNumber)) {
-         // show results
-         results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Winter</strong>`;
-      }
+
       // Wrong number
       else {
-         console.log(`Wrong entry`);
-         // show results
-         results.innerHTML = `Your number is ${monthNumber}. <br>It's a bad entry. Try numbers between 1 and 12`;
+        console.log(`Wrong entry`);
+        // show results
+        results.innerHTML = `Your number is ${monthNumber}. <br>It's a bad entry. Try numbers between 1 and 12`;
       }
-
-   </script>
-</body>
-
+    </script>
+  </body>
 </html>

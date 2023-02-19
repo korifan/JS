@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 2 Task 2</title>
+  </head>
 
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Lesson 2 Task 2</title>
+  <body>
+    <a href="../../index.html">JS Homeworks</a> /
+    <a href="../../lesson2/index.html">Lesson 2</a> / Task 2
 
-</head>
+    <h1>Task 2</h1>
+    <p>
+      Задача 2. Дано рік народження (дата: 1 січня) та поточний рік. Знайти
+      кількість років.
+    </p>
 
-<body>
-   <a href="../../index.html">JS Homeworks</a> /
-   <a href="../../lesson2/index.html">Lesson 2</a> /
-   Task 2
+    <p>
+      Congrats! You have survived on this crazy planet for total of
+      <span class="year"></span>
+    </p>
 
-   <h1>Task 2</h1>
-   <p>Задача 2. Дано рік народження (дата: 1 січня) та поточний рік. Знайти кількість років.</p>
-
-   <p>Congrats! You have survived on this crazy planet for total of <span class="year"></span></p>
-
-   <script>
-
+    <script>
       // Enter two whole numbers (years)
-      let currentYear = new Date().getFullYear()
-      let userYear = parseInt(prompt("Enter your year of birth", ""))
+      let currentYear = new Date().getFullYear();
+      let userYear = parseInt(prompt("Enter your year of birth", ""));
 
-      // Find the difference 
-      let totalYears = currentYear - userYear
-
+      // Find the difference
+      let totalYears = currentYear - userYear;
 
       // Show the difference in the console
-      console.log(`Congrats!\n You have survived on this crazy planet for total of \n ${totalYears} years`);
+      console.log(
+        `Congrats!\n You have survived on this crazy planet for total of \n ${totalYears} years`
+      );
 
-      let yearText = document.querySelector(".year").innerText = `${totalYears} years`
-   </script>
-</body>
-
+      let yearText = (document.querySelector(
+        ".year"
+      ).innerText = `${totalYears} years`);
+    </script>
+  </body>
 </html>

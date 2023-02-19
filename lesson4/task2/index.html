@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 4 Task 2</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a> /
+    <a href="../../lesson4/index.html">Lesson 4</a> / Task 2
+
+    <h1>Task 2</h1>
+    <p>Знайти 2 найменших числа з 4 цілих чисел.</p>
+
+    <h2>Results</h2>
+
+    <p class="results"></p>
+
+    <script>
+      const num1 = parseInt(prompt("Enter #1")),
+        num2 = parseInt(prompt("Enter #2")),
+        num3 = parseInt(prompt("Enter #3")),
+        num4 = parseInt(prompt("Enter #4")),
+        results = document.querySelector(".results");
+
+      let min = Infinity,
+        min2 = Infinity;
+
+      // conditions:
+      // find the biggext number
+      // num 1 check
+      if (num1 < min) {
+        min = num1;
+      }
+      // num2 check
+      if (num2 < min) {
+        min = num2;
+        min2 = num1;
+      } else {
+        min2 = num2;
+      }
+
+      // num3 check
+      if (num3 < min) {
+        min = num3;
+      } else {
+        if (num3 < min2) {
+          min2 = num3;
+        }
+      }
+      // num4 check
+      if (num4 < min) {
+        min = num4;
+        min2 = num3;
+      } else {
+        if (num4 < min2) {
+          min2 = num4;
+        }
+      }
+
+      // results
+      console.log(
+        `Your four numbers are ${num1}, ${num2}, ${num3}, ${num4}.  \nThe lowest two numbers are  ${min} and ${min2}`
+      );
+
+      results.innerHTML = `Your four numbers are ${num1}, ${num2}, ${num3}, ${num4}.  <br>The lowest two numbers are  ${min} and ${min2}`;
+    </script>
+  </body>
+</html>
