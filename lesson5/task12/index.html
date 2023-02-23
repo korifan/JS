@@ -15,43 +15,17 @@
 
     <h1>Task 12</h1>
     <p>
-      Задача 11. Знайти суму 5 непарних чисел, що знаходяться між заданими
-      користувачем числами.
+      Задача 12. Ігровий автомат. Випадково вибираємо зображення у 3 позиціях.
+      Вибір у кожній позиції вибирається як одне з чотирьох зображень. Вивести
+      ці зображення і повідомити виграш користувача (три перших зображення 100
+      грн, три других – 200, три третіх – 500, три четвертих зображення –
+      1000грн). Використати цикли і switch (для вибору зображення за номером).
     </p>
 
     <h2>Results</h2>
     <p class="results"></p>
     <script>
       // Constants
-      const firstNum = parseInt(prompt("Enter number"));
-      const secondNum = parseInt(prompt("Enter the number"));
-      const results = document.querySelector(".results");
-
-      // find min and max
-      const minNum = Math.min(firstNum, secondNum);
-      const maxNum = Math.max(firstNum, secondNum);
-
-      // show those numb
-      // console.log(`Number range is ${range}\n Min number is ${minNum}`);
-
-      // Generate loop
-      let sum = 0;
-      for (let i = minNum + 1; i < maxNum; i++) {
-        // select only off numbers
-        if (i % 2 !== 0) {
-          //// QUESTION: I am trying to get length if odd numbers, but it not working
-          var times = new Array(i);
-          console.log(`${times.length}`);
-
-          // show numbers in between
-          document.write(`${times.length}<br>`);
-          //// QUESTION:  how can i get number if instances of i???
-          // get the sum
-          sum += i;
-        }
-        // Show the results
-        results.innerHTML = `The sum of odd numbers is: ${sum}`;
-      }
     </script>
   </body>
 </html>

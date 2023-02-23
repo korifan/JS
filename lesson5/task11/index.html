@@ -38,9 +38,8 @@
       let sum = 0;
       let counter = 0;
       for (let i = minNum + 1; i < maxNum; i++) {
-        // select only off numbers
+        // select only odd numbers
         if (i % 2 !== 0) {
-          //// QUESTION: I am trying to get length of odd numbers, but it not working
           // Find range
           counter++;
           if (counter === 5) {
@@ -50,11 +49,7 @@
           } else {
             results.innerHTML = `Sorry, not enough odd numbers. There is only ${counter} in your range`;
           }
-          // document.write(`${counter}<br>`);
-          //// QUESTION:  how can I get total number of i elements???
         }
-
-        // Show the results
       }
     </script>
   </body>
