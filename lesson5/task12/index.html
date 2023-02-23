@@ -26,32 +26,38 @@
     <p class="results"></p>
 
     <script>
-      // Enter randong munbers
-      const imgOne = 1 + Math.floor(Math.random() * 4);
-      const imgTwo = 1 + Math.floor(Math.random() * 4);
-      const imgThree = 1 + Math.floor(Math.random() * 4);
-      // console.log(`${imgOne}\n${imgTwo}\n${imgThree}\n`);
+      // Enter variablesd
+      let counter = 0,
+        imgOne,
+        imgTwo,
+        imgThree,
+        winningCombination;
 
-      // Display iamges
-      document.write(
-        `<img src="img/${imgOne}.jpg"><img src="img/${imgTwo}.jpg"><img src="img/${imgThree}.jpg">`
-      );
+      // Get loop got generating random numbers and images
+      for (let i = 0; i < 3; i++) {
+        const randomNum = 1 + Math.floor(Math.random() * 4);
+        document.write(`<img src="img/${randomNum}.jpg">`);
+        counter++;
+        if (counter == 1) {
+          imgOne = randomNum;
+        }
+        if (counter == 2) {
+          imgTwo = randomNum;
+        }
+        if (counter == 3) {
+          imgThree = randomNum;
+        }
+      }
 
-      // Set up winning combination numbers conditions
-      let winningCombination;
-
+      // Set up the winning combination conditions and assign winning numbers to those combos
       if (imgOne === 1 && imgTwo === 1 && imgThree === 1) {
         winningCombination = 1;
-        console.log(winningCombination);
       } else if (imgOne === 2 && imgTwo === 2 && imgThree === 2) {
         winningCombination = 2;
-        console.log(winningCombination);
       } else if (imgOne === 3 && imgTwo === 3 && imgThree === 3) {
         winningCombination = 3;
-        console.log(winningCombination);
       } else if (imgOne === 4 && imgTwo === 4 && imgThree === 4) {
         winningCombination = 4;
-        console.log(winningCombination);
       }
 
       // Show results based on winning combo number
