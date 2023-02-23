@@ -24,8 +24,55 @@
 
     <h2>Results</h2>
     <p class="results"></p>
+
     <script>
-      // Constants
+      // Enter randong munbers
+      const imgOne = 1 + Math.floor(Math.random() * 4);
+      const imgTwo = 1 + Math.floor(Math.random() * 4);
+      const imgThree = 1 + Math.floor(Math.random() * 4);
+      // console.log(`${imgOne}\n${imgTwo}\n${imgThree}\n`);
+
+      // Display iamges
+      document.write(
+        `<img src="img/${imgOne}.jpg"><img src="img/${imgTwo}.jpg"><img src="img/${imgThree}.jpg">`
+      );
+
+      // Set up winning combination numbers conditions
+      let winningCombination;
+
+      if (imgOne === 1 && imgTwo === 1 && imgThree === 1) {
+        winningCombination = 1;
+        console.log(winningCombination);
+      } else if (imgOne === 2 && imgTwo === 2 && imgThree === 2) {
+        winningCombination = 2;
+        console.log(winningCombination);
+      } else if (imgOne === 3 && imgTwo === 3 && imgThree === 3) {
+        winningCombination = 3;
+        console.log(winningCombination);
+      } else if (imgOne === 4 && imgTwo === 4 && imgThree === 4) {
+        winningCombination = 4;
+        console.log(winningCombination);
+      }
+
+      // Show results based on winning combo number
+      let results;
+      switch (winningCombination) {
+        case 1:
+          results = "You have won $100!";
+          break;
+        case 2:
+          results = "You have won $200!";
+          break;
+        case 3:
+          results = "You have won $500!";
+          break;
+        case 4:
+          results = "You have won $1000!";
+          break;
+        default:
+          results = "Sorry, you have lost this round.";
+      }
+      document.write(`<br><h2>${results}</h2>`);
     </script>
   </body>
 </html>
