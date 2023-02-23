@@ -28,26 +28,21 @@
       const N = parseInt(prompt("Enter number of sections"));
       const results = document.querySelector(".results");
       const content = document.querySelector(".content");
-      // let i = 1;
-      let counter = 0;
       // generate loop for sections
-      exit: for (let sec = 1; sec <= N; sec++) {
+      for (let sect = 1; sect <= N; sect++) {
         const h1 = document.createElement("h1");
-        h1.innerHTML = `Title ${sec}`;
+        h1.innerHTML = `Title ${sect}`;
+        const hr = document.createElement("hr");
         content.appendChild(h1);
-
-        for (let i = 1; i <= N; i++) {
-          counter++;
+        content.appendChild(hr);
+        // generqte loop for paragrphs (This loop is based on section numbers that are incrimentaly increasing)
+        for (let i = 1; i <= sect; i++) {
           const p = document.createElement("p");
-          p.innerHTML = `<p>Chapter ${sec}, Paragraph ${i}`;
+          p.innerHTML = `Chapter ${sect}, Paragraph ${i}`;
           content.appendChild(p);
           results.appendChild(content);
-          if (counter === 1) {
-            continue exit;
-          }
         }
       }
-      ///////// QUESTION: How can i do those increments!!!!
     </script>
   </body>
 </html>
