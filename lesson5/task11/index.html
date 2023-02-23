@@ -36,21 +36,25 @@
 
       // Generate loop
       let sum = 0;
+      let counter = 0;
       for (let i = minNum + 1; i < maxNum; i++) {
         // select only off numbers
         if (i % 2 !== 0) {
-          //// QUESTION: I am trying to get length if odd numbers, but it not working
-          var times = new Array(i);
-          console.log(`${times.length}`);
-
-          // show numbers in between
-          document.write(`${times.length}<br>`);
-          //// QUESTION:  how can i get number if instances of i???
-          // get the sum
-          sum += i;
+          //// QUESTION: I am trying to get length of odd numbers, but it not working
+          // Find range
+          counter++;
+          if (counter === 5) {
+            // sum
+            sum += i;
+            results.innerHTML = `There are ${counter} odd numbers in your range.<br> The sum of odd numbers is: ${sum}`;
+          } else {
+            results.innerHTML = `Sorry, not enough odd numbers. There is only ${counter} in your range`;
+          }
+          // document.write(`${counter}<br>`);
+          //// QUESTION:  how can I get total number of i elements???
         }
+
         // Show the results
-        results.innerHTML = `The sum of odd numbers is: ${sum}`;
       }
     </script>
   </body>
