@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 12</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 13
+
+    <h1>Task 13</h1>
+    <p>
+      13. Морський бій. Комп’ютер випадково розташовує одиночний корабель на
+      полі розміром N*M. Маючи К снарядів користувач намагається потопити
+      корабель.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Enter variables
+
+      // Grid Columns Number
+      const N = parseInt(prompt("Enter the number of columns"));
+      // Grid Row Number
+      const M = parseInt(prompt("Enter the number of rows"));
+      // random N position
+      const shipN = 1 + Math.floor(Math.random() * N);
+      // random M position
+      const shipM = 1 + Math.floor(Math.random() * M);
+      // Number of missiles
+      const K = parseInt(prompt("Enter the number of missiles"));
+      let counter = 0,
+        results;
+
+      // Get the loop to fire your missiles
+      for (let i = 0; i < K; i++) {
+        // missile random N position
+        const fireN = 1 + Math.floor(Math.random() * N);
+        // missile random N position
+        const fireM = 1 + Math.floor(Math.random() * M);
+        counter++;
+        if (fireN === shipN && fireM === shipM) {
+          results = `It's a hit!<br> Ship position was N${shipN} & M${shipM}<br>It took you ${counter} attempts to hit the ship`;
+          break;
+        } else {
+          results = `You have fired all ${K} of your missiles, and  all of them went off target. <br>The ship position was N${shipN} & M${shipM}<br>`;
+          document.write(`<br>Missfire coordinates: N${fireN}, M${fireM}<br>`);
+        }
+      }
+
+      document.write(`<br><h2>${results}</h2>`);
+    </script>
+  </body>
+</html>

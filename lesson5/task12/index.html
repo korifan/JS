@@ -31,7 +31,8 @@
         imgOne,
         imgTwo,
         imgThree,
-        winningCombination;
+        winningCombination,
+        results;
 
       // Get loop got generating random numbers and images
       for (let i = 0; i < 3; i++) {
@@ -61,7 +62,6 @@
       }
 
       // Show results based on winning combo number
-      let results;
       switch (winningCombination) {
         case 1:
           results = "You have won $100!";
