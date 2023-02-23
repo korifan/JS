@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 11</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 11
+
+    <h1>Task 11</h1>
+    <p>
+      Задача 11. Знайти суму 5 непарних чисел, що знаходяться між заданими
+      користувачем числами.
+    </p>
+
+    <h2>Results</h2>
+    <p class="results"></p>
+    <script>
+      // Constants
+      const firstNum = parseInt(prompt("Enter number"));
+      const secondNum = parseInt(prompt("Enter the number"));
+      const results = document.querySelector(".results");
+
+      // find min and max
+      const minNum = Math.min(firstNum, secondNum);
+      const maxNum = Math.max(firstNum, secondNum);
+
+      // show those numb
+      // console.log(`Number range is ${range}\n Min number is ${minNum}`);
+
+      // Generate loop
+      let sum = 0;
+      for (let i = minNum + 1; i < maxNum; i++) {
+        // select only off numbers
+        if (i % 2 !== 0) {
+          //// QUESTION: I am trying to get length if odd numbers, but it not working
+          var times = new Array(i);
+          console.log(`${times.length}`);
+
+          // show numbers in between
+          document.write(`${times.length}<br>`);
+          //// QUESTION:  how can i get number if instances of i???
+          // get the sum
+          sum += i;
+        }
+        // Show the results
+        results.innerHTML = `The sum of odd numbers is: ${sum}`;
+      }
+    </script>
+  </body>
+</html>

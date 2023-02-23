@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 7</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 7
+
+    <h1>Task 7</h1>
+    <p>
+      Задача 7. Вивести на екран N абзаців (N вводиться користувачем) за
+      зразком:
+    </p>
+
+    <h2>Results</h2>
+
+    <div class="results"><div class="content"></div></div>
+
+    <script>
+      // get the promt
+      const N = parseInt(prompt("Enter number of sections"));
+      const results = document.querySelector(".results");
+      const content = document.querySelector(".content");
+      let i = 1;
+      // let sec = 1;
+      // generate loop for sections
+      for (let sec = 1; sec <= N; sec++) {
+        const h1 = document.createElement("h1");
+        h1.innerHTML = `Title ${sec}`;
+        content.appendChild(h1);
+
+        for (let i = 1; i <= N; i++) {
+          const p = document.createElement("p");
+          p.innerHTML = `<p>Chapter ${sec}, Paragraph ${i}`;
+          content.appendChild(p);
+          results.appendChild(content);
+        }
+      }
+      ///////// NO IDEA HOW TO DO IT!!!!
+    </script>
+  </body>
+</html>

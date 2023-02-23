@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 9</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 9
+
+    <h1>Task 9</h1>
+    <p>
+      Задача 9. Користувач загадує число. Комп’ютер задає питання поки не вгадає
+      число користувача (використати confirm).
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Constants
+      const maxNum = 1000;
+      const minNum = -1000;
+      // Generate guess loop
+      exit: for (let i = 0; ; i++) {
+        let compGuess = Math.floor(Math.random() * (maxNum - minNum + 1));
+        let confirmText = `Is your number  ${compGuess}?`;
+        // use confirm
+        if (confirm(confirmText) == true) {
+          document.write("Finally, computer have guessted right!");
+          break;
+        }
+      }
+    </script>
+  </body>
+</html>

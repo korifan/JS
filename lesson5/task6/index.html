@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 6</title>
+    <style>
+      table,
+      tr,
+      td {
+        border: 1px solid;
+        padding: 3px;
+      }
+      table {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 6
+
+    <h1>Task 6</h1>
+    <p>
+      Задача 6. Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком
+    </p>
+
+    <h2>Results</h2>
+
+    <div class="table"></div>
+
+    <script>
+      // Enter variables
+      // number of tables
+      const tablesNum = 3,
+        // number of rows
+        rowNum = 3,
+        // number of columns
+        colNum = 27,
+        // table selector
+        results = document.querySelector(".table");
+      // number variable inside of td
+      let i = 1;
+      // start loop for table
+      for (let table = 1; table <= tablesNum; table++) {
+        // create table elements
+        const tableEl = document.createElement("table");
+        // append tables to the results
+        results.appendChild(tableEl);
+        // start loop for row
+        exit: for (let row = 1; row <= rowNum; row++) {
+          // create row element
+          const tr = document.createElement("tr");
+          // append row to the table element
+          tableEl.appendChild(tr);
+
+          // start loop for columns with variable i
+          for (i; i <= colNum; i++) {
+            // get the text for the table column
+            const colNumberText = document.createTextNode(`${i}`);
+            // create th element and add colun number into it
+            const td = document.createElement("td");
+            td.appendChild(colNumberText);
+            // add column (td) into the tr element
+            tr.appendChild(td);
+            // exit if column number is devicible by 3
+            if (i % 3 === 0) {
+              // assign new number to i
+              i = i + 1;
+              continue exit;
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

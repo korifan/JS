@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 3</title>
+    <style>
+      table,
+      tr,
+      th {
+        border: 1px solid;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>Задача 3. Вивести таблицю з одним рядком і 7 стовпцями.</p>
+
+    <h2>Results</h2>
+
+    <table>
+      <tr class="table"></tr>
+    </table>
+
+    <script>
+      const colNum = 7,
+        table = document.querySelector(".table");
+
+      // start loop
+      for (i = 1; i <= colNum; i++) {
+        // get the text for the table columns
+        const colNumberText = document.createTextNode(`${i}`);
+        // create <th> element and add column number text into it
+        const th = document.createElement("th");
+        th.appendChild(colNumberText);
+        // add column (th) into the table element
+        table.appendChild(th);
+      }
+    </script>
+  </body>
+</html>
