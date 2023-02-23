@@ -21,6 +21,7 @@
 
     <h2>Results</h2>
     <p class="results"></p>
+    <h3>Odd numbers in your range</h3>
     <script>
       // Constants
       const firstNum = parseInt(prompt("Enter number"));
@@ -37,19 +38,23 @@
       // Generate loop
       let sum = 0;
       let counter = 0;
-      for (let i = minNum + 1; i < maxNum; i++) {
+      let i;
+      for (i = minNum + 1; i < maxNum; i++) {
         // select only odd numbers
         if (i % 2 !== 0) {
           // Find range
           counter++;
-          if (counter === 5) {
-            // sum
-            sum += i;
-            results.innerHTML = `There are ${counter} odd numbers in your range.<br> The sum of odd numbers is: ${sum}`;
-          } else {
-            results.innerHTML = `Sorry, not enough odd numbers. There is only ${counter} in your range`;
+          if (counter > 5) {
+            break;
           }
+          document.write(`${i}<br>`);
+          sum += i;
         }
+      }
+      if (counter > 5) {
+        results.innerHTML = `The sum of odd numbers in your arenge is: ${sum}`;
+      } else {
+        results.innerHTML = `Not enought odd numbers. You have only ${counter} odd number(s).`;
       }
     </script>
   </body>
