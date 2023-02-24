@@ -27,11 +27,12 @@
       const totalWeeks = parseInt(prompt(`Enter number of weeks`));
       let dayName;
       let dayIncome = 0;
-      let totalWeekProffit = 0;
-      // let totalProfit = 0;
+      let totalProfit = 0;
       // Start week loop
       for (let week = 1; week <= totalWeeks; week++) {
-        // Define day names
+        // Define weeks profit wariables
+        let totalWeekProffit = 0;
+        let sevenDaysIncome = 0;
         for (let day = 1; day <= 7; day++) {
           switch (day) {
             case 1:
@@ -59,20 +60,22 @@
           dayIncome = parseInt(
             prompt(`Enter Week ${week}, ${dayName}'s income`)
           );
-          // Weeks profit
-
-          totalWeekProffit += dayIncome;
+          // sum from all days profit
+          sevenDaysIncome += dayIncome;
           document.write(
             `Week ${week}, ${dayName}'s income is: $${dayIncome}<br>`
           );
         }
 
-        /// QUESTION ??? How can I display profit for each weeks separately??? Right now I am getting only total from all weeks
+        // Week profit
+        totalWeekProffit += sevenDaysIncome;
         document.write(
           `<strong>Week ${week} Total income is: $${totalWeekProffit}</strong><br><br>`
         );
+        // total profit
+        totalProfit += totalWeekProffit;
       }
-      document.write(`<h2>Total income is: $${totalWeekProffit}</h2><br><br>`);
+      document.write(`<h2>Total income is: $${totalProfit}</h2><br><br>`);
     </script>
   </body>
 </html>

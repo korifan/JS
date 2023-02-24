@@ -27,6 +27,7 @@
       // Enter variables
       const totalSum = 100;
       let remainingCost = totalSum,
+        currentPayment = 0,
         customerPayment = 0,
         counter = 0;
 
@@ -34,15 +35,16 @@
       do {
         remainingCost = totalSum - customerPayment;
         counter++;
-        customerPayment += parseFloat(
+        currentPayment = parseFloat(
           prompt(
-            `The product cost is $${totalSum}\n You have paid $${customerPayment}\n You still have $${remainingCost} to pay.\n How much would you like to pay right now?`
+            `The product cost is $${totalSum}\n You have paid $${currentPayment}\n You still have $${remainingCost} to pay.\n How much would you like to pay right now?`
           )
         );
         // payment history
         //// Question??? how can i show my payments history (each payment number) in document.write. Right now it shows the sum increments on my payments becasue i use += ...
-        console.log(`${remainingCost}`);
-        document.write(`Payment# ${counter}: $ ${customerPayment}<br>`);
+        customerPayment += currentPayment;
+        // console.log(`${remainingCost}`);
+        document.write(`Payment# ${counter}: $ ${currentPayment}<br>`);
       } while (customerPayment < totalSum);
 
       // Results
