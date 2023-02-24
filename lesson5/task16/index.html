@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 16</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 16
+
+    <h1>Task 16</h1>
+    <p>
+      Задача 16. Користувач поступово вводить прибуток магазину за кожен день
+      протягом N тижнів. Знайти загальну величину прибутку та вивести величину
+      прибутку протягом кожного окремого тижня.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Enter variables
+      const totalWeeks = parseInt(prompt(`Enter number of weeks`));
+      let dayName;
+      let dayIncome = 0;
+      let totalWeekProffit = 0;
+      // let totalProfit = 0;
+      // Start week loop
+      for (let week = 1; week <= totalWeeks; week++) {
+        // Define day names
+        for (let day = 1; day <= 7; day++) {
+          switch (day) {
+            case 1:
+              dayName = "Monday";
+              break;
+            case 2:
+              dayName = "Tuesday";
+              break;
+            case 3:
+              dayName = "Wednesday";
+              break;
+            case 4:
+              dayName = "Thurday";
+              break;
+            case 5:
+              dayName = "Friday";
+              break;
+            case 6:
+              dayName = "Saturday";
+              break;
+            case 7:
+              dayName = "Sunday";
+              break;
+          }
+          dayIncome = parseInt(
+            prompt(`Enter Week ${week}, ${dayName}'s income`)
+          );
+          // Weeks profit
+
+          totalWeekProffit += dayIncome;
+          document.write(
+            `Week ${week}, ${dayName}'s income is: $${dayIncome}<br>`
+          );
+        }
+
+        /// QUESTION ??? How can I display profit for each weeks separately??? Right now I am getting only total from all weeks
+        document.write(
+          `<strong>Week ${week} Total income is: $${totalWeekProffit}</strong><br><br>`
+        );
+      }
+      document.write(`<h2>Total income is: $${totalWeekProffit}</h2><br><br>`);
+    </script>
+  </body>
+</html>
