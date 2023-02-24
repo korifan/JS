@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5 Task 14</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson5/index.html">Lesson 5</a>
+    / Task 14
+
+    <h1>Task 14</h1>
+    <p>
+      14. Каса. Користувачу повідомляють суму, яку йому треба сплатити.
+      Користувач поступово вводить суму грошей до тих пір, поки суми не буде
+      достатньо для оплати товарів (кожного разу користувачу повідомляють, яку
+      ще суму потрібно ввести).
+    </p>
+
+    <h2>Payment history</h2>
+
+    <script>
+      // Enter variables
+      const totalSum = 100;
+      let remainingCost = totalSum,
+        customerPayment = 0,
+        counter = 0;
+
+      // Start the payments loop
+      do {
+        remainingCost = totalSum - customerPayment;
+        counter++;
+        customerPayment += parseFloat(
+          prompt(
+            `The product cost is $${totalSum}\n You have paid $${customerPayment}\n You still have $${remainingCost} to pay.\n How much would you like to pay right now?`
+          )
+        );
+        // payment history
+        //// Questions? how can i show my payments in  document.write. It shows the sum increments on my payments...
+        console.log(`${remainingCost}`);
+        document.write(`Payment# ${counter}: $ ${customerPayment}<br>`);
+      } while (customerPayment < totalSum);
+
+      // Results
+      document.write(
+        `<br><br>It took you ${counter} payments to pay off this $${totalSum} item`
+      );
+    </script>
+  </body>
+</html>
