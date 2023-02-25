@@ -28,46 +28,60 @@
     <p>Задача 5. Вивести таблицю</p>
 
     <h2>Results</h2>
-
     <table class="table"></table>
-
     <script>
       // Enter variables
       // number of rows
       const rowNum = 3,
         // number of columns
-        colNum = 9,
+        colNum = 3,
         // table selector
         table = document.querySelector(".table")
       // number variable inside of td
-      let i = 1
+
       // start loop for rows
-      exit: for (let row = 1; row <= rowNum; row++) {
+      for (let row = 1; row <= rowNum; row++) {
         // Add table rows
         const tr = document.createElement("tr")
         table.appendChild(tr)
 
         // start loop for columns with variable i
 
-        for (i; i <= colNum; i++) {
-          // for (let i = 1; i <= row * 3 + i; i++) { ////////// ???   New solution that I dont understand
-          // get the text for the table column
-          let colNumberText = document.createTextNode(`${i}`)
+        for (let i = 1; i <= colNum; i++) {
+          // Add text to columns that use formula from 1 to 9 based on row and i variables changing numbers (metror's idea)
+          let colNumberText = document.createTextNode(`${(row - 1) * 3 + i}`)
           // create th element and add colun number into it
           const td = document.createElement("td")
           td.appendChild(colNumberText)
           // add column (td) into the tr element
           tr.appendChild(td)
 
-          //////////// solution
+          //////////// My old solution
           //  exit if column number is devicible by 3
-          if (i % 3 === 0) {
-            // assign new number to i
-            i = i + 1
-            continue exit
-          }
+          // if (i % 3 === 0) {
+          //   // assign new number to i
+          //   i = i + 1
+          //   continue exit
+          // }
         }
       }
+
+      ///// Mentor's super simple solution
+      // let res = ""
+
+      // res += "<table>"
+
+      // for (let i = 1; i <= 3; i++) {
+      //   res += "<tr>"
+      //   for (let j = 1; j <= 3; j++) {
+      //     res += `<td>${(i - 1) * 3 + j}</td>`
+      //   }
+      //   res += "</tr>"
+      // }
+
+      // res += "</table>"
+
+      // document.write(res)
     </script>
   </body>
 </html>
