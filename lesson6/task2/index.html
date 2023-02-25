@@ -14,13 +14,14 @@
     / Task 1
 
     <h1>Task 1</h1>
-    <p>2. Відобразити трикутник за допомогою символів «о»</p>
+    <p>1. Відобразити трикутник за допомогою символів «о»</p>
 
     <h2>Results</h2>
 
     <script>
       const char = "o"
-      const empty = "&nbsp;"
+      const e = "&nbsp;"
+      const v = "^"
       let rowsNum = 7
 
       document.write(`<h3>Normal triangle</h3>`)
@@ -32,26 +33,27 @@
       }
       /// Reversed triangle
       document.write(`<br><br><h3>Reversed triange</h3>`)
-      let counter = 7
+      let counter = 8
       for (let row = 1; row <= rowsNum; row++) {
-        // using repeat string
-        document.write(`${char.repeat(counter)}<br>`)
+        document.write(`<br>`)
         // reducing counter each time
         counter--
+        for (var col = counter; col >= 1; col--) {
+          document.write(`${char}`)
+        }
       }
 
-      /// Centered triangle
-      document.write(`<br><br><h3>Centered triange</h3>`)
-      let countEmpty = 7
-      let countChar = 1
-      for (let row = 1; row <= rowsNum; row++) {
-        // Write strings using repeat method
-        document.write(
-          `${empty.repeat(countEmpty)}${char.repeat(countChar)}<br>`
-        )
-        // reducing counters each time
-        countEmpty--
-        countChar++
+      //// Centerred
+      document.write(`<br><br><h3>Centered triangle</h3>`)
+      let count = 7
+      let rowCount = 7
+      for (let row = 1; row <= rowCount; row++) {
+        document.write(`<br>`)
+        // Reducing number of empty spaces
+        count--
+        for (var col = count; col >= 1; col--) {
+          document.write(`${e.repeat(count)}${v.repeat(row)}`)
+        }
       }
     </script>
   </body>
