@@ -32,7 +32,7 @@
       }
       /// Reversed triangle
       document.write(`<br><br><h3>Reversed triange</h3>`)
-      let counter = 7
+      let counter = rowsNum
       for (let row = 1; row <= rowsNum; row++) {
         // using repeat string
         document.write(`${char.repeat(counter)}<br>`)
@@ -42,7 +42,7 @@
 
       /// Centered triangle
       document.write(`<br><br><h3>Centered triange</h3>`)
-      let countEmpty = 7
+      let countEmpty = rowsNum
       let countChar = 1
       for (let row = 1; row <= rowsNum; row++) {
         // Write strings using repeat method
@@ -52,6 +52,20 @@
         // reducing counters each time
         countEmpty--
         countChar++
+      }
+
+      /// Centered reversed
+      document.write(`<br><br><h3>Centered reversed</h3>`)
+      let emptyCount = 0
+      let charCount = rowsNum
+      for (let row = 1; row <= rowsNum; row++) {
+        // Write strings using repeat method
+        document.write(
+          `${empty.repeat(emptyCount)}${char.repeat(charCount)}<br>`
+        )
+        // reducing counters each time
+        emptyCount++
+        charCount--
       }
     </script>
   </body>
