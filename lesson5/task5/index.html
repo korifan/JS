@@ -38,30 +38,33 @@
         // number of columns
         colNum = 9,
         // table selector
-        table = document.querySelector(".table");
+        table = document.querySelector(".table")
       // number variable inside of td
-      let i = 1;
+      let i = 1
       // start loop for rows
       exit: for (let row = 1; row <= rowNum; row++) {
         // Add table rows
-        const tr = document.createElement("tr");
-        table.appendChild(tr);
+        const tr = document.createElement("tr")
+        table.appendChild(tr)
 
         // start loop for columns with variable i
-        for (i; i <= colNum; i++) {
-          // get the text for the table column
-          const colNumberText = document.createTextNode(`${i}`);
-          // create th element and add colun number into it
-          const td = document.createElement("td");
-          td.appendChild(colNumberText);
-          // add column (td) into the tr element
-          tr.appendChild(td);
 
-          // exit if column number is devicible by 3
+        for (i; i <= colNum; i++) {
+          // for (let i = 1; i <= row * 3 + i; i++) { ////////// ???   New solution that I dont understand
+          // get the text for the table column
+          let colNumberText = document.createTextNode(`${i}`)
+          // create th element and add colun number into it
+          const td = document.createElement("td")
+          td.appendChild(colNumberText)
+          // add column (td) into the tr element
+          tr.appendChild(td)
+
+          //////////// solution
+          //  exit if column number is devicible by 3
           if (i % 3 === 0) {
             // assign new number to i
-            i = i + 1;
-            continue exit;
+            i = i + 1
+            continue exit
           }
         }
       }

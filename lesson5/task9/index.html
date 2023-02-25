@@ -23,16 +23,16 @@
 
     <script>
       // Constants
-      const maxNum = 1000;
-      const minNum = -1000;
+      const maxNum = 1000
+      const minNum = -1000
       // Generate guess loop
-      exit: for (let i = 0; ; i++) {
-        let compGuess = Math.floor(Math.random() * (maxNum - minNum + 1));
-        let confirmText = `Is your number  ${compGuess}?`;
+      for (let i = 0; ; i++) {
+        let compGuess = Math.floor(Math.random() * (maxNum - minNum + 1))
+        let confirmText = `Is your number  ${compGuess}?`
         // use confirm
         if (confirm(confirmText) == true) {
-          document.write("Finally, computer have guessted right!");
-          break;
+          document.write("Finally, computer have guessted right!")
+          break
         }
       }
     </script>

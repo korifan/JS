@@ -24,58 +24,58 @@
 
     <script>
       // Enter variables
-      const totalWeeks = parseInt(prompt(`Enter number of weeks`));
-      let dayName;
-      let dayIncome = 0;
-      let totalProfit = 0;
+      const totalWeeks = parseInt(prompt(`Enter number of weeks`))
+      let dayName
+      let dayIncome = 0
+      let totalProfit = 0
       // Start week loop
       for (let week = 1; week <= totalWeeks; week++) {
         // Define weeks profit wariables
-        let totalWeekProffit = 0;
-        let sevenDaysIncome = 0;
+        let totalWeekProffit = 0
+        let sevenDaysIncome = 0
         for (let day = 1; day <= 7; day++) {
           switch (day) {
             case 1:
-              dayName = "Monday";
-              break;
+              dayName = "Monday"
+              break
             case 2:
-              dayName = "Tuesday";
-              break;
+              dayName = "Tuesday"
+              break
             case 3:
-              dayName = "Wednesday";
-              break;
+              dayName = "Wednesday"
+              break
             case 4:
-              dayName = "Thurday";
-              break;
+              dayName = "Thurday"
+              break
             case 5:
-              dayName = "Friday";
-              break;
+              dayName = "Friday"
+              break
             case 6:
-              dayName = "Saturday";
-              break;
+              dayName = "Saturday"
+              break
             case 7:
-              dayName = "Sunday";
-              break;
+              dayName = "Sunday"
+              break
           }
           dayIncome = parseInt(
             prompt(`Enter Week ${week}, ${dayName}'s income`)
-          );
+          )
           // sum from all days profit
-          sevenDaysIncome += dayIncome;
+          sevenDaysIncome += dayIncome
           document.write(
             `Week ${week}, ${dayName}'s income is: $${dayIncome}<br>`
-          );
+          )
         }
 
         // Week profit
-        totalWeekProffit += sevenDaysIncome;
+        totalWeekProffit += sevenDaysIncome
         document.write(
           `<strong>Week ${week} Total income is: $${totalWeekProffit}</strong><br><br>`
-        );
+        )
         // total profit
-        totalProfit += totalWeekProffit;
+        totalProfit += totalWeekProffit
       }
-      document.write(`<h2>Total income is: $${totalProfit}</h2><br><br>`);
+      document.write(`<h2>Total income is: $${totalProfit}</h2><br><br>`)
     </script>
   </body>
 </html>

@@ -25,21 +25,21 @@
 
     <script>
       // Constants
-      const guessAttempts = 3;
-      const results = document.querySelector(".results");
+      const guessAttempts = 3
+      const results = document.querySelector(".results")
 
       // Generate guess loop
-      exit: for (let i = 0; i < guessAttempts; i++) {
-        let compGuess = Math.floor(Math.random() * (100 - 1 + 1));
-        let confirmText = `Is your number  ${compGuess}?`;
+      for (let i = 0; i < guessAttempts; i++) {
+        let compGuess = Math.floor(Math.random() * (100 - 1 + 1))
+        let confirmText = `Is your number  ${compGuess}?`
         // use confirm
         if (confirm(confirmText) == true) {
-          document.write("Lucky guess!");
-          break;
+          document.write("Lucky guess!")
+          break
         } else {
           // Question: why innerHTML doesn't repeat  i instances  multiple times but document.write does???
-          results.innerHTML = "Sorry, computer could not guess your number";
-          continue exit;
+          results.innerHTML = "Sorry, computer could not guess your number"
+          continue
         }
       }
     </script>

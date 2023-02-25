@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 6 Task 1</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson6/index.html">Lesson 6</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>1. Відобразити трикутник за допомогою символів «о»</p>
+
+    <h2>Results</h2>
+
+    <script>
+      const char = "o"
+      let rowsNum = 7
+
+      document.write(`<h3>Normal triangle</h3>`)
+      for (let row = 1; row <= rowsNum; row++) {
+        document.write(`<br>`)
+        for (let col = 0; col < row; col++) {
+          document.write(`${char}`)
+        }
+      }
+      /// Reversed triangle
+      document.write(`<br><br><h3>Reversed triange</h3>`)
+
+      let counter = 8
+      for (let row = 1; row <= rowsNum; row++) {
+        document.write(`<br>`)
+        // reducing counter each time
+        counter--
+        for (var col = counter; col >= 1; col--) {
+          document.write(`${char}`)
+        }
+      }
+
+      //// Centerred
+    </script>
+  </body>
+</html>
