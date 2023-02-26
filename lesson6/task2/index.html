@@ -11,48 +11,27 @@
     <a href="../../index.html">JS Homeworks</a>
     /
     <a href="../../lesson6/index.html">Lesson 6</a>
-    / Task 1
+    / Task 2
 
-    <h1>Task 1</h1>
-    <p>1. Відобразити трикутник за допомогою символів «о»</p>
+    <h1>Task 2</h1>
+    <p>4. Побудувати ялинку</p>
 
     <h2>Results</h2>
 
     <script>
       const char = "o"
-      const e = "&nbsp;"
-      const v = "^"
       let rowsNum = 7
 
-      document.write(`<h3>Normal triangle</h3>`)
-      for (let row = 1; row <= rowsNum; row++) {
-        document.write(`<br>`)
-        for (let col = 0; col < row; col++) {
-          document.write(`${char}`)
-        }
-      }
-      /// Reversed triangle
-      document.write(`<br><br><h3>Reversed triange</h3>`)
-      let counter = 8
-      for (let row = 1; row <= rowsNum; row++) {
-        document.write(`<br>`)
-        // reducing counter each time
-        counter--
-        for (var col = counter; col >= 1; col--) {
-          document.write(`${char}`)
-        }
-      }
-
-      //// Centerred
-      document.write(`<br><br><h3>Centered triangle</h3>`)
-      let count = 7
-      let rowCount = 7
-      for (let row = 1; row <= rowCount; row++) {
-        document.write(`<br>`)
-        // Reducing number of empty spaces
-        count--
-        for (var col = count; col >= 1; col--) {
-          document.write(`${e.repeat(count)}${v.repeat(row)}`)
+      document.write(`<h3Christmas tree</h3>`)
+      // repeat first loop 3 times
+      for (let i = 1; i <= 3; i++) {
+        // repeat second loop (rows)
+        for (let row = 1; row <= rowsNum; row++) {
+          document.write(`<br>`)
+          // repeat character "o" loop (depending on previous loop)
+          for (let col = 0; col < row; col++) {
+            document.write(`${char}`)
+          }
         }
       }
     </script>
