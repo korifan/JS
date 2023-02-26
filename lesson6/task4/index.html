@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 6 Task 4</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson6/index.html">Lesson 6</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      21. Напишіть програму для переводу мір довжини, торгової та аптекарської
+      ваги (лічильник циклу від 1 до 10)
+    </p>
+
+    <form id="user-form">
+      <label for="measures">Choose measures:</label>
+      <br />
+      <select name="measures" id="measures">
+        <option value="sagenToMeter">сажні у метри</option>
+        <option value="inchesToCm">дюйми у сантиметри</option>
+        <option value="feetToMeter">фути у метри</option>
+        <option value="drachmToGram">драхми у грами</option>
+        <option value="ouncesToGram">унціi у грами</option>
+        <option value="poundsToKg">фунти у кілограми</option>
+        <option value="arshinToMeters">аршини у метри</option>
+        <option value="goldiesToGram">золотники у грами</option>
+        <option value="inchesToMm">дюйми у міліметри</option>
+      </select>
+      <br />
+      <br />
+      <label for="quantity">Quantity (between 1 and 10):</label>
+      <br />
+      <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        min="1"
+        max="10"
+        value="1"
+      />
+      <br />
+      <br />
+      <button id="submit-option">Submit</button>
+    </form>
+
+    <h2>Results</h2>
+    <script>
+      // enter variables
+      const sagenMeter = 2.1366
+      const inchesCm = 2.5
+      const feetMeter = 0.3048
+      const drachmGram = 3.7325
+      const ounceGram = 29.86
+      const poundsKg = 0.40951
+      const arshinMeters = 0.7112
+      const goldiesGram = 4.2657
+      const inchesMillimenter = 25.3995
+
+      // form elements
+      const submitOption = document.getElementById("submit-option")
+      // const showResults = document.querySelector(".result")
+
+      // Attach function to handle button click
+      submitOption.addEventListener("click", handleSubmit)
+
+      let results
+
+      function handleSubmit(event) {
+        event.preventDefault()
+
+        let selectOption = document.forms["user-form"].measures.value
+        let number = document.forms["user-form"].quantity.value
+
+        for (i = 1; i <= number; i++) {
+          switch (selectOption) {
+            case "sagenToMeter":
+              results = `${i} sagens =  ${sagenMeter * i} meters<br>`
+              break
+            case "inchesToCm":
+              results = `${i} inches =  ${inchesCm * i} cantimenters<br>`
+              break
+            case "feetToMeter":
+              results = `${i} feet =  ${feetMeter * i} meters<br>`
+              break
+            case "drachmToGram":
+              results = `${i} drachm =  ${drachmGram * i} grams<br>`
+              break
+            case "ouncesToGram":
+              results = `${i} ounces =  ${ounceGram * i} grams<br>`
+              break
+            case "poundsToKg":
+              results = `${i} pounds =  ${poundsKg * i} kilogram<br>`
+              break
+            case "arshinToMeters":
+              results = `${i} arshins =  ${arshinMeters * i} meters<br>`
+              break
+            case "goldiesToGram":
+              results = `${i} goldies =  ${goldiesGram * i} grams<br>`
+              break
+            case "inchesToMm":
+              results = `${i} inches =  ${
+                inchesMillimenter * i
+              } millimenters<br>`
+              break
+            default:
+              console.log("Bad selection")
+          }
+          document.write(`<h2>${results}</h2>`)
+        }
+        //  console.log(`${selectOption.value}`)
+
+        //  showResults.innerText = `You have selected: ${selectOption.value} and ${number.value}`
+      }
+    </script>
+  </body>
+</html>
