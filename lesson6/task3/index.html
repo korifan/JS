@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 6 Task 3</title>
+    <style>
+      .triangle {
+        line-height: 0.8rem;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson6/index.html">Lesson 6</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>
+      5. Зобразити рівнобедрений трикутник із символів ^. Висоту задає
+      користувач. Наприклад, на екрані висота =5.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // enter variables
+      const char = "^"
+      const empty = " &nbsp; "
+      const height = parseInt(
+        prompt("Enter the hight of the triangle: \n(number of rows)")
+      )
+
+      /// Centered triangle parameters
+      let countEmpty = height - 1
+      let countChar = 1
+      for (let row = 1; row <= height; row++) {
+        // Write strings using repeat method
+        document.write(
+          `<p class="triangle">${empty.repeat(countEmpty)}${char.repeat(
+            countChar
+          )}</p>`
+        )
+        // reducing counters each time
+        countEmpty--
+        countChar += 2
+      }
+    </script>
+  </body>
+</html>
