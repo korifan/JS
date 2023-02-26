@@ -31,13 +31,29 @@
         }
       }
       /// Reversed triangle
-      document.write(`<br><br><h3>Reversed triange</h3>`)
-      let counter = rowsNum
+      document.write(`<br><br><h3>Reversed triange (using counter)</h3>`)
+      let counter = 7
       for (let row = 1; row <= rowsNum; row++) {
         // using repeat string
         document.write(`${char.repeat(counter)}<br>`)
         // reducing counter each time
         counter--
+      }
+
+      document.write(`<br><br><h3>Reversed triange 2 (no counter)</h3>`)
+      // solution without the counter
+      for (let row = 0; row < rowsNum; row++) {
+        // using repeat string
+        document.write(`${char.repeat(rowsNum - row)}<br>`)
+      }
+
+      document.write(
+        `<br><br><h3>Reversed triange 3 (using - - decriment)</h3>`
+      )
+      // solution without the counter
+      for (let row = rowsNum; row > 0; row--) {
+        // using repeat string
+        document.write(`${char.repeat(row)}<br>`)
       }
 
       /// Centered triangle
