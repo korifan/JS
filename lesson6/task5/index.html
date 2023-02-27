@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 6 Task 5</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson6/index.html">Lesson 6</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>
+      11. Комп’ютер загадує випадкове число від 1 до 10. Вгадати число шляхом
+      введеня можливих варіантів. В кінці вивести кількість спроб користувача.
+    </p>
+
+    <form id="user-form">
+      <br />
+      <br />
+      <label for="number">Guees the number (between 1 and 10):</label>
+      <br />
+      <input type="text" id="number" name="number" min="1" max="10" value="0" />
+      <br />
+      <br />
+      <button id="submit-option">Submit</button>
+    </form>
+
+    <div class="results"></div>
+    <script>
+      // enter measures variables
+
+      // select form elements
+      const submitOption = document.getElementById("submit-option")
+      // select results
+      const showResults = document.querySelector(".results")
+      // Attach function to handle button click
+      submitOption.addEventListener("click", handleSubmit)
+      // define the results variable
+      let results
+      // Computer random number
+      randomNum = 1 + Math.floor(Math.random() * 10)
+      console.log(randomNum)
+      // Button click function
+      counter = 0
+      let userNumber = document.forms["user-form"].number
+
+      function handleSubmit(event) {
+        event.preventDefault()
+        // get the form elements values
+        if (userNumber.value == 0 || userNumber.value > 10) {
+          counter++
+          results = `Try #${counter}. Your entry ${userNumber.value} is not correct number. Try numbers between 1 and 10`
+          userNumber.value = ""
+        } else {
+          if (userNumber.value == randomNum) {
+            // showResults.innerHTML = ""
+            //  document.write(`You got it! The ${userNumber.value} is correct!!!`)
+            counter++
+            results = `You got it! The ${userNumber.value} is correct!!! It took you ${counter} tries`
+          } else {
+            if (userNumber.value > randomNum) {
+              // Populate and show the results
+              counter++
+              results = `Try #${counter}. Your number ${userNumber.value} is not right. Try lesser number`
+              userNumber.value = ""
+            } else {
+              counter++
+              results = `Try #${counter}. Your number ${userNumber.value} is not right. Try bigger number`
+              userNumber.value = ""
+            }
+          }
+        }
+
+        const resultsH2 = document.createElement("h2")
+        const resultsText = document.createTextNode(`${results}`)
+        resultsH2.appendChild(resultsText)
+        showResults.appendChild(resultsH2)
+        console.log(counter)
+      }
+    </script>
+  </body>
+</html>
