@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 6 Task 5</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson6/index.html">Lesson 6</a>
+    / Task 6 (with loop)
+
+    <h1>Task 6 (same as 5 but with loop)</h1>
+    <p>
+      11. Комп’ютер загадує випадкове число від 1 до 10. Вгадати число шляхом
+      введеня можливих варіантів. В кінці вивести кількість спроб користувача.
+    </p>
+
+    <div class="results"></div>
+    <script>
+      // enter variables
+      // Computer random number
+      const randomNum = 1 + Math.floor(Math.random() * 10)
+      console.log(randomNum)
+      let counter = 0,
+        userNumber = 0,
+        results
+      do {
+        counter++
+        // give prompt hints to the user
+        if (userNumber == 0) {
+          results = `Enter number from 1 to 10`
+        } else {
+          if (userNumber > randomNum) {
+            results = `Your number ${userNumber} is not right. Try lesser number`
+          } else {
+            results = `Your number ${userNumber} is not right. Try bigger number`
+          }
+        }
+        // promp user number
+        userNumber = parseInt(prompt(`${results}`))
+        // condition
+      } while (userNumber !== randomNum)
+      // Show the results
+      document.write(
+        `<h2>You got it! Number ${userNumber} is correct!!!<br> It took you ${counter} tries to get it right</h2>`
+      )
+    </script>
+  </body>
+</html>
