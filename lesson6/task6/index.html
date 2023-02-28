@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 6 Task 5</title>
+    <title>Lesson 6 Task 6</title>
   </head>
 
   <body>
@@ -40,9 +40,10 @@
             results = `Your number ${userNumber} is not right. Try bigger number`
           }
         }
-        // promp user number
+        // prompt user number
         userNumber = parseInt(prompt(`${results}`))
-        // condition
+        // CONDITION:  (while userNumber is not equal randomNumber -> do the propmpt above,
+        // but once the userNumber becomes equal to the randomNum, the loop will stop)
       } while (userNumber !== randomNum)
       // Show the results
       document.write(
