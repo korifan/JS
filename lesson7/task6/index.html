@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 6</title>
+
+    <style>
+      table,
+      td {
+        border: 1px solid #555;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 6
+
+    <h1>Task 6</h1>
+    <p>
+      Задача 6. Створити функцію, яка створює таблицю з вказаною кількістю
+      рядків і стовпців (таблиця заповнюється заданим фіксованим повідомленням).
+    </p>
+
+    <form id="user-form">
+      <label for="row">Enter number of rows</label>
+      <br />
+      <input type="number" name="row" id="row" />
+      <br />
+      <br />
+
+      <label for="col">Enter number of columns</label>
+      <br />
+      <input type="number" name="col" id="col" />
+      <br />
+      <br />
+      <button id="submit-option">Submit</button>
+    </form>
+    <h2>Results</h2>
+    <div class="results"></div>
+    <script>
+      //1.  get the form variables
+      const submitOption = document.getElementById("submit-option")
+      submitOption.addEventListener("click", handleSubmit)
+      const results = document.querySelector(".results")
+      //3. Run the click function
+      function handleSubmit(event) {
+        event.preventDefault()
+        let rowNumber = document.forms["user-form"].row.value
+        let colNumber = document.forms["user-form"].col.value
+        console.log(rowNumber)
+        console.log(colNumber)
+        createTable(rowNumber, colNumber)
+        //results = tableHTML
+      }
+
+      function createTable(a, b) {
+        // clear the table container
+        results.innerHTML = ""
+        // create new table
+        const table = document.createElement("table")
+        // start loop for rowa
+        for (let row = 1; row <= a; row++) {
+          // Add table rows
+          const tr = document.createElement("tr")
+          // add table row into table element
+          table.appendChild(tr)
+          // start loop for column
+          for (let i = 1; i <= b; i++) {
+            // get the text for the table column
+            const colNumberText = document.createTextNode(`${i}`)
+            // create th element and add colun number into it
+            const td = document.createElement("td")
+            td.appendChild(colNumberText)
+            // add column (td) into the tr element
+            tr.appendChild(td)
+          }
+        }
+        results.appendChild(table)
+      }
+    </script>
+  </body>
+</html>
