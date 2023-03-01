@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 5</title>
+    <style>
+      #measure1 {
+        padding: 10px;
+        margin-right: 10px;
+      }
+      #measure1::placeholder {
+        color: #000;
+      }
+      .measure2 {
+        border: 1px solid #777;
+        padding: 10px;
+        width: 150px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>Задача 5. Створити окремі функції, які переводять:</p>
+
+    <ul>
+      <li>Сантиметри у дюйми;</li>
+      <li>Кілограми у фунти;</li>
+      <li>Кілометри у милі.</li>
+    </ul>
+
+    <form id="user-form">
+      <label for="measures">Select measures:</label>
+      <br />
+      <select name="measures" id="measures">
+        <option value="cmIn">Сантиметри у дюйми</option>
+        <option value="kgPounds">Кілограми у фунти</option>
+        <option value="kmMiles">Кілометри у милі</option>
+      </select>
+
+      <br />
+      <br />
+      <div style="display: flex">
+        <input type="text" name="measure1" id="measure1" placeholder="1" />
+        <div class="measure2">0.39 Inches</div>
+      </div>
+
+      <br />
+      <br />
+      <button id="submit-option">Submit</button>
+    </form>
+    <h2>Results</h2>
+    <div class="results"></div>
+    <script>
+      //1.  get the form variables
+      const submitOption = document.getElementById("submit-option")
+      submitOption.addEventListener("click", handleSubmit)
+      let result
+      //2.  Create functions
+      // cm to inches function
+      function cmToInches(n) {
+        return n * 0.39
+      }
+
+      // kg to pounds function
+      function kgToPounds(n) {
+        return n * 2.2
+      }
+
+      // kg to pounds function
+      function kmToMies(n) {
+        return n * 0.62
+      }
+      //3. Run the click function to
+      function handleSubmit(event) {
+        event.preventDefault()
+        let selectOption = document.forms["user-form"].measures.value
+        let measureOne = document.forms["user-form"].measure1
+        let measure2 = document.querySelector(".measure2")
+        switch (selectOption) {
+          case "cmIn":
+            result = `${cmToInches(Number(measureOne.value)).toFixed(2)} Inches`
+            measure2.innerHTML = `${result}`
+            break
+          case "kgPounds":
+            result = `${kgToPounds(Number(measureOne.value)).toFixed(1)} Pounds`
+            measure2.innerHTML = `${result}`
+            break
+          case "kmMiles":
+            result = `${kmToMies(Number(measureOne.value)).toFixed(1)} Miles`
+            measure2.innerHTML = `${result}`
+            break
+          default:
+            result = "Bad selection"
+        }
+      }
+    </script>
+  </body>
+</html>
