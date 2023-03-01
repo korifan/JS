@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 3</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 3
+
+    <h1>Task 4</h1>
+    <p>Задача 3. Створити окремі функції, які для 4 чисел знаходять:</p>
+    <ol>
+      <li>суму</li>
+      <li>середнє арифметичне</li>
+      <li>мінімальне значення</li>
+    </ol>
+    <h2>Results</h2>
+    <script>
+      // 1.  Enter 4 numbers
+      const numberOne = parseFloat(prompt("Enter first number"))
+      const numberTwo = parseFloat(prompt("Enter second number"))
+      const numberThird = parseFloat(prompt("Enter third number"))
+      const numberFouth = parseFloat(prompt("Enter forth number"))
+      // 2.  create getSum(a, b, c, d) {} function
+      function getSum(a, b, c, d) {
+        let results = a + b + c + d
+        return results
+      }
+      // 3.  create getMedianNumber(a, b, c, d) {} function
+      function getMedianNumber(a, b, c, d) {
+        let results = (a + b + c + d) / 4
+        return results
+      }
+      // 4.  create getMin(a, b, c, d) {} function
+      function getMin(a, b, c, d) {
+        let min = +Infinity
+        if (a < min) min = a
+        if (b < min) min = b
+        if (c < min) min = c
+        if (d < min) min = d
+        return min
+      }
+      // 5. Show results via document.write
+      const sum = getSum(numberOne, numberTwo, numberThird, numberFouth)
+      const median = getMedianNumber(
+        numberOne,
+        numberTwo,
+        numberThird,
+        numberFouth
+      )
+      const min = getMin(numberOne, numberTwo, numberThird, numberFouth)
+      document.write(
+        `Your numbers are: ${numberOne}, ${numberTwo}, ${numberThird}, ${numberFouth}<br><br> The sum of your numbers is  ${sum}<br> The median of your numbers is  ${median}<br> The lowest of your numbers is  ${min}`
+      )
+    </script>
+  </body>
+</html>

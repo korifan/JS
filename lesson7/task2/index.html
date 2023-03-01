@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 2</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 2
+
+    <h1>Task 2</h1>
+    <p>
+      Задача 2. Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей
+      день робочим.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // 1. user enters the number
+      const dayNum = parseInt(prompt("Enter the weekday number (from 1 to 7)"))
+      // 2. function getWeekday(number) - checks the number via switch oretator and returns the day status
+      function getWeekday(number) {
+        let results
+        switch (number) {
+          case 1:
+            results = "work day"
+          case 2:
+            results = "work day"
+          case 3:
+            results = "work day"
+          case 4:
+            results = "work day"
+          case 5:
+            results = "work day"
+            break
+          case 6:
+            results = "weekend"
+          case 7:
+            results = "weekend"
+            break
+          default:
+            results = "wrong. Try between 1 and 7"
+        }
+        return results
+      }
+      // 3. Show the results
+      let day = getWeekday(dayNum)
+      document.write(`Your day number is ${day}`)
+    </script>
+  </body>
+</html>

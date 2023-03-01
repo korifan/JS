@@ -43,7 +43,7 @@
       // define the results variable
       let results
       // Computer random number
-      randomNum = 1 + Math.floor(Math.random() * 10)
+      randomNum = 1 + Math.floor(Math.random() * 100)
       console.log(randomNum)
       // Button click function
       counter = 0
@@ -52,7 +52,7 @@
       function handleSubmit(event) {
         event.preventDefault()
         // get the form elements values
-        if (userNumber.value == 0 || userNumber.value > 10) {
+        if (userNumber.value == 0 || userNumber.value > 100) {
           counter++
           results = `Try #${counter}. Your entry ${userNumber.value} is not correct number. Try numbers between 1 and 10`
           userNumber.value = ""

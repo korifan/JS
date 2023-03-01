@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 1</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Задача 1. Створити функцію, яка за номером місяця повертає його назву.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // 1. user enters the number
+      const monthNum = parseInt(prompt("Enter the month number"))
+      // 2. function getSeason(n) - checks the number via switch oretator and returns the season
+      function getMonth(num) {
+        let results
+        switch (num) {
+          case 12:
+            results = "December"
+            break
+          case 1:
+            results = "January"
+            break
+          case 2:
+            results = "February"
+            break
+          case 3:
+            results = "March"
+            break
+          case 4:
+            results = "April"
+            break
+          case 5:
+            results = "May"
+            break
+          case 6:
+            results = "June"
+            break
+          case 7:
+            results = "July"
+            break
+          case 8:
+            results = "August"
+            break
+          case 9:
+            results = "September"
+            break
+          case 10:
+            results = "October"
+            break
+          case 11:
+            results = "November"
+            break
+          default:
+            results = "Wrong number"
+        }
+        return results
+      }
+      // 3. Show the results
+      let month = getMonth(monthNum)
+      document.write(`The month is ${month}`)
+    </script>
+  </body>
+</html>

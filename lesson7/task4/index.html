@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 4</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 7
+
+    <h1>Task 4</h1>
+    <p>
+      Задача 4. Створити функцію, яка для 3 заданих чисел знаходить одночасно
+      декілька результатів: кількість парних, кількість додатних, кількість
+      більших за 100.
+    </p>
+    <h2>Results</h2>
+    <script>
+      //1. Define your variables
+      let counter = 0,
+        odd = 0,
+        even = 0,
+        over100 = 0,
+        results
+
+      //2. Go through function that will determine quantites (counters) three times using loop
+      do {
+        counter++
+        const number = parseFloat(prompt("Enter  number"))
+        document.write(`Number #${counter} is ${number}<br> `)
+        // call the function
+        getAllResults(number)
+      } while (counter < 3)
+
+      // Function that determines the quantites
+      function getAllResults(a) {
+        // even or odd
+        a % 2 == 0 ? even++ : odd++
+        // over 100
+        if (a > 100) over100++
+        // GEt results
+        results = `<br><br>There are ${odd} odd numbers:<br> ${even}  even numbers.<br> And there ${over100} numbers that are over 100`
+        // QUESTION: do wee need return? Becasue it works without it
+        // return results
+      }
+      // 3. Show results
+      document.write(results)
+    </script>
+  </body>
+</html>
