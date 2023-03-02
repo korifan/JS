@@ -4,24 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 7 Task 9</title>
+    <title>Lesson 7 Task 10</title>
   </head>
 
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
     <a href="../../lesson7/index.html">Lesson 7</a>
-    / Task 9
+    / Task 10
 
-    <h1>Task 9</h1>
+    <h1>Task 10</h1>
     <p>
-      Задача 9. Дано покази температур (довільна кількість). Розробити функцію,
-      яка дозволить підрахувати кількість від’ємних показів температури.
+      Задача 10. Дано покази температур (довільна кількість). Розробити функцію,
+      яка дозволить знайти середнє значення для додатних показів температури.
     </p>
     <h2>Temperature records</h2>
     <ul class="list"></ul>
 
-    <h2>Quantity of negative temperature records:</h2>
+    <h2>Results</h2>
     <div class="results"></div>
 
     <script>
@@ -38,6 +38,8 @@
       const temperaturesList = document.querySelector(".list")
       const results = document.querySelector(".results")
       let counter = 0
+      let medianNumber = 0
+      let sum = 0
 
       // Generate loop that will make temperature record list
       for (let i = 0; i < temperatureRecords; i++) {
@@ -50,16 +52,18 @@
         const li = document.createElement("li")
         li.appendChild(temperaturesText)
         temperaturesList.appendChild(li)
-        // call negative records function
-        negativeNumbers(temperaturesRandomNum)
+        // call median temperature from positive records function
+        getMedianNumber(temperaturesRandomNum)
       }
       // Display the results
-      results.innerHTML = `<h3>${counter}</h3>`
+      results.innerHTML = `<h3>Number of positive records:${counter}<br> Sum of those records is ${sum} <br>Median temperature number for positive records: ${medianNumber}°C</h3>`
 
-      // Function that counts quantity of negative temperature records
-      function negativeNumbers(a) {
-        if (a < 0) {
+      // Function gets the median temperature from positive records
+      function getMedianNumber(a) {
+        if (a > 0) {
           counter++
+          sum += a
+          medianNumber = sum / counter
         }
       }
     </script>
