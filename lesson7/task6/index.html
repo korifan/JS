@@ -10,7 +10,7 @@
       table,
       td {
         border: 1px solid #555;
-        padding: 10px;
+        padding: 5px;
       }
     </style>
   </head>
@@ -53,18 +53,17 @@
         event.preventDefault()
         let rowNumber = document.forms["user-form"].row.value
         let colNumber = document.forms["user-form"].col.value
-        console.log(rowNumber)
-        console.log(colNumber)
+        // call the table function
         createTable(rowNumber, colNumber)
-        //results = tableHTML
       }
 
+      // Create table function
       function createTable(a, b) {
         // clear the table container
         results.innerHTML = ""
-        // create new table
+        // create new table element
         const table = document.createElement("table")
-        // start loop for rowa
+        // start loop for rows
         for (let row = 1; row <= a; row++) {
           // Add table rows
           const tr = document.createElement("tr")

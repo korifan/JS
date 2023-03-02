@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 7</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 7
+
+    <h1>Task 7</h1>
+    <p>
+      Задача 7. Створити функцію, яка випадковим чином виводить на екран одне із
+      4 зображень (шляхи до зображень передаються у функцію)
+    </p>
+
+    <form id="user-form">
+      <button id="submit-option">Reload</button>
+    </form>
+    <h2>Results</h2>
+    <div class="results"></div>
+    <script>
+      //1.  get the form variables
+
+      const submitOption = document.getElementById("submit-option")
+      submitOption.addEventListener("click", handleSubmit)
+      const results = document.querySelector(".results")
+
+      //2. Create image function (with default 1)
+      function createImage(a = 1) {
+        results.innerHTML = `<img src="img/${a}.jpg">`
+      }
+
+      //3. Run the click function
+      function handleSubmit(event) {
+        event.preventDefault()
+        // create random number from 1 to 4
+        let imgRandomNum = 1 + Math.floor(Math.random() * 4)
+        // call random image function
+        createImage(imgRandomNum)
+      }
+
+      // Load image on page load
+      createImage()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 7 Task 9</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson7/index.html">Lesson 7</a>
+    / Task 9
+
+    <h1>Task 9</h1>
+    <p>
+      Задача 9. Дано покази температур (довільна кількість). Розробити функцію,
+      яка дозволить підрахувати кількість від’ємних показів температури.
+    </p>
+    <h2>Temperatures</h2>
+    <ul class="list"></ul>
+    <form id="user-form">
+      <button id="submit-option">How many negative numbers</button>
+    </form>
+    <h2>Results</h2>
+
+    <div class="results"></div>
+
+    <script>
+      //1.  get the form variables
+      const submitOption = document.getElementById("submit-option")
+      submitOption.addEventListener("click", handleSubmit)
+      const results = document.querySelector(".results")
+
+      // get the temps
+
+      const temperaturesList = document.querySelector(".list")
+      let counter = 0
+
+      // start loop that will make temperatures
+      for (let i = 0; i < 15; i++) {
+        const temperatureMin = -20
+        const temperatureMax = 44
+        let temperaturesRandomNum =
+          Math.floor(Math.random() * (temperatureMax - temperatureMin)) +
+          temperatureMin
+        const temperaturesText = document.createTextNode(
+          `${temperaturesRandomNum}°C`
+        )
+        const li = document.createElement("li")
+        li.appendChild(temperaturesText)
+        temperaturesList.appendChild(li)
+        // count negatives
+        negativeNumbers(temperaturesRandomNum)
+      }
+
+      //3. Function that counts the temp
+      function negativeNumbers(a) {
+        if (a < 0) {
+          counter++
+        }
+      }
+
+      //4. Run the click function to generate banner
+      function handleSubmit(event) {
+        event.preventDefault()
+        // call banner function with all the paramenters
+        results.innerHTML = `<h3>Total number negative temperature instances:  ${counter}</h3>`
+      }
+    </script>
+  </body>
+</html>
