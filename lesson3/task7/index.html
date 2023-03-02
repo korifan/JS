@@ -8,8 +8,10 @@
   </head>
 
   <body>
-    <a href="../../index.html">JS Homeworks</a> /
-    <a href="../../lesson3/index.html">Lesson 3</a> / Task 7
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson3/index.html">Lesson 3</a>
+    / Task 7
 
     <h1>Task 7</h1>
     <p>
@@ -23,42 +25,41 @@
       // Insert variables
       const monthNumber = parseInt(
         prompt("Enter a month number (from 1 to 12)", 0)
-      );
-      const winterMinNumber = 1;
-      const springMinNumber = 3;
-      const summerMinNumber = 6;
-      const fallMinNumber = 9;
-      const decenberNumber = 12;
+      )
+      const winterMinNumber = 1
+      const springMinNumber = 3
+      const summerMinNumber = 6
+      const fallMinNumber = 9
+      const decenberNumber = 12
 
       // Make the results instance variable
-      const results = document.querySelector(".results");
+      const results = document.querySelector(".results")
 
       // Winter
       if (monthNumber < springMinNumber || monthNumber === decenberNumber) {
         // show results
-        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Winter</strong>`;
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Winter</strong>`
       }
       // Spring condition
       else if (monthNumber < summerMinNumber) {
         // show results
-        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Spring</strong>`;
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Spring</strong>`
       }
       // Summer condition
       else if (monthNumber < fallMinNumber) {
         // show results
-        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Summer</strong>`;
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Summer</strong>`
       }
       // Fall condition
       else if (monthNumber < decenberNumber) {
         // show results
-        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Fall</strong>`;
+        results.innerHTML = `Your number  is ${monthNumber}. <br>It means it is <strong>Fall</strong>`
       }
-
       // Wrong number
       else {
-        console.log(`Wrong entry`);
+        console.log(`Wrong entry`)
         // show results
-        results.innerHTML = `Your number is ${monthNumber}. <br>It's a bad entry. Try numbers between 1 and 12`;
+        results.innerHTML = `Your number is ${monthNumber}. <br>It's a bad entry. Try numbers between 1 and 12`
       }
     </script>
   </body>
