@@ -40,6 +40,17 @@
     </p>
 
     <form id="user-form">
+      <label for="title">Enter title for the banner</label>
+      <br />
+      <input type="техт" name="title" id="title" />
+      <br />
+      <br />
+
+      <label for="url">Enter url path for the banner</label>
+      <br />
+      <input type="техт" name="url" id="url" />
+      <br />
+      <br />
       <button id="submit-option">Generate banner</button>
     </form>
     <h2>Results</h2>
@@ -51,8 +62,6 @@
 
       //2. get banner variables
       const imagePath = "img/1.jpg"
-      const title = "Banner title"
-      const url = "https://google.com"
       const results = document.querySelector(".results")
 
       //3. Create banner
@@ -64,6 +73,8 @@
       function handleSubmit(event) {
         event.preventDefault()
         // call banner function with all the paramenters
+        let title = document.forms["user-form"].title.value
+        let url = document.forms["user-form"].url.value
         createImage(imagePath, title, url)
       }
     </script>
