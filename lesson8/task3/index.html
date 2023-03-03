@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 3</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>
+      Задача 3. Дано масив імен учнів. З’ясувати скільки разів зустрічається
+      ім’я «Іван».
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      //1. Create function getIvan(a) that check if there is name "Іван" in the array.  Function should return number of instances  "Іван" is found in the array
+      function getIvan(students) {
+        let number = 0
+        for (let i = 0; i < students.length; i++) {
+          if (students[i] == "Іван") {
+            number++
+          }
+        }
+        return number
+      }
+
+      //2. Create loop that would create arrayStudentNames with student names
+      let numberOfStudents = parseInt(
+        prompt("How many students in the class?", 0)
+      ) // ask user how many students in the list
+      const arrayStudentNames = [] // create students names array
+      for (let i = 0; i < numberOfStudents; i++) {
+        let studentName = prompt("Enter student name")
+        arrayStudentNames.push(studentName) // pushing student name into into student list array
+      }
+
+      //3. Display the results
+      const nameIvanTimes = getIvan(arrayStudentNames) // call the fuction
+      document.write(
+        `There are  ${nameIvanTimes} students with the name "Іван" in the list`
+      )
+    </script>
+  </body>
+</html>

@@ -114,8 +114,12 @@
       // Create the for loop that would push 7 random numbers between 10 and 100 into the arrCustomers
       // Define constants
       const week = 7
-      const minCustomers = 10
-      const maxCustomers = 100
+      const minCustomers = parseInt(
+        prompt("Enter minimun number of customers", 0)
+      )
+      const maxCustomers = parseInt(
+        prompt("Enter maximum number of customers", 100)
+      )
       let arrCustomers = [] // create customers array
       for (let i = 0; i < week; i++) {
         let customersNum = Math.floor(
