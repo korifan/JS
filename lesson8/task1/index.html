@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 1</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Задача 1. Дано масив, який містить оцінки з К предметів. Знайти середній
+      бал і з’ясувати до якої категорії він відноситься (відмінник, двійочник
+      (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є
+      хоча би одна трійка)).
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // create function that will take in array and return median
+      function getMedianGrade(grades) {
+        var sum = 0
+        for (let i = 0; i < grades.length; i++) {
+          sum += grades[i]
+        }
+        return sum / grades.length
+      }
+
+      // create function that will fisplay academic performance category
+      function getAcademicPerformanceCategory(grades) {
+        let results
+        let min = +Infinity
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] < min) min = grades[i]
+          results = min
+        }
+        switch (min) {
+          case 5:
+            results = "great student"
+            break
+          case 4:
+            results = "good student"
+            break
+          case 3:
+            results = "ok student"
+            break
+          case 2:
+            results = "bad student"
+            break
+        }
+        return results
+      }
+
+      // Make loop that will run K times (classes) and will create randon number (grades) from 5 to 2. Then push those grades into array
+      const K = parseInt(prompt("Enter number of clasees"))
+      const maxGrade = 5
+      const minGrade = 2
+      let arrayGrades = [] // array
+      for (let i = 0; i < K; i++) {
+        let randomGrade = Math.floor(
+          Math.random() * (maxGrade - minGrade + 1) + minGrade
+        )
+        arrayGrades.push(randomGrade) // pushing random grade into array
+      }
+
+      // Display the results
+      let mediam = getMedianGrade(arrayGrades)
+      let performaceCategory = getAcademicPerformanceCategory(arrayGrades)
+
+      document.write(
+        `The student took ${K} classes<br> His median grade is ${mediam}<br> He is ${performaceCategory}`
+      )
+    </script>
+  </body>
+</html>

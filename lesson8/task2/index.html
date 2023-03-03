@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 2</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 2
+
+    <h1>Task 2</h1>
+    <p>
+      Задача 2. Дано масив, який зберігає кількість відвідувачів магазину
+      протягом тижня. Вивести на екран:
+    </p>
+    <ul>
+      <li>
+        номери днів, протягом яких кількість відвідувачів була меншою за 20;
+      </li>
+      <li>номери днів, коли кількість відвідувачів була максимальною;</li>
+      <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+      <li>
+        загальну кількість клієнтів у робочі дні та окремо загальну кількість
+        днів на вихідних.
+      </li>
+    </ul>
+
+    <h2>Results</h2>
+
+    <script>
+      // create function that will find the index of the max number
+      function getWeekDayName(day) {
+        let result
+        switch (day) {
+          case 7:
+            result = " Sumday"
+            break
+          case 1:
+            result = " Monday"
+            break
+          case 2:
+            result = " Tuesday"
+            break
+          case 3:
+            result = " Wednesday"
+            break
+          case 4:
+            result = " Thursday"
+            break
+          case 5:
+            result = " Friday"
+            break
+          case 6:
+            result = " Saturday"
+            break
+          default:
+            result = " 0"
+            break
+        }
+        return result
+      }
+      function getMaxCustomersDay(customers) {
+        let max = -Infinity
+        let weekday = 0
+        for (let i = 0; i < customers.length; i++) {
+          if (customers[i] > max) {
+            max = customers[i]
+            weekday = i + 1
+          }
+        }
+        return weekday
+      }
+      // create function that will find the index of the min number
+      function getMinCustomersDay(customers) {
+        let min = +Infinity
+        let weekday = 0
+        for (let i = 0; i < customers.length; i++) {
+          if (customers[i] < min) {
+            min = customers[i]
+            weekday = i + 1
+          }
+        }
+        return weekday
+      }
+      // create function that will find the indexes where numbers are less than 20
+      function getLessThan_20CustomersDays(customers) {
+        let weekdayNames = [] // create new array that will collect day numbers
+        let weekday = 0
+        let name = 0
+        for (let i = 0; i < customers.length; i++) {
+          if (customers[i] < 20) {
+            weekday = i + 1
+            name = getWeekDayName(weekday) // function inside of function... bad idea?
+            weekdayNames.push(name)
+          }
+        }
+        return weekdayNames
+      }
+
+      // create function that will find the sum of all customers
+      function getTotalCustomersPerWeek(customers, startWeekNum, endWeekNum) {
+        var sum = 0
+        for (let i = startWeekNum; i <= endWeekNum; i++) {
+          sum += customers[i - 1] // -1 becasue arrays always start from 0
+        }
+        return sum
+      }
+      // Create the for loop that would push 7 random numbers between 10 and 100 into the arrCustomers
+      // Define constants
+      const week = 7
+      const minCustomers = 10
+      const maxCustomers = 100
+      let arrCustomers = [] // create customers array
+      for (let i = 0; i < week; i++) {
+        let customersNum = Math.floor(
+          Math.random() * (maxCustomers - minCustomers + 1) + minCustomers
+        )
+        arrCustomers.push(customersNum) // pushing random customers number into customers array
+      }
+
+      // Display the results
+      let maxVisitors = getWeekDayName(getMaxCustomersDay(arrCustomers))
+      let minVisitors = getWeekDayName(getMinCustomersDay(arrCustomers))
+      // how can i transform those array into text?
+      let lessThan20Customers = getLessThan_20CustomersDays(arrCustomers)
+      let weekdayCustomers = getTotalCustomersPerWeek(arrCustomers, 1, 5)
+      let weekendCustomers = getTotalCustomersPerWeek(arrCustomers, 6, 7)
+      document.write(`${arrCustomers}`)
+      document.write(`<h2>Most customers visited on ${maxVisitors}</h2>
+      <h2>Least customers visited on ${minVisitors}</h2>
+      <h2>On these days there were less than 20 customers: 
+        ${lessThan20Customers}</h2>
+      <h2>Total customers visited durng the week days: ${weekdayCustomers}</h2>
+      <h2>Total customers visited durng the weekend: ${weekendCustomers}</h2>`)
+    </script>
+  </body>
+</html>
