@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 4</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      Задача 4. Дано послідовність номерів автомобілів. Підрахувати кількість
+      номерів, які :
+    </p>
+    <ul>
+      <li>починаються на букву «А»;</li>
+      <li>перша і остання літери співпадають;</li>
+      <li>складаються з більше ніш 5 символів;</li>
+    </ul>
+
+    <h2>Results</h2>
+
+    <script>
+      //1. Create function getNumberStartWithLetter_A(a) that returns number of items starting with the letter "A".
+      function getNumberStartWithLetter_A(plates) {
+        const char = "A"
+        let number = 0
+        for (let i = 0; i < plates.length; i++) {
+          if (plates[i][0] === char) {
+            number++
+          }
+        }
+        return number
+      }
+
+      //2. Create function getNumberStartWithLetter_A(a) that returns number of items that have same first and last character
+      function getNumberSameFirstAndLast(plates) {
+        let count = 0
+        for (let i = 0; i < plates.length; i++) {
+          // sellecting array item as if they have subarrays
+          if (plates[i][0] === plates[i][plates[i].length - 1]) {
+            count++
+          }
+        }
+        return count
+      }
+
+      //3. Create function getLongerThan_5_lettersItems(plates) that returns number of items that a longer than 5 letters
+      function getLongerThan_5_lettersItems(plates) {
+        let count = 0
+        for (let i = 0; i < plates.length; i++) {
+          if (plates[i].length > 5) {
+            count++
+          }
+        }
+        return count
+      }
+
+      //4. Create loop that would create arrayLicensePlates with license plates
+      const numberOfPlates = parseInt(
+        prompt("How many license plates you would like to create?", 0)
+      ) // ask user how many license plates in the list
+      const arrayLicensePlates = [] // create license plates array
+      console.log(arrayLicensePlates)
+
+      for (let i = 0; i < numberOfPlates; i++) {
+        let licensePlate = prompt("Enter license plate")
+        arrayLicensePlates.push(licensePlate) // pushing license plate into into license plates array
+      }
+
+      //3. Display the results
+      const letterAplates = getNumberStartWithLetter_A(arrayLicensePlates) // call the fuction
+      const sameFirstandLastPlates =
+        getNumberSameFirstAndLast(arrayLicensePlates) // call the fuction
+      const longerthan5lettersPlates =
+        getLongerThan_5_lettersItems(arrayLicensePlates) // call the fuction
+      document.write(
+        `There are  ${letterAplates} license plates that start on letter "A"<br>There are  ${sameFirstandLastPlates} license plates that start and end on the same letter<br> There are  ${longerthan5lettersPlates} license plates that are longer than 5 letters<br>`
+      )
+    </script>
+  </body>
+</html>
