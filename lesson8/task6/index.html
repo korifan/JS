@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 6</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 6
+
+    <h1>Task 6</h1>
+    <p>
+      Задача 6. Дано послідовність цін товарів та назв (у окремих масивах).
+      Вивести на екран ті, які може собі дозволити користувач (кількість грошей
+      задається).
+    </p>
+    <p>Приклад збереження даних</p>
+    <code>
+      let productsPrices = [1000, 20, 31]
+      <br />
+      let productsTitles = [‘cheese’, ‘juice’, ‘bread’]
+    </code>
+
+    <h2>Results</h2>
+
+    <script>
+      //Step one:  create the function that compares user's amount of money userCash with productsPrices praces. Function should return new array arrayAffordableProducts with list of those products that are lower than userCash
+      function getAffordableProducts(prices, products, money) {
+        let arrayAffordableProducts = []
+        for (let i = 0; i < prices.length; i++) {
+          if (prices[i] < money) {
+            // pushing affordable items (with ccorresponding index) from the existing products array into new affordable array
+            arrayAffordableProducts.push(products[i])
+          }
+        }
+        return arrayAffordableProducts
+      }
+
+      // Enter the cash amount:
+      const userCash = parseInt(prompt("Enter how much cash you have", 0))
+      // Current arrays variables
+      let productsPrices = [4, 50, 31, 500, 1000]
+      let productsTitles = [" cheese", " juice", " bread", " TV", " iPhone"]
+      // Display new arrayAffordableProducts
+      document.write(`Products: ${productsTitles}<br>
+      Prices: ${productsPrices}<br><br>`)
+      document.write(
+        `With total cash of $${userCash} you can afford following products:<br> ${getAffordableProducts(
+          productsPrices,
+          productsTitles,
+          userCash
+        )}`
+      )
+    </script>
+  </body>
+</html>
