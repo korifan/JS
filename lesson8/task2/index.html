@@ -105,7 +105,7 @@
 
       // create function that will find the sum of all customers
       function getTotalCustomersPerWeek(customers, startWeekNum, endWeekNum) {
-        var sum = 0
+        let sum = 0
         for (let i = startWeekNum; i <= endWeekNum; i++) {
           sum += customers[i - 1] // -1 becasue arrays always start from 0
         }

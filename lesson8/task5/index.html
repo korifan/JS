@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 5</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>Задача 5. Дано послідовність оцінок учня. Підрахувати кількість:</p>
+    <ol>
+      <li>двійок</li>
+      <li>кількість хороших оцінок (добре, відмінно);</li>
+      <li>кількість оцінок, які нижче середнього.</li>
+    </ol>
+
+    <h2>Results</h2>
+
+    <script>
+      // create function getGrade2(grades) that will returns number of "2" grades
+      function getGrade2(grades) {
+        let count = 0
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] === 2) {
+            count++
+          }
+        }
+        return count
+      }
+
+      // create function getGoodGrades(grades) that will return number of grades that are above "3"
+      function getGoodGrades(grades) {
+        let count = 0
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] > 3) {
+            count++
+          }
+        }
+        return count
+      }
+
+      // create function getLowGrades(grades) that will return number of grades that are lower than a median grade
+      function getLowGrades(grades) {
+        let count = 0
+        let sum = 0
+        let medianGrade = 0
+        // find the median grade first
+        for (let i = 0; i < grades.length; i++) {
+          sum += grades[i]
+          medianGrade = sum / grades.length
+        }
+        // find numbeer of grades taht are lower than median
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] < medianGrade) {
+            count++
+          }
+        }
+        return count
+      }
+      // Create the arrayStudentGrades and push grades into it
+      const arrayStudentGrades = []
+      // Enter the grades and push them to the array
+      const numberOfGrades = parseInt(
+        prompt("Enter how many grades student has", 0)
+      )
+      for (let i = 0; i < numberOfGrades; i++) {
+        const studentGrade = parseInt(prompt("Enter the grade (from 1 to 5)"))
+        arrayStudentGrades.push(studentGrade) // pushing student grade into into student grades array
+      }
+
+      // Call the functions and show the results
+      document.write(`Student grades: ${arrayStudentGrades}<br><br>`)
+      document.write(
+        `There are  ${getGrade2(arrayStudentGrades)} of "2" grades<br>
+        There are  ${getGoodGrades(
+          arrayStudentGrades
+        )} of good grades ("4" and "5")<br>
+        There are  ${getLowGrades(
+          arrayStudentGrades
+        )} of grades are lower than median grade
+        `
+      )
+    </script>
+  </body>
+</html>
