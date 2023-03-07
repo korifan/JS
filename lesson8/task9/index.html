@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 9</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 9
+
+    <h1>Task 9</h1>
+    <p>
+      Задача 9. Морський бій. Користувач вводить кількість клітинок
+      одновимірного масиву та кількість одиночних кораблів. Комп’ютер довільно
+      розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці
+      0, то клітинка пуста, якщо 1 – то це означає, що там є корабель.
+      Користувач вводить номер клітинки, куди стріляє. Гра продовжується до тих
+      пір, поки не будуть потоплені усі кораблі.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Create the array that will be filled by concecutive numbers.
+
+      const cellsNum = parseInt(prompt("Enter number of cells"))
+
+      const ships = parseInt(prompt("Enter number of ships"))
+      // get array with zeros
+      arrCells = []
+      for (i = 0; i < cellsNum; i++) {
+        arrCells.push(0)
+      }
+      console.log(arrCells)
+
+      // get random number
+      function getRandomIndex(max) {
+        let index = Math.floor(Math.random() * (max + 1))
+      }
+
+      // Function to insert randomly 1 into the arrCells
+      function insertElement(cells) {
+        let ship = 1
+        let whileCondition
+        // loop to incert 1 inot cells array
+        for (let i = 0; i < ships; i++) {
+          // making sure it incerting 1 into awailable slot
+          if (cells[i] == 0) whileCondition = true
+          else whileCondition = false
+          while (whileCondition == true) {
+            // incertin 1 into random index
+            cells[getRandomIndex(cellsNum)] = 1
+          }
+
+          //// QUESTION??? HOW can i insert 1 into existing array????????
+        }
+        return cells
+      }
+      console.log(insertElement(arrCells))
+    </script>
+  </body>
+</html>
