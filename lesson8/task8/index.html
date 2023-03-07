@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 8</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 8
+
+    <h1>Task 8</h1>
+    <p>
+      Задача 8. Дано одновимірний масив, у якому зберігається певна виграшна
+      сума (елементи заповнюються випадковим чином значеннями від -500 до 500).
+      Надаючи користувачу можливість вибирати номери елементів (поки він не
+      відмовиться). Знаходити сумарний виграш.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      const arrLotteryMoney = []
+      const lotteryMax = 500
+      const lotteryMin = -500
+      const lotteryArrSize = 6
+      // create random lottery numbers
+      for (let i = 0; i < lotteryArrSize; i++) {
+        let lotteryRandom = Math.floor(
+          Math.random() * (lotteryMax - lotteryMin + 1) + lotteryMin
+        )
+        arrLotteryMoney.push(lotteryRandom)
+      }
+
+      // create fucntion that would return sum of winning numbers
+      const arrWinningMoney = []
+      function getWinnigSum(userPicks, randomNumbers) {
+        let sum = 0
+        for (let i = 0; i < userPicks.length; i++) {
+          for (let i = 0; i < randomNumbers.length; i++) {
+            if (userPicks[i] == i) {
+              sum += randomNumbers[i]
+              arrWinningMoney.push(randomNumbers[i])
+            }
+          }
+        }
+        return sum
+      }
+
+      // ask user to enter the the lotery numbers until he or she click cancel
+      const userLotteryPikcs = []
+      let promptNumber // is used for stoping the prompt
+      do {
+        let userLotteryNumber = parseInt(prompt("Enter number from 1 to 6"))
+        // make true/false variable condition for do while
+        if (isFinite(userLotteryNumber)) {
+          promptNumber = true
+          // push users picks to users userLotteryPikcs array
+          userLotteryPikcs.push(userLotteryNumber - 1)
+        } else promptNumber = false
+      } while (promptNumber == true)
+
+      // Show results:
+      console.log(arrLotteryMoney)
+      console.log(userLotteryPikcs)
+      console.log(arrWinningMoney)
+      console.log(getWinnigSum(userLotteryPikcs, arrLotteryMoney))
+      let lotteryPicks = userLotteryPikcs
+      let lotteryMoney = arrLotteryMoney
+      let winningMoney = arrWinningMoney
+      let winningSum = getWinnigSum(userLotteryPikcs, arrLotteryMoney)
+
+      document.write(`Random lottery winnig money: ${lotteryMoney}<br><br>`)
+      document.write(`User winnings: ${winningMoney}<br><br>`)
+      document.write(`Total winning sum: ${winningSum}<br>`)
+    </script>
+  </body>
+</html>

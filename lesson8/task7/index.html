@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 8 Task 7</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson8/index.html">Lesson 8</a>
+    / Task 7
+
+    <h1>Task 7</h1>
+    <p>
+      Задача 7. Дано послідовність платіжок протягом року. Знайти сумарну
+      кількість грошей за:
+    </p>
+
+    <ol>
+      <li>за весь рік;</li>
+      <li>у першій половині року;</li>
+      <li>у другій половині року;</li>
+      <li>за літо;</li>
+      <li>за ІІ квартал;</li>
+      <li>за парні місяці (з парними номерами);</li>
+      <li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</li>
+    </ol>
+
+    <h2>Results</h2>
+
+    <script>
+      // Get month name function
+      function getMonth(number) {
+        let results
+        switch (number) {
+          case 12:
+            results = "December"
+            break
+          case 1:
+            results = "January"
+            break
+          case 2:
+            results = "February"
+            break
+          case 3:
+            results = "March"
+            break
+          case 4:
+            results = "April"
+            break
+          case 5:
+            results = "May"
+            break
+          case 6:
+            results = "June"
+            break
+          case 7:
+            results = "July"
+            break
+          case 8:
+            results = "August"
+            break
+          case 9:
+            results = "September"
+            break
+          case 10:
+            results = "October"
+            break
+          case 11:
+            results = "November"
+            break
+          default:
+            results = "Wrong number"
+        }
+        return results
+      }
+
+      // Create function getYearlyPayment(payments, minMonthNumber, maxMonthNumber) that returns sum of payments for 12 month period. It also has arguments for minMonthNumber, maxMonthNumber, and step number
+      function getYearlyPayment(payments, minMonth, maxMonth, interval = 1) {
+        let sum = 0
+        // interval will find you even and first months of the season
+        for (let i = minMonth - 1; i < maxMonth; i += interval) {
+          // becasue arr index starts from 0 we make "i" - 1
+          sum += payments[i]
+        }
+        return sum
+      }
+
+      // Enter the constants:
+      const minMonthNumber = 1
+      const maxMonthNumber = 12
+      const arrPayments = []
+      for (let i = minMonthNumber; i <= maxMonthNumber; i++) {
+        let payment = parseInt(prompt(`Enter payment for ${getMonth(i)}`))
+        arrPayments.push(payment)
+      }
+
+      // show results
+      const totalYear = getYearlyPayment(
+        arrPayments,
+        minMonthNumber,
+        maxMonthNumber
+      )
+      const firstHalfYear = getYearlyPayment(arrPayments, 1, 6)
+      const secondHalfYear = getYearlyPayment(arrPayments, 7, 12)
+      const summer = getYearlyPayment(arrPayments, 6, 8)
+      const secondQuarter = getYearlyPayment(arrPayments, 4, 6)
+      const evenMonths = getYearlyPayment(
+        arrPayments,
+        minMonthNumber,
+        maxMonthNumber,
+        2
+      ) // adding argument 2 (that will add 2 to in the step in the function)
+      const firstMonthsOfSeason = getYearlyPayment(
+        arrPayments,
+        minMonthNumber,
+        maxMonthNumber,
+        3
+      ) // adding argument 3 (that will add 3 to the step in the function)
+
+      // Show resutts
+      document.write(`Your payments array: ${arrPayments}<br><br>`)
+
+      document.write(`Total year paymetns: ${totalYear}<br>
+      First half year paymetns: ${firstHalfYear}<br>
+      Second half year paymetns: ${secondHalfYear}<br>
+      Summer paymetns: ${summer}<br>
+      Second quarter paymetns: ${secondQuarter}<br>
+      Even months paymetns: ${evenMonths}<br>
+      First month of each season paymetns: ${firstMonthsOfSeason}<br>`)
+    </script>
+  </body>
+</html>
