@@ -60,7 +60,7 @@
       let shipsLeft = shipsNumber
       let hitMessage = ""
       // Loop that lets an user to pick number to hit the ships until all of them are gone.
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < shipsNumber; i++) {
         let userFireNum = parseInt(
           prompt(
             `${hitMessage} There are ${shipsLeft} ships left. \nEnter number from 0 to ${cellsNumber} to hit ships`
