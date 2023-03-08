@@ -29,42 +29,57 @@
     <script>
       // Create the array that will be filled by concecutive numbers.
 
-      const cellsNum = parseInt(prompt("Enter number of cells"))
+      const cellsNumber = parseInt(prompt("Enter number of cells"))
+      const shipsNumber = parseInt(prompt("Enter number of ships"))
 
-      const ships = parseInt(prompt("Enter number of ships"))
       // get array with zeros
       arrCells = []
-      for (i = 0; i < cellsNum; i++) {
+      for (i = 0; i < cellsNumber; i++) {
         arrCells.push(0)
       }
-      console.log(arrCells)
-
-      // get random number
-      function getRandomIndex(max) {
-        let index = Math.floor(Math.random() * (max + 1))
-      }
+      // console.log(arrCells)
 
       // Function to insert randomly 1 into the arrCells
-      function insertElement(cells) {
-        // let ship = 1
-        let whileCondition
+      function insertElement(arr, cells, ships) {
         // loop to incert 1 inot cells array
         for (let i = 0; i < ships; i++) {
-          // making sure it incerting 1 into awailable slot
-          if (cells[i] == 0) whileCondition = true
-          else whileCondition = false
-          // while (whileCondition == true) {
-          // incertin 1 into random index?
-          cells[getRandomIndex(cellsNum)] = 1
-          // }
-
-          //// QUESTION??? HOW can i insert number 1 into existing array????????
+          // get random index position from 0 to cells
+          let randomIndex = Math.floor(Math.random() * cells)
+          if (arr[randomIndex] == 0) {
+            arr[randomIndex] = 1
+          } else {
+            i--
+          }
         }
-        /////// It doesn't work :((
-        ////////// ?????????? I am stuck!!!!!
-        return cells
+        return arr
       }
-      console.log(insertElement(arrCells))
+      console.log(insertElement(arrCells, cellsNumber, shipsNumber))
+
+      // Destroy ships functionality
+      // get array's sum for feedback
+      let shipsLeft = shipsNumber
+      let hitMessage = ""
+      // Loop that lets an user to pick number to hit the ships until all of them are gone.
+      for (let i = 0; i < 3; i++) {
+        let userFireNum = parseInt(
+          prompt(
+            `${hitMessage} There are ${shipsLeft} ships left. \nEnter number from 0 to ${cellsNumber} to hit ships`
+          )
+        )
+        // Check if there are still more ships left.
+        if (arrCells[userFireNum] == 1) {
+          shipsLeft -= arrCells[userFireNum]
+          console.log(`Total ships left: ${shipsLeft}`)
+          arrCells[userFireNum] = 0 // change element's value back to 0
+          hitMessage = `#${userFireNum} is right on target!`
+          // if there are more ships left decrease the index by one so it would continue looping
+        } else {
+          i--
+          hitMessage = "Oops, You missed."
+        }
+      }
+      // show congrats message
+      document.write("Congrats! All enemy ships are now gone!")
     </script>
   </body>
 </html>
