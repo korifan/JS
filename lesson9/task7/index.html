@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 9 Task 7</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson9/index.html">Lesson 9</a>
+    / Task 7
+
+    <h1>Task 7</h1>
+    <p>
+      7.Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за
+      1000 грн. дати 30% знижки.
+    </p>
+
+    <h2>Results</h2>
+    <div class="results"></div>
+    <div class="sale"></div>
+    <script>
+      // Define constants
+      const arrProductPrices = [300, 500, 1200, 890, 2500, 4700]
+      const salePercent = 0.3
+      const results = document.querySelector(".results")
+      const sale = document.querySelector(".sale")
+      results.innerHTML = `Original prices: <br>${arrProductPrices}`
+      // Use for each method to apply 30% sale
+      arrProductPrices.forEach((price, index, arr) => {
+        if (price > 1000) arr[index] = arr[index] - arr[index] * salePercent
+      })
+      // Show updated result
+      sale.innerHTML = `<br>Array with 30% sale on items that cost over $1000:<br> ${arrProductPrices}`
+    </script>
+  </body>
+</html>

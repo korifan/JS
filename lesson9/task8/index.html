@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 9 Task 8</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson9/index.html">Lesson 9</a>
+    / Task 8
+
+    <h1>Task 8</h1>
+    <p>
+      8. Дано масив номерів авто. Сформувати новий масив тих, які починаються на
+      «А»
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Define Constants
+      const arrLicensePlates = [
+        "AB23445",
+        "CB23445",
+        "8B23445",
+        "9C4U760",
+        "AC45767"
+      ]
+      // Create new array using filter method
+      const arrLicensePlatesStart_A = arrLicensePlates.filter(
+        plate => plate[0] === "A"
+      )
+      // Show results
+      document.write(`Original license plates: ${arrLicensePlates}<br>
+      License plates starting with letter "A": ${arrLicensePlatesStart_A}`)
+    </script>
+  </body>
+</html>

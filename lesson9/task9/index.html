@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 9 Task 9</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson9/index.html">Lesson 9</a>
+    / Task 9
+
+    <h1>Task 9</h1>
+    <p>9. Дано масив імен. Сформувати масив з перших літер цих імен.</p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Define constants
+      const arrNames = ["John", "Alex", "Matthew", "Ricardo", "Victor"]
+
+      // Create new array based on the old one using map and destructuring method
+      const arrNameFirstLetter = arrNames.map(([a]) => a)
+      // Display the results
+      document.write(`Names: ${arrNames}<br>
+      First letters: ${arrNameFirstLetter}`)
+    </script>
+  </body>
+</html>

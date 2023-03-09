@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 9 Task 4</title>
+    <style></style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson9/index.html">Lesson 9</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>4.Дано масив елементів. Вивести на екран елементи, що більші за 100</p>
+    <code>///// --- Тут використати цикл for..of ---</code>
+
+    <h2>Results</h2>
+
+    <script>
+      /// Define constants
+      const arr = [400, 60, 50, 700, 88, 93, 200, 900, 67, 222, 30, 9999]
+      document.write(`The numbers array:  ${arr}<br>`)
+
+      document.write(`Numbers that are bigger than 100:<br>`)
+      // Use for of loop
+      for (let number of arr) {
+        if (number > 100) document.write(` ${number},`)
+      }
+    </script>
+  </body>
+</html>
