@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 10 Task 1</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson10/index.html">Lesson 10</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Задача. Дано історію цін на цінні папери за деякий період (згенерувати від
+      1 до 10000)
+      <div class="div0"></div>
+    </p>
+    <ol>
+      <li>
+        <p>
+          Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+        </p>
+        <div class="div1"></div>
+      </li>
+      <li>
+        <p>
+          Сформувати новий масив, у якому є номери тільки тих, що більші за 1000
+          грн.
+        </p>
+        <div class="div2"></div>
+      </li>
+      <li>
+        <p>Сформувати список з тих цін, які більші за попереднє значення</p>
+        <div class="div3"></div>
+      </li>
+      <li>
+        <p>
+          Сформувати новий масив, що міститиме значення цін у відсотках стосовно
+          максимального
+        </p>
+        <div class="div4"></div>
+      </li>
+      <li>
+        <p>Підрахувати кількість змін цін</p>
+        <div class="div5"></div>
+      </li>
+      <li>
+        <p>Визначити, чи є ціна, що менше 1000</p>
+        <div class="div6"></div>
+      </li>
+      <li>
+        <p>Визначати, чи усі ціни більше за 1000</p>
+        <div class="div7"></div>
+      </li>
+      <li>
+        <p>Підрахувати кількість цін, що більше за 1000</p>
+        <div class="div8"></div>
+      </li>
+      <li>
+        <p>Підрахувати суму цін, що більше за 1000</p>
+        <div class="div9"></div>
+      </li>
+      <li>
+        <p>Знайти першу ціну, що більше за 1000</p>
+        <div class="div10"></div>
+      </li>
+      <li>
+        <p>Знайти індекс першої ціни, що більше за 1000</p>
+        <div class="div11"></div>
+      </li>
+      <li>
+        <p>Знайти останню ціну, що більше за 1000</p>
+        <div class="div12"></div>
+      </li>
+      <li>
+        <p>Знайти індекс останньої ціни, що більше за 1000</p>
+        <div class="div13"></div>
+      </li>
+    </ol>
+
+
+    <script>
+      //// згенерувати array of 10 від 1 до 10000
+      const max = 10000
+      const min = 1
+      const arrLenght = 10
+      // DIVS for results
+      const div0 = document.querySelector(".div0"),
+      div1 = document.querySelector(".div1"),
+      div2 = document.querySelector(".div2"),
+      div3 = document.querySelector(".div3"),
+      div4 = document.querySelector(".div4"),
+      div5 = document.querySelector(".div5"),
+      div6 = document.querySelector(".div6"),
+      div7 = document.querySelector(".div7"),
+      div8 = document.querySelector(".div8"),
+      div9 = document.querySelector(".div9"),
+      div10 = document.querySelector(".div10"),
+      div11 = document.querySelector(".div11"),
+      div12 = document.querySelector(".div12"),
+      div13 = document.querySelector(".div13")
+      // Generate initial array
+      const arrSharesPrices = []
+      function generateArrSharesPrices() {
+        
+      for (let i = 0; i < arrLenght; i++) {
+        random = Math.floor(Math.random() * (max - min + 1) + min)
+        arrSharesPrices.push(random)
+      }
+      // Display initial array
+      div0.innerHTML = `Initial Array: <strong>${arrSharesPrices}</strong>`
+      console.log(arrSharesPrices)
+      }
+      generateArrSharesPrices()
+      
+
+
+
+      //  ================  Task 1  ================
+      // Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+      // Create function using filter should be good for this one
+      function first() {
+        const arrSharesPrices_over1000 = arrSharesPrices.filter(
+          price => price > 1000
+        )
+        div1.innerHTML = `<strong>${arrSharesPrices_over1000}</strong>`
+      }
+      first()
+
+
+
+      //  ================  Task 2  ================
+      // Сформувати новий масив, у якому є номери тільки тих, що більші за 1000
+      //    грн.
+      function second() {
+        // Use reduce method
+        const arrNumbersOfSharesPrices_over1000 = arrSharesPrices.reduce((prevNum, element, index, baseArr) => 
+        element > 1000 ? [...prevNum, index] : prevNum, []); // Empty [] is initial value
+        div2.innerHTML = `<strong>${arrNumbersOfSharesPrices_over1000}</strong>`
+      }
+     second()
+
+
+
+      //  ================  Task 3  ================
+      // 3)Сформувати список з тих цін, які більші за попереднє значення
+      function third() {
+        // use filter
+        const arrPriceIsGreaterThanPrevious = arrSharesPrices.filter((element, index, baseArr) => element > baseArr[index - 1]);
+        div3.innerHTML = `<strong>${arrPriceIsGreaterThanPrevious}</strong>`
+      }
+      third()
+
+
+
+
+      //  ================  Task 4  ================
+      // 4)Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+      function forth() {
+        // find max
+        const maxNumber = Math.max(...arrSharesPrices)
+        // Create percenage array
+        const arrPercentsOffMax = arrSharesPrices.map(element => (element/maxNumber *100).toFixed(0))
+        div4.innerHTML = `<strong>${arrPercentsOffMax}</strong>`
+      }
+      forth()
+
+
+
+
+
+      //  ================  Task 5  ================
+      //  5)Підрахувати кількість змін цін
+      function fifth() {
+        // Use Reduce method 
+        const arrNumberOfPriceChanges = arrSharesPrices.reduce((prevNum, element, index, baseArr) => element > baseArr[index + 1] || element < baseArr[index + 1] ? prevNum + 1 : prevNum, 0)
+        div5.innerHTML = `<strong>${arrNumberOfPriceChanges}</strong>`
+      }
+      fifth()
+
+
+
+
+
+      //  ================  Task 6  ================
+      //   6)Визначити, чи є ціна, що менше 1000
+      function sixth() {
+        // use some method which returns true or false
+        const arrHasPriceLessThan1000 = arrSharesPrices.some((element) => element < 1000)
+        div6.innerHTML = `<strong>${arrHasPriceLessThan1000}</strong>`
+      }
+      sixth()
+
+
+
+
+
+      //  ================  Task 7  ================
+      //   7)Визначати, чи усі ціни більше за 1000
+      function seventh() {
+        // use some method which returns true or false
+        const arrAllPricesGreaterThan1000 = arrSharesPrices.every((element) => element > 1000)
+        div7.innerHTML = `<strong>${arrAllPricesGreaterThan1000}</strong>`
+      }
+      seventh()
+
+
+
+
+
+
+      //  ================  Task 8  ================
+      //    8)Підрахувати кількість цін, що більше за 1000
+      function eighth() {
+        // use reduce method
+        const arrNumberOfPricesGreater1000 = arrSharesPrices.reduce((prevNum, element) => element > 1000 ? prevNum + 1 : prevNum, 0)
+        div8.innerHTML = `<strong>${arrNumberOfPricesGreater1000}</strong>`
+      }
+      eighth()
+
+
+
+
+
+
+      //  ================  Task 9  ================
+      //    9)Підрахувати суму цін, що більше за 1000
+      function ninth() {
+        // use reduce method
+        const arrSumOfPricesGreater1000 = arrSharesPrices.reduce((prevNum, element) => element > 1000 ? prevNum + element : prevNum, 0)
+        div9.innerHTML = `<strong>${arrSumOfPricesGreater1000}</strong>`
+      }
+      ninth()
+
+
+
+
+
+
+      //  ================  Task 10  ================
+      //    10)Знайти першу ціну, що більше за 1000
+      function tenth() {
+        // use find method
+        const arrFirstNumberGreater1000 = arrSharesPrices.find(element => element > 1000) 
+        div10.innerHTML = `<strong>${arrFirstNumberGreater1000}</strong>`
+      }
+      tenth()
+
+
+
+
+
+
+
+      //  ================  Task 11  ================
+      //     11)Знайти індекс першої ціни, що більше за 1000
+      function eleventh() {
+        // use findIndex method
+        const arrIndexOfFirstNumberGreater1000 = arrSharesPrices.findIndex(element => element > 1000) 
+        div11.innerHTML = `<strong>${arrIndexOfFirstNumberGreater1000}</strong>`
+      }
+      eleventh()
+
+
+
+
+
+
+      //  ================  Task 12  ================
+      //     12)Знайти останню ціну, що більше за 1000
+      function twelvth() {
+        // use findIndex method
+        const arrLastNumberGreater1000 = arrSharesPrices.findLast(element => element > 1000) 
+        div12.innerHTML = `<strong>${arrLastNumberGreater1000}</strong>`
+      }
+      twelvth()
+
+
+
+
+
+
+
+      //  ================  Task 13  ================
+      //     13)Знайти індекс останньої ціни, що більше за 1000
+      function thirteenth() {
+        // use findIndex method
+        const arrIndexOfLastNumberGreater1000 = arrSharesPrices.findLastIndex(element => element > 1000) 
+        div13.innerHTML = `<strong>${arrIndexOfLastNumberGreater1000}</strong>`
+      }
+      thirteenth()
+    </script>
+  </body>
+</html>
