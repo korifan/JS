@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 11 Task 3</title>
+    <style>
+      table {
+        border: 2px solid;
+      }
+      td {
+        border: 1px solid;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson11/index.html">Lesson 11</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>
+      <strong>Задача 3</strong>
+      Задача 3. Морський бій. Випадковим чином на двовимірному полі розміром 6*6
+      розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра
+      продовжується поки не потоплено усі кораблі або у користувача не
+      закінчаться снаряди.
+    </p>
+
+    <h2>Results</h2>
+    <div class="results"></div>
+
+    <script>
+      // Populate
+      const shipsNumber = 5
+      const colNumber = 6
+      const rowNumber = 6
+      const gameField = createGameField(rowNumber, colNumber)
+      // Get random number function
+      function getRandomNum(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      // Create 2d array and fill with zeros
+      function createGameField(rowsNumber, cellsNumber) {
+        const rows = rowsNumber
+        const cells = cellsNumber
+
+        const gameField = new Array(rows)
+        for (var i = 0; i < rows; i++) {
+          gameField[i] = new Array(cells).fill(0)
+        }
+        return gameField
+      }
+      //console.log(createGameField(rowNumber, colNumber))
+
+      // Function to insert randomly 1 into the arrCells
+      function insertElement(arr, rows, cells, ships) {
+        // loop to incert 1 into 2D array
+        for (let i = 0; i < ships; i++) {
+          let randomRowIndex = getRandomNum(0, rows - 1)
+          let randomCellIndex = getRandomNum(0, cells - 1)
+          if (arr[randomRowIndex][randomCellIndex] == 0) {
+            arr[randomRowIndex][randomCellIndex] = 1
+            // if that spot has 1 already go back and do it again
+          } else {
+            i--
+          }
+        }
+        return arr
+      }
+      console.log(insertElement(gameField, rowNumber, colNumber, shipsNumber))
+
+      /// Hit the ships functionality
+      let shipsLeft = shipsNumber
+      let misslesLeft = parseInt(prompt(`Enter number of missles`), 10)
+      // Loop that lets an user to pick number to hit the ships until all of them are gone.
+      for (let i = 0; i < shipsNumber; i++) {
+        // let user to choose the coordinates
+        let userRowNum = parseInt(prompt(`Enter row number (from 1 to 6)`)) - 1
+        let userColNum = parseInt(prompt(`Enter col number (from 1 to 6)`)) - 1
+
+        // Check if there are more ships left.
+        if (gameField[userRowNum][userColNum] == 1) {
+          shipsLeft -= gameField[userRowNum][userColNum]
+          misslesLeft--
+          console.log(`Total ships left: ${shipsLeft}`)
+          gameField[userRowNum][userColNum] = 0
+          alert(
+            `You hit the ship! \nShips left: ${shipsLeft}\n Missles left ${misslesLeft}`
+          )
+        } else if (misslesLeft < 1) {
+          alert(`You lost! There are no more missles left`)
+        } else {
+          i--
+          misslesLeft--
+          alert(`You missed! Missles left: ${misslesLeft}`)
+        }
+      }
+      // show congrats message
+      document.write("Congrats! All enemy ships are now destroyed!")
+    </script>
+  </body>
+</html>
