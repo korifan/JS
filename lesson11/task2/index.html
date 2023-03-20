@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 11 Task 2</title>
+    <style>
+      table {
+        border: 2px solid;
+      }
+      td {
+        border: 1px solid;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson11/index.html">Lesson 11</a>
+    / Task 2
+
+    <h1>Task 2</h1>
+    <p>
+      <strong>Задача 2</strong>
+      . Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+    </p>
+
+    <ol>
+      <li>загальний прибуток кожного масиву за тиждень;</li>
+      <li>
+        загальний прибуток усіх магазинів по дням (загальний прибуток усіх
+        магазинів за понеділок, за вівторок, і т.д.);
+      </li>
+      <li>загальний прибуток за робочі дні</li>
+      <li>загальний прибуток за вихідні дні</li>
+      <li>максимальний прибуток за середу</li>
+      <li>
+        сформувати загальний список (одновимірний масив) зі значенням, які що
+        більші за 200
+      </li>
+      <li>відсортувати кожен тиждень за зростанням</li>
+      <li>
+        відсортувати тижні (рядки) за спаданням максимального елементи у цьому
+        тижні (рядку), тобто при порівнянні рядків потрібно порівнювати
+        максимальні елементи у кожному з цих рядків
+      </li>
+      <li>
+        упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто
+        при порівнянні двох рядків треба знайти суму кожного з рядків і
+        порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів
+        повинен іти раніше).
+      </li>
+    </ol>
+    <h2>Results</h2>
+    <div class="results"></div>
+
+    <script>
+      // Define constants
+
+      // const arrayProfit = [
+      //   [900, 300, 100, 200, 500, 800, 700],
+      //   [11, 24, 76, 78, 509, 300, 100],
+      //   [12, 16, 99, 665, 235, 111, 1122]
+      // ]
+
+      // Ask user how many stores
+      const arrayLegth = parseInt(prompt("Enter number of stores"))
+
+      function getRandomNum(minNUmber, maxNUmber) {
+        return (
+          Math.floor(Math.random() * (maxNUmber - minNUmber + 1)) + minNUmber
+        )
+      }
+      function getRowForArray(week, minNUmber, maxNUmber) {
+        let col = []
+        for (let i = 0; i < week; i++) {
+          col.push(getRandomNum(minNUmber, maxNUmber))
+        }
+        return col
+      }
+      function arrayGeneration(numberOfStores, week, minNUmber, maxNUmber) {
+        let row = []
+        for (let i = 0; i < numberOfStores; i++) {
+          row.push(getRowForArray(week, minNUmber, maxNUmber))
+        }
+        return row
+      }
+      // Generate the final array (passing number of stores: arrayLenth, week: 7 days, minNumber and maxNumber)
+      const arrayProfit = arrayGeneration(arrayLegth, 7, 1, 1000)
+
+      /// Show results
+      const results = document.querySelector(".results")
+      // Show original array in form of the table
+      let res = ""
+      res += "<table>"
+      for (let i = 0; i < arrayLegth; i++) {
+        res += "<tr>"
+        for (let j = 0; j < 7; j++) {
+          res += `<td>${arrayProfit[i][j]}</td>`
+        }
+        res += "</tr>"
+      }
+      res += "</table>"
+      results.innerHTML = `<h3>Original Array</h3>${res}`
+
+      // Get sum function
+      function getSum(arr, rowStart, rowEnd, colStart, colEnd) {
+        let sum = 0
+        for (let row = rowStart; row < rowEnd; row++) {
+          for (let col = colStart; col < colEnd; col++) {
+            sum += arr[row][col]
+          }
+        }
+        return sum
+      }
+
+      // Get profit for each store
+      // ============ //  1. загальний прибуток кожного масиву за тиждень;
+      const task1 = document.write(
+        `<h4>1. загальний прибуток кожного масиву за тиждень;</h4>`
+      )
+      // Each store weekly proit
+      for (let i = 0; i < arrayLegth; i++) {
+        let sum = getSum(arrayProfit, i, i + 1, 0, 7)
+        let results = document.write(
+          `<p>Store #${i + 1} weekly profit: ${sum}</p>`
+        )
+      }
+      // All stores weekly profit
+      const allStoresTotal = document.write(
+        `<p>All stores weekly total: ${getSum(
+          arrayProfit,
+          0,
+          arrayLegth,
+          0,
+          7
+        )}</p>`
+      )
+
+      // ============ //  2 .загальний прибуток усіх магазинів по дням (загальний прибуток усіх
+      //   магазинів за понеділок, за вівторок, і т.д.);
+      const task2 = document.write(
+        `<h4>2 .загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);;</h4>`
+      )
+
+      // Each store weekly profit
+      for (let i = 0; i < 7; i++) {
+        let sum = getSum(arrayProfit, 0, arrayLegth, i, i + 1)
+        let results = document.write(
+          `<p>All stores ${getWeekday(i + 1)} profit: ${sum}</p>`
+        )
+      }
+
+      function getWeekday(dayNumber) {
+        let results = 0
+        switch (dayNumber) {
+          case 1:
+            results = `Monday`
+            break
+          case 2:
+            results = `Tuesday`
+            break
+          case 3:
+            results = `Wednesday`
+            break
+          case 4:
+            results = `Thursday`
+            break
+          case 5:
+            results = `Friday`
+            break
+          case 6:
+            results = `Saturday`
+            break
+          case 7:
+            results = `Sunday`
+            break
+          default:
+            results = `Bad input. use numbers between 1 and 7`
+            break
+        }
+        return results
+      }
+
+      // ============ //  3 загальний прибуток за робочі дні
+      const task3 = document.write(
+        `<h4>3. загальний прибуток за робочі дні</h4>`
+      )
+      // All stores weeksays total profit
+      const allStoresWeekdaysTotal = document.write(
+        `<p>All stores weeksays total profit: ${getSum(
+          arrayProfit,
+          0,
+          arrayLegth,
+          0,
+          5
+        )}</p>`
+      )
+
+      // ============ //  4. загальний прибуток за вихідні дні
+      const task4 = document.write(
+        `<h4>4. загальний прибуток за вихідні дні</h4>`
+      )
+      // All stores weekend total profit
+      const allStoresWeekendTotal = document.write(
+        `<p>All stores weeksays total profit: ${getSum(
+          arrayProfit,
+          0,
+          arrayLegth,
+          5,
+          7
+        )}</p>`
+      )
+
+      // ============ //  5. максимальний прибуток за середу
+      const task5 = document.write(
+        `<h4>5. максимальний прибуток за середу</h4>`
+      )
+      // Fix max for wednesday function
+      function getWednesdayMax(arr) {
+        let max = -Infinity
+        for (let row = 0; row < arr.length; row++) {
+          for (let col = 3; col < 4; col++) {
+            if (arr[row][col] > max) max = arr[row][col]
+          }
+        }
+        return max
+      }
+      // Wednesday's max profit
+      const wednesdayMax = document.write(
+        `<p>Wednesday's max: ${getWednesdayMax(arrayProfit)}</p>`
+      )
+
+      // ============ //  6. сформувати одновимірний масив зі значенням, які що більші за 200
+      const task6 = document.write(
+        `<h4>6. сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200</h4>`
+      )
+      // Profit greater than 200 function
+      function getGreaterThan200(arr) {
+        let newArr = []
+        for (let row = 0; row < arrayLegth; row++) {
+          for (let col = 0; col < arr[row].length; col++) {
+            if (arr[row][col] > 200) {
+              newArr.push(arr[row][col])
+            }
+          }
+        }
+        return newArr
+      }
+      // Greater than 200 profit
+      const biggerThan200 = document.write(
+        `<p>Profit greater than 200:<br> ${getGreaterThan200(arrayProfit)}</p>`
+      )
+
+      // ============ // 7. відсортувати кожен тиждень за зростанням
+      const task7 = document.write(
+        `<h4>7. відсортувати кожен тиждень за зростанням</h4>`
+      )
+      // Sort fuction
+      function getSorted(arr) {
+        arr.sort(function (a, b) {
+          return a - b
+        })
+        return arr
+      }
+
+      // sort
+
+      for (let i = 0; i < arrayLegth; i++) {
+        const weekNumbersSorted = document.write(
+          `<p>Week ${i + 1} sorted numbers:<br> ${getSorted(
+            arrayProfit[i]
+          )}</p>`
+        )
+      }
+
+      // ============ // 8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+
+      const task8 = document.write(
+        `<h4>8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків</h4>`
+      )
+
+      function sortByMaxNumberinRow(array) {
+        let maxes = new Map(
+          array.map(row => [
+            row,
+            row.reduce(
+              (max, element) => (element > max ? (max = element) : max),
+              0
+            )
+          ])
+        )
+        return array.sort((a, b) => maxes.get(a) - maxes.get(b))
+      }
+
+      const sortedbyRowMax = sortByMaxNumberinRow(arrayProfit)
+      // Show array table
+      let tbl = ""
+      tbl += "<table>"
+      for (let i = 0; i < arrayLegth; i++) {
+        tbl += "<tr>"
+        for (let j = 0; j < 7; j++) {
+          tbl += `<td>${sortedbyRowMax[i][j]}</td>`
+        }
+        tbl += "</tr>"
+      }
+      tbl += "</table>"
+      const sortedTask8 = document.write(
+        `<p>Sorted by max number in the row: </p>${tbl}`
+      )
+
+      // ============ // 9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).
+      const task9 = document.write(
+        `<h4>9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).</h4>`
+      )
+
+      function sortByRowSum(array) {
+        let sums = new Map(
+          array.map(row => [
+            row,
+            row.reduce((sum, element) => sum + element, 0)
+          ])
+        )
+        return array.sort((a, b) => sums.get(a) - sums.get(b))
+      }
+
+      const sertedbyRowSum = sortByRowSum(arrayProfit)
+      // Show array table
+      let table = ""
+      table += "<table>"
+      for (let i = 0; i < arrayLegth; i++) {
+        table += "<tr>"
+        for (let j = 0; j < 7; j++) {
+          table += `<td>${sertedbyRowSum[i][j]}</td>`
+        }
+        table += "</tr>"
+      }
+      table += "</table>"
+      const sortedTask9 = document.write(`<p>Sorted by row sum</p>${table}`)
+    </script>
+  </body>
+</html>
