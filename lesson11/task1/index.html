@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 11 Task 1</title>
+    <style>
+      table {
+        border: 2px solid;
+      }
+      td {
+        border: 1px solid;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson11/index.html">Lesson 11</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      <strong>Задача 1</strong>
+      . Знайти суми елементів у вказаній області
+    </p>
+    <ol>
+      <li><img src="img/1.jpg" style="width: 100px" /></li>
+      <li><img src="img/2.jpg" style="width: 100px" /></li>
+      <li><img src="img/3.jpg" style="width: 100px" /></li>
+      <li><img src="img/4.jpg" style="width: 100px" /></li>
+      <li>Суму парних рядків</li>
+      <li>Суму непарних стовпців</li>
+      <li>У парних рядках – непарні стовпці, у непарних – парні.</li>
+    </ol>
+    <h2>Results</h2>
+    <div class="results"></div>
+
+    <div class="resultsSum1"></div>
+    <div class="resultsSum2"></div>
+    <div class="resultsSum3"></div>
+    <div class="resultsSum4"></div>
+    <div class="resultsSum5"></div>
+    <div class="resultsSum6"></div>
+    <div class="resultsSum7"></div>
+    <div class="resultsSum8"></div>
+    <script>
+      // cosnt
+      const results = document.querySelector(".results")
+      const resultsSum1 = document.querySelector(".resultsSum1")
+      const resultsSum2 = document.querySelector(".resultsSum2")
+      const resultsSum3 = document.querySelector(".resultsSum3")
+      const resultsSum4 = document.querySelector(".resultsSum4")
+      const resultsSum5 = document.querySelector(".resultsSum5")
+      const resultsSum6 = document.querySelector(".resultsSum6")
+      const resultsSum7 = document.querySelector(".resultsSum7")
+      const resultsSum8 = document.querySelector(".resultsSum8")
+      // define array
+      const array = [
+        [1, 1, 2, 2],
+        [1, 1, 2, 2],
+        [3, 3, 4, 4],
+        [3, 3, 4, 4]
+      ]
+      // Get sections sum function
+      function getSum(arr, rowStart, rowEnd, colStart, colEnd) {
+        let sum = 0
+        for (let row = rowStart; row < rowEnd; row++) {
+          for (let col = colStart; col < colEnd; col++) {
+            sum += arr[row][col]
+          }
+        }
+        return sum
+      }
+
+      // Get even rows sum function
+      function getEvenRowsSum(arr) {
+        let sum = 0
+        for (let row = 0; row < arr.length; row++) {
+          if (row % 2 === 0) {
+            for (let col = 0; col < arr[row].length; col++) {
+              sum += arr[row][col]
+            }
+          }
+        }
+        return sum
+      }
+
+      // Get odd columns function
+      function getOddColumnsSum(arr) {
+        let sum = 0
+        for (let row = 0; row < arr.length; row++) {
+          for (let col = 0; col < arr[row].length; col++) {
+            if (col % 2 !== 0) {
+              sum += arr[row][col]
+            }
+          }
+        }
+        return sum
+      }
+
+      // Get odd columns inside of even rows
+      function getoddColumnsinEvenRowsSum(arr) {
+        let sum = 0
+        for (let row = 0; row < arr.length; row++) {
+          if (row % 2 === 0) {
+            for (let col = 0; col < arr[row].length; col++) {
+              if (col % 2 !== 0) {
+                sum += arr[row][col]
+              }
+            }
+          }
+        }
+        return sum
+      }
+
+      // Get even columns inside of odd rows
+      function getEvenColumnsinOddRowsSum(arr) {
+        let sum = 0
+        for (let row = 0; row < arr.length; row++) {
+          if (row % 2 !== 0) {
+            for (let col = 0; col < arr[row].length; col++) {
+              if (col % 2 === 0) {
+                sum += arr[row][col]
+              }
+            }
+          }
+        }
+        return sum
+      }
+
+      // Show original array in form of the table
+      let res = ""
+      res += "<table>"
+      for (let i = 0; i < 4; i++) {
+        res += "<tr>"
+        for (let j = 0; j < 4; j++) {
+          res += `<td>${array[i][j]}</td>`
+        }
+        res += "</tr>"
+      }
+      res += "</table>"
+      results.innerHTML = `<h3>Original Array</h3>${res}`
+
+      //  Show the resut #1
+      let startRow = 0
+      let endRow = Math.floor(array.length / 2)
+      let startCol = 0
+      let endCol = Math.floor(array[0].length / 2)
+      resultsSum1.innerHTML = `<h3>Sum 1 (top  left)</h3> ${getSum(
+        array,
+        startRow,
+        endRow,
+        startCol,
+        endCol
+      )}`
+
+      //  Show the resut #2
+      startRow = 0
+      endRow = Math.floor(array.length / 2)
+      startCol = Math.floor(array[0].length / 2)
+      endCol = Math.floor(array[0].length)
+      resultsSum2.innerHTML = `<h3>Sum 2 (top right)</h3> ${getSum(
+        array,
+        startRow,
+        endRow,
+        startCol,
+        endCol
+      )}`
+
+      //  Show the resut #3
+      startRow = Math.floor(array.length / 2)
+      endRow = Math.floor(array.length)
+      startCol = 0
+      endCol = Math.floor(array[0].length / 2)
+      resultsSum3.innerHTML = `<h3>Sum 3 (bottom left)</h3> ${getSum(
+        array,
+        startRow,
+        endRow,
+        startCol,
+        endCol
+      )}`
+
+      //  Show the resut #4
+      startRow = Math.floor(array.length / 2)
+      endRow = Math.floor(array.length)
+      startCol = Math.floor(array[0].length / 2)
+      endCol = Math.floor(array[0].length)
+      resultsSum4.innerHTML = `<h3>Sum 4 (bottom right)</h3> ${getSum(
+        array,
+        startRow,
+        endRow,
+        startCol,
+        endCol
+      )}`
+
+      //  Show the resut #5
+      resultsSum5.innerHTML = `<h3>Sum 5 (sum of even rows)</h3> ${getEvenRowsSum(
+        array
+      )}`
+
+      //  Show the resut #6
+      resultsSum6.innerHTML = `<h3>Sum 6 (sum of odd columns)</h3> ${getOddColumnsSum(
+        array
+      )}`
+
+      //  Show the resut #7
+      resultsSum7.innerHTML = `<h3>Sum 7 (sum of odd columns inside of even rows)</h3> ${getoddColumnsinEvenRowsSum(
+        array
+      )}`
+
+      //  Show the resut #8
+      resultsSum8.innerHTML = `<h3>Sum 8 (sum of even columns inside of odd rows)</h3> ${getEvenColumnsinOddRowsSum(
+        array
+      )}`
+    </script>
+  </body>
+</html>

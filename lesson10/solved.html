@@ -83,6 +83,7 @@
       //             // клітинки, куди стріляє. Гра продовжується до тих пір, поки не будуть
       //             // потоплені усі кораблі.
 
+      // Морський бій
       //----- Сформувати поле гри (одновимірний масив із розміщеними кораблями)
       //   function getRandomNum(minValue, maxValue) {
       //     return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
@@ -243,7 +244,7 @@
       //     1
       //     )
 
-      //   //                         // Задача. Знайти суму парних елементів
+      // // // Задача. Знайти суму парних елементів
 
       //   let arr = [12, 34, 2, 3, 23, 34, 7]
 
@@ -299,7 +300,25 @@
       //     element > prevMax ? element : prevMax
       //   )
       //Знайти максимальний серед від"ємних елемент
-      //   let arr = [12, -34, 2, -3, 23, 34, 7]
+      // let arr = [-112, -311, -2, -37, 23, 34, 7]
+      // // Regular for loop solution
+      // function getmaxNegative(array) {
+      //   let max = -Infinity
+      //   for (let i = 0; i < array.length; i++) {
+      //     if (arr[i] < 0 && arr[i] > max) {
+      //       max = arr[i]
+      //     }
+      //   }
+      //   return max
+      // }
+      // console.log(getmaxNegative(arr))
+      // // Reduce solution
+      // const maxnegative = arr.reduce(
+      //   (prevValue, element) =>
+      //     element < 0 && element > prevValue ? element : prevValue,
+      //   -Infinity
+      // )
+      // console.log(maxnegative)
 
       // //   let maxNegative = -Infinity
       // //   for (let i = 0; i < array.length; i++) {
@@ -336,6 +355,48 @@
       //     return compRes
       //   })
       //   document.write(names)
+
+      // const arr = ["Ivan", "Peter", "Denis"]
+      // arr.sort((name1, namq2) => {
+      //   if (name1[0] > namq2[0]) return 1
+      //   else if (name1[0] < namq2[0]) return -1
+      //   else 0
+      // })
+      // console.log(arr)
+
+      // // ================== 2 ================= //
+      // const arrPrices = [500, 1001, 1200, 3003, 200]
+      // // Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+      // let newArr = []
+      // for (let i = 0; i < arrPrices.length; i++) {
+      //   if (arrPrices[i] > 1000) {
+      //     newArr.push(arrPrices[i])
+      //   }
+      // }
+      // console.log(newArr)
+
+      // const number = [newArr]
+      // const output = []
+      // // stringify the array
+      // const sNumber = number.toString()
+
+      // for (let i = 0, len = sNumber.length; i < len; i += 1) {
+      //   output.push(+sNumber.charAt(i))
+      // }
+      // console.log(output)
+
+      // // use filter to remove duplicates
+      // const latest = output.filter(
+      //   (element, index) => output.indexOf(element) == index
+      // )
+      // console.log(latest)
+
+      /// Заполнить массив нулями, кроме первого и последнего элементов, которые должны быть равны единице.
+
+      const arr = new Array(10).fill(0, 1).fill(1, 0, 1)
+      // const theOneIWant = [...arr].fill(1)
+      console.log(arr)
+      // console.log(theOneIWant)
     </script>
   </body>
 </html>
