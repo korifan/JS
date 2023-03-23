@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 12 Task 1</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson12/index.html">Lesson 12</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      <strong>Задача 1</strong>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
+      час сортування бульбашкою
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Variables
+      const arrLenth = 30
+      const minNumber = 1
+      const maxNumber = 100
+      function getRandomNum(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+      }
+
+      // create array
+      const arr30Random = []
+      for (let i = 0; i < arrLenth; i++) {
+        arr30Random[i] = getRandomNum(minNumber, maxNumber)
+      }
+      console.log(arr30Random)
+
+      // Buble sort function that returns counter
+      function getNumberOfSortingChanges(arr) {
+        let changed
+        let counter = 0
+        do {
+          changed = false
+          for (let i = 1; i < arr.length; i++) {
+            if (arr[i - 1] > arr[i]) {
+              let temp = arr[i - 1]
+              arr[i - 1] = arr[i]
+              arr[i] = temp
+              changed = true
+              counter++
+            }
+          }
+        } while (changed)
+        console.log(arr)
+        return counter
+      }
+
+      // Display the results
+      const showResults = document.write(
+        `<h3>While sorting the array have changed ${getNumberOfSortingChanges(
+          arr30Random
+        )} times`
+      )
+    </script>
+  </body>
+</html>
