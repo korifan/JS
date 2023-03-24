@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 13 Task 1</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson13/index.html">Lesson 13</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      <strong>Задача 1</strong>
+      Задача 1. Нехай x
+      <sub>0</sub>
+      =1, x
+      <sub>i</sub>
+      = x
+      <sub>i-1</sub>
+      + 2i, де i = 2,3,4.... Визначити x
+      <sub>10</sub>
+      . Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Function using array
+      function getNumber(number) {
+        let x = [1]
+        for (let i = 1; i <= number; i++) {
+          let calculation = x[i - 1] + 2 * i
+          x.push(calculation)
+        }
+        return x[x.length - 1]
+      }
+      document.write(getNumber(10))
+
+      // // GEt number using recursion function
+      // function getNumberRecursion(num) {
+      //   if (num === 0) return 1
+      //   else return getNumberRecursion(num - 1) + 2 * num
+      // }
+      // console.log(getNumberRecursion(10))
+    </script>
+  </body>
+</html>

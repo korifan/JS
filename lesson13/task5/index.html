@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 13 Task 5</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson13/index.html">Lesson 13</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>
+      <strong>Задача 5.</strong>
+      Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад
+      з додавання двох цифр і робиться перевірка.
+    </p>
+
+    <h2>Results</h2>
+
+    <script>
+      // Create function that spits out problems
+      let problem
+      function getRandomNum(min, max) {
+        let randNumber = Math.floor(Math.random() * (max - min + 1) + min)
+        let randNumber2 = Math.floor(Math.random() * (max - min + 1) + min)
+        problem = `${randNumber} + ${randNumber2}`
+        return randNumber + randNumber2
+      }
+
+      // prompt user to solve the problems every 10 unless they cancel
+      let solvingMashine = setInterval(() => {
+        let sum = getRandomNum(1, 10)
+        const task = prompt(`Solve this problem\n ${problem}`)
+        // get out of interval if user hits cancel
+        if (task == null) {
+          clearInterval(solvingMashine)
+          alert("You just stopped this madness")
+          // check answers
+        } else {
+          if (sum === parseInt(task)) {
+            alert("Correct!")
+          } else alert(`incorrect. Correct answer is ${sum}`)
+        }
+      }, 10000)
+    </script>
+  </body>
+</html>

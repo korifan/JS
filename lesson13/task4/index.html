@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 12 Task 4</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson12/index.html">Lesson 12</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      <strong>Задача 4</strong>
+      Для розглянутих методів сортування спробувати вивести етапи сортування
+      шляхом виведення відповідних таблиць за зразком.
+    </p>
+
+    <h2>Results</h2>
+    <div class="results"></div>
+
+    <script>
+      // Variables
+      let array = [3, 5, 1, 4, 2]
+
+      // Buble serting that returns tables with sorting steps
+      function getNumberOfSortingChanges(arr) {
+        let changed
+        let res = ""
+        do {
+          changed = false
+          for (let i = 1; i < arr.length; i++) {
+            if (arr[i - 1] > arr[i]) {
+              let temp = arr[i - 1]
+              arr[i - 1] = arr[i]
+              arr[i] = temp
+              // Show steps
+              document.write(`[${arr}]<br>`)
+              changed = true
+            }
+          }
+        } while (changed)
+        return res
+      }
+
+      /// Show results
+      const results = document.querySelector(".results")
+      // Show original array in form of the table
+      results.innerHTML = `<h3>Original Array</h3>[${array}]<h3>Sorted steps (buble)</h3> ${getNumberOfSortingChanges(
+        array
+      )}`
+    </script>
+  </body>
+</html>
