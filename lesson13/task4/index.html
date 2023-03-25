@@ -43,7 +43,11 @@
         counter = 0
         const theLetter = revealLetter(word)
         for (let i = 0; i < word.length; i++) {
-          const usersLetter = prompt(`Enter ${i + 1} letter of ${word.length}.`)
+          const usersLetter = prompt(
+            `Ця тварина є одомашненим нащадком вовка. \nАнглiйске слово iз 3 букв.\n\nEnter ${
+              i + 1
+            } letter of ${word.length}.`
+          )
           if (usersLetter.toLowerCase() === theLetter().toLowerCase()) counter++
         }
         return counter
