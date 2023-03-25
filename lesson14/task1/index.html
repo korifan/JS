@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 14 Task 1</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson14/index.html">Lesson 14</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Описати масив об’єктів – сайтів розроблених компанією з такими
+      властивостями
+    </p>
+    <p>----- Властивості ------</p>
+    <ul>
+      <li>назва компанії на час розробки (назву періодично змінюють)</li>
+      <li>власник компанії</li>
+      <li>
+        споснсори (масив спонсорів)
+        <ul>
+          <li>прізвище спонсора</li>
+          <li>ім’я спонсора</li>
+          <li>сума вкладень спонсора</li>
+        </ul>
+      </li>
+      <li>рік випуску</li>
+      <li>вартість сайту</li>
+    </ul>
+
+    <p>Знайти:</p>
+    <ol>
+      <li>загальну вартість усіх сайтів</li>
+      <li>кількість сайтів, що було зроблено між 2000 та 2009 рр.</li>
+      <li>
+        кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+      </li>
+      <li>
+        створити загальний список усіх спонсорів (поки можуть повторюватись,
+        просто зібрати усі у масив)
+      </li>
+      <li>знайти рік, коли прибуток був найбільшим</li>
+      <li>упорядкувати список за спаданням прибутку</li>
+      <li>
+        Створити 2 окремих списки з копіями об’єктів, що містять сайти з
+        вартість до 10000 і більше 10000
+      </li>
+    </ol>
+
+    <h2>Results</h2>
+
+    <script>
+      let website = [
+        {
+          companyName: "Afisha, Inc.",
+          owner: "David Ponomar",
+          sponsor: [
+            {
+              firstName: "Vasiliy",
+              lastName: "Zavorotny",
+              contributions: 30000
+            },
+            {
+              firstName: "Simon",
+              lastName: "Ivanilov",
+              contributions: 2000
+            }
+          ],
+          launchYear: 2002,
+          cost: 5000
+        },
+        {
+          companyName: "Walmart, Inc.",
+          owner: "Robert Walton",
+          sponsor: [
+            {
+              firstName: "Ivan",
+              lastName: "Kalika",
+              contributions: 24032
+            },
+            {
+              firstName: "Raisa",
+              lastName: "Lee",
+              contributions: 1000000
+            }
+          ],
+          launchYear: 2010,
+          cost: 25000
+        },
+        {
+          companyName: "City of New York",
+          owner: "Eric Adams",
+          sponsor: [
+            {
+              firstName: "Robert",
+              lastName: "Craft",
+              contributions: 40044
+            },
+            {
+              firstName: "Adam",
+              lastName: "Silver",
+              contributions: 100444
+            }
+          ],
+          launchYear: 2020,
+          cost: 250000
+        }
+      ]
+
+      console.log(website)
+
+      // 1. ========= Знайти загальну вартість усіх сайтів
+      const result1 = website.reduce((prevSum, site) => prevSum + site.cost, 0)
+
+      document.write(`<h3>Total cost of all websites is: ${result1}</h3>`)
+
+      // 2. ========= кількість сайтів, що було зроблено між 2000 та 2009 рр.
+      function getNumberOfSitesBetween2000and2009(sites) {
+        let counter = 0
+        for (const website of sites) {
+          if (website.launchYear > 2000 && website.launchYear < 2009) counter++
+        }
+        return counter
+      }
+      const result2 = getNumberOfSitesBetween2000and2009(website)
+
+      document.write(
+        `<h3>Number of sites made between 2000 and 2009: ${result2}</h3>`
+      )
+
+      // 3. ========= кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+      function getSponsorContributionGreaterThan100000(sites) {
+        let counter = 0
+        for (const contribution of sites) {
+          if (contribution.sponsor.contributions > 100000) counter++
+        }
+        return counter
+      }
+      const result3 = getSponsorContributionGreaterThan100000(website)
+
+      document.write(
+        `<h3>Number of sponsors contribution that were greater than $100000: ${result3}</h3>`
+      )
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 13 Task 4</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson13/index.html">Lesson 13</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      <strong>Задача 4</strong>
+      З використанням замикань розробити ітератор, тобто функцію, що буде
+      поступово за окремими викликами видавати по одну букву наперед заданого
+      слова. З використанням нього розробити гру «Прекладач». Виводимо для
+      користувача опис цього слова і по одну букву користувач вводить переклад
+      цього слова. Підрахувати кількість вгаданих букв.
+    </p>
+
+    <h2>Визначення слова, яке потрібно відгадати:</h2>
+    <div class="results"></div>
+    <p>Ця тварина є одомашненим нащадком вовка. Англiйске слово iз 3 букв.</p>
+    <script>
+      // Function that
+      function revealLetter(word) {
+        let index = 0
+        return function () {
+          if (index >= word.length) {
+            return "word end"
+          } else {
+            return word.charAt(index++)
+          }
+        }
+      }
+
+      function guessTheWord(word) {
+        counter = 0
+        const theLetter = revealLetter(word)
+        for (let i = 0; i < word.length; i++) {
+          const usersLetter = prompt(
+            `Ця тварина є одомашненим нащадком вовка. \nАнглiйске слово iз 3 букв.\n\nEnter ${
+              i + 1
+            } letter of ${word.length}.`
+          )
+          if (usersLetter.toLowerCase() === theLetter().toLowerCase()) counter++
+        }
+        return counter
+      }
+      // Word wariable
+      const theWord = "dog"
+
+      // Run the function
+      guessTheWord(theWord)
+
+      // Show the results
+      document.write(`The word was ${theWord}. You guessed ${counter} letters`)
+    </script>
+  </body>
+</html>

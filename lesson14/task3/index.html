@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 13 Task 3</title>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson13/index.html">Lesson 13</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>
+      <strong>Задача 3</strong>
+      З використанням замикань розробити ітератор, тобто функцію, що буде
+      поступово за окремими викликами видавати по одне значення від заданого
+      мінімального до заданого максимального. Якщо значення досягне
+      максимального, то наступним буде мінімальне значення. З використанням цієї
+      функції реалізувати перебір номерів місяців.
+    </p>
+
+    <h2>Results</h2>
+    <div class="results"></div>
+
+    <script>
+      // Make month numbers increments function
+      function monthNumberOutput(minMonth, maxMonth) {
+        let currentMonth = minMonth
+        function monthIncrement() {
+          if (currentMonth > maxMonth) {
+            currentMonth = minMonth
+          }
+          return currentMonth++
+        }
+        return monthIncrement
+      }
+      let monthNumbers = monthNumberOutput(1, 12)
+      // show months numbers (run 24 month)
+      for (let i = 0; i < 24; i++) {
+        // console.log(monthNumbers())
+        document.write(`${monthNumbers()}<br>`)
+      }
+    </script>
+  </body>
+</html>
