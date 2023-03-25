@@ -78,12 +78,24 @@
       /// Hit the ships functionality
       let shipsLeft = shipsNumber
       let misslesLeft = parseInt(prompt(`Enter number of missles`), 10)
+
+      // Choose coordinates function (// let user to choose the coordinates)
+      let userRowNum = 0
+      let userColNum = 0
+      function chooseCoordinates(row, col) {
+        row = parseInt(prompt(`Enter row number (from 1 to 6)`)) - 1
+        col = parseInt(prompt(`Enter col number (from 1 to 6)`)) - 1
+      }
+
       // Loop that lets an user to pick number to hit the ships until all of them are gone.
       for (let i = 0; i < shipsNumber; i++) {
-        // let user to choose the coordinates
-        let userRowNum = parseInt(prompt(`Enter row number (from 1 to 6)`)) - 1
-        let userColNum = parseInt(prompt(`Enter col number (from 1 to 6)`)) - 1
-
+        // Escape if no missels left
+        if (misslesLeft < 1) {
+          break
+          alert(`You lost! There are no more missles left`)
+        }
+        // call choose coordinates function
+        chooseCoordinates(userRowNum, userColNum)
         // Check if there are more ships left.
         if (gameField[userRowNum][userColNum] == 1) {
           shipsLeft -= gameField[userRowNum][userColNum]
@@ -93,8 +105,6 @@
           alert(
             `You hit the ship! \nShips left: ${shipsLeft}\n Missles left ${misslesLeft}`
           )
-        } else if (misslesLeft < 1) {
-          alert(`You lost! There are no more missles left`)
         } else {
           i--
           misslesLeft--
