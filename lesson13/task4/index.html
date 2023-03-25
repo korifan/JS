@@ -16,43 +16,46 @@
     <h1>Task 4</h1>
     <p>
       <strong>Задача 4</strong>
-      Для розглянутих методів сортування спробувати вивести етапи сортування
-      шляхом виведення відповідних таблиць за зразком.
+      З використанням замикань розробити ітератор, тобто функцію, що буде
+      поступово за окремими викликами видавати по одну букву наперед заданого
+      слова. З використанням нього розробити гру «Прекладач». Виводимо для
+      користувача опис цього слова і по одну букву користувач вводить переклад
+      цього слова. Підрахувати кількість вгаданих букв.
     </p>
 
-    <h2>Results</h2>
+    <h2>Визначення слова, яке потрібно відгадати:</h2>
     <div class="results"></div>
-
+    <p>Ця тварина є одомашненим нащадком вовка. Англiйске слово iз 3 букв.</p>
     <script>
-      // Variables
-      let array = [3, 5, 1, 4, 2]
-
-      // Buble serting that returns tables with sorting steps
-      function getNumberOfSortingChanges(arr) {
-        let changed
-        let res = ""
-        do {
-          changed = false
-          for (let i = 1; i < arr.length; i++) {
-            if (arr[i - 1] > arr[i]) {
-              let temp = arr[i - 1]
-              arr[i - 1] = arr[i]
-              arr[i] = temp
-              // Show steps
-              document.write(`[${arr}]<br>`)
-              changed = true
-            }
+      // Function that
+      function revealLetter(word) {
+        let index = 0
+        return function () {
+          if (index >= word.length) {
+            return "word end"
+          } else {
+            return word.charAt(index++)
           }
-        } while (changed)
-        return res
+        }
       }
 
-      /// Show results
-      const results = document.querySelector(".results")
-      // Show original array in form of the table
-      results.innerHTML = `<h3>Original Array</h3>[${array}]<h3>Sorted steps (buble)</h3> ${getNumberOfSortingChanges(
-        array
-      )}`
+      function guessTheWord(word) {
+        counter = 0
+        const theLetter = revealLetter(word)
+        for (let i = 0; i < word.length; i++) {
+          const usersLetter = prompt(`Enter ${i + 1} letter of ${word.length}.`)
+          if (usersLetter.toLowerCase() === theLetter().toLowerCase()) counter++
+        }
+        return counter
+      }
+      // Word wariable
+      const theWord = "dog"
+
+      // Run the function
+      guessTheWord(theWord)
+
+      // Show the results
+      document.write(`The word was ${theWord}. You guessed ${counter} letters`)
     </script>
   </body>
 </html>
