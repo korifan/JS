@@ -4,65 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 12 Task 3</title>
+    <title>Lesson 13 Task 3</title>
   </head>
 
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson12/index.html">Lesson 12</a>
+    <a href="../../lesson13/index.html">Lesson 13</a>
     / Task 3
 
     <h1>Task 3</h1>
     <p>
       <strong>Задача 3</strong>
-      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
-      час сортування включеннями.
+      З використанням замикань розробити ітератор, тобто функцію, що буде
+      поступово за окремими викликами видавати по одне значення від заданого
+      мінімального до заданого максимального. Якщо значення досягне
+      максимального, то наступним буде мінімальне значення. З використанням цієї
+      функції реалізувати перебір номерів місяців.
     </p>
 
     <h2>Results</h2>
     <div class="results"></div>
 
     <script>
-      // Variables
-      const arrLenth = 30
-      const minNumber = 1
-      const maxNumber = 100
-      function getRandomNum(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min
-      }
-
-      // create array with 30 random numbers
-      const arr30Random = []
-      for (let i = 0; i < arrLenth; i++) {
-        arr30Random[i] = getRandomNum(minNumber, maxNumber)
-      }
-      console.log(arr30Random)
-
-      // Inclusion Sorting fuction that returns counter
-      function getNumberOfSortingChanges(array) {
-        let key, i
-        let counter = 0
-        for (let k = 1; k < array.length; k++) {
-          key = array[k]
-          i = k - 1
-          while (i >= 0 && array[i] > key) {
-            array[i + 1] = array[i]
-            i = i - 1
-            counter++
+      // Make month numbers increments function
+      function monthNumberOutput(minMonth, maxMonth) {
+        let currentMonth = minMonth
+        function monthIncrement() {
+          if (currentMonth > maxMonth) {
+            currentMonth = minMonth
           }
-          array[i + 1] = key
-          counter++
+          return currentMonth++
         }
-        return counter
+        return monthIncrement
       }
-
-      // Display the results
-      const showResults = document.write(
-        `<h3>While sorting the array have changed ${getNumberOfSortingChanges(
-          arr30Random
-        )} times`
-      )
+      let monthNumbers = monthNumberOutput(1, 12)
+      // show months numbers (run 24 month)
+      for (let i = 0; i < 24; i++) {
+        // console.log(monthNumbers())
+        document.write(`${monthNumbers()}<br>`)
+      }
     </script>
   </body>
 </html>
