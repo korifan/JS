@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 14 Task 1</title>
+    <style>
+      h3 {
+        margin-top: 0;
+      }
+      p {
+        margin-bottom: 0;
+      }
+    </style>
   </head>
 
   <body>
@@ -58,17 +66,17 @@
     <script>
       let website = [
         {
-          companyName: "Afisha, Inc.",
-          owner: "David Ponomar",
+          companyName: "Disney",
+          owner: "Mickey Mouse",
           sponsor: [
             {
-              firstName: "Vasiliy",
-              lastName: "Zavorotny",
+              lastName: "Duck",
+              firstName: "Donald",
               contributions: 30000
             },
             {
-              firstName: "Simon",
-              lastName: "Ivanilov",
+              lastName: "Dog",
+              firstName: "Goofy",
               contributions: 2000
             }
           ],
@@ -76,17 +84,17 @@
           cost: 5000
         },
         {
-          companyName: "Walmart, Inc.",
-          owner: "Robert Walton",
+          companyName: "Nikelodeon",
+          owner: "Sponge Bob",
           sponsor: [
             {
-              firstName: "Ivan",
-              lastName: "Kalika",
+              lastName: "Star",
+              firstName: "Patrick",
               contributions: 24032
             },
             {
-              firstName: "Raisa",
-              lastName: "Lee",
+              lastName: "Krabs",
+              firstName: "Mister",
               contributions: 1000000
             }
           ],
@@ -94,17 +102,17 @@
           cost: 25000
         },
         {
-          companyName: "City of New York",
-          owner: "Eric Adams",
+          companyName: "Pixar",
+          owner: "Felonious Gru",
           sponsor: [
             {
-              firstName: "Robert",
-              lastName: "Craft",
+              lastName: "Minion",
+              firstName: "Kevin",
               contributions: 40044
             },
             {
-              firstName: "Adam",
-              lastName: "Silver",
+              lastName: "Minion",
+              firstName: "Stuart",
               contributions: 100444
             }
           ],
@@ -117,8 +125,10 @@
 
       // 1. ========= Знайти загальну вартість усіх сайтів
       const result1 = website.reduce((prevSum, site) => prevSum + site.cost, 0)
-
-      document.write(`<h3>Total cost of all websites is: ${result1}</h3>`)
+      // show results
+      document.write(
+        `<p>1. Total cost of all websites is:</p> <h3>${result1}</h3>`
+      )
 
       // 2. ========= кількість сайтів, що було зроблено між 2000 та 2009 рр.
       function getNumberOfSitesBetween2000and2009(sites) {
@@ -128,24 +138,79 @@
         }
         return counter
       }
+      // show results
       const result2 = getNumberOfSitesBetween2000and2009(website)
-
       document.write(
-        `<h3>Number of sites made between 2000 and 2009: ${result2}</h3>`
+        `<p>2. Number of sites made between 2000 and 2009:</p><h3>${result2}</h3>`
       )
 
       // 3. ========= кількість сайтів, де сума спонсорських вкладень була більшою за 100000
       function getSponsorContributionGreaterThan100000(sites) {
         let counter = 0
-        for (const contribution of sites) {
-          if (contribution.sponsor.contributions > 100000) counter++
+        for (const site of sites) {
+          let sum = 0
+          for (const sponsor of site.sponsor) {
+            sum += sponsor.contributions
+          }
+          if (sum > 100000) counter++
         }
         return counter
       }
+      // show results
       const result3 = getSponsorContributionGreaterThan100000(website)
+      document.write(
+        `<p>3. Number of sponsors contribution that were greater than $100000: </p><h3>${result3}</h3>`
+      )
+
+      // 4. ========= створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+      function getAllSponsors(sites) {
+        let sponsorsNames = []
+        for (const site of website) {
+          for (const sponsor of site.sponsor) {
+            sponsorsNames.push(` ${sponsor.firstName} ` + `${sponsor.lastName}`)
+          }
+        }
+        return sponsorsNames
+      }
+      // show results
+      const result4 = getAllSponsors(website)
+      document.write(
+        `<p>4. Here is array of all sponsors:</p><h3>[${result4}]</h3>`
+      )
+
+      // 5. ========= знайти рік, коли прибуток був найбільшим
+      // Find max cost year using reduce (prev is default)
+      const result5 = website.reduce((prev, site) =>
+        prev.cost > site.cost ? prev : site
+      ).launchYear
+      // show results
+      document.write(`<p>5. Year with most profit is:</p><h3>${result5}</h3>`)
+
+      // 6. ========= упорядкувати список за спаданням прибутку
+      let websiteCopy = JSON.parse(JSON.stringify(website))
+      websiteCopy.sort((a, b) => b.cost - a.cost)
+      console.log(websiteCopy)
+
+      const result6 = websiteCopy
+      document.write(`<h3>Sorted by cost (profit):</h3>`)
+      for (const site of websiteCopy) {
+        document.write(`${JSON.stringify(site)}<br><br>`)
+      }
+
+      // 7. ============ Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+      const websiteCostLessThan10000 = website.filter(site => site.cost < 10000)
+      const websiteCostMoreThan10000 = website.filter(site => site.cost > 10000)
 
       document.write(
-        `<h3>Number of sponsors contribution that were greater than $100000: ${result3}</h3>`
+        `<h3>List of sites that cost less that 10000</h3>:${JSON.stringify(
+          websiteCostLessThan10000
+        )}<br><br></h3>`
+      )
+      document.write(
+        `<br><h3>List of sites that cost more that 10000</h3>:${JSON.stringify(
+          websiteCostMoreThan10000
+        )}<br><br></p>`
       )
     </script>
   </body>
