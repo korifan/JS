@@ -4,69 +4,58 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 13 Task 2</title>
+    <title>Lesson 14 Task 2</title>
   </head>
 
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson13/index.html">Lesson 13</a>
+    <a href="../../lesson14/index.html">Lesson 14</a>
     / Task 2
 
     <h1>Task 2</h1>
     <p>
-      <strong>Задача 2.</strong>
-      Нехай x
-      <sub>0</sub>
-      = x
-      <sub>1</sub>
-      = 1, x
-      <sub>i</sub>
-      = x
-      <sub>i-1</sub>
-      + 2x
-      <sub>i-2</sub>
-      , де i= 1,2... Розв’язати з використанням рекурсивних і нерекурсивних
-      алгоритмів
+      Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити,
+      який буде рік через N місяців.
     </p>
 
     <h2>Results</h2>
     <div class="results"></div>
 
     <script>
-      // // Function using array
-      // function getNumber(number) {
-      //   let x = [1, 1]
-      //   for (let i = 2; i <= number; i++) {
-      //     let calculation = x[i - 1] + x[i - 2] * 2
-      //     x.push(calculation)
-      //   }
-      //   return x[x.length - 1]
-      // }
-      // document.write(getNumber(10))
+      // Get current date
+      const date = new Date()
 
-      function getNumber(number) {
-        let x_i_1 = 1
-        let x_i_2 = 1
-        let x_i
-        for (let i = 2; i <= number; i++) {
-          x_i = x_i_1 + 2 * x_i_2
-          x_i_2 = x_i_1
-          x_i_1 = x_i
-        }
-        return x_i
+      let day = date.getDate()
+      let month = date.getMonth() + 1
+      let year = date.getFullYear()
+
+      const dateObj = {
+        day: day,
+        month: month,
+        year: year
       }
-      console.log(getNumber(10))
-      document.write(getNumber(10))
-      // Using recursion
-      // function getNumberRecursion(number, i = 2, x_i_1 = 1, x_i_2 = 1) {
-      //   if (number === 1) return x_i
-      //   x_i = x_i_1 + 2 * x_i_2
-      //   x_i_2 = x_i_1
-      //   x_i_1 = x_i
-      //   return getNumberRecursion(number - 1, (i += 1), x_i_1, x_i_2)
-      // }
-      // console.log(getNumberRecursion(10))
+
+      console.log(dateObj)
+
+      // Ask user how much months
+      const newMonthNum = parseInt(prompt("Enter number of months:"))
+
+      // Function that returns year based on number of months
+      function returnYear(todaysDate, monthNum) {
+        let newNumberOfMonths = monthNum / 12
+        let soFarMonths = todaysDate.month / 12
+        let findYear = todaysDate.year + soFarMonths + newNumberOfMonths
+        return Math.floor(findYear)
+      }
+
+      // SHow the results
+      document.write(
+        `After ${newMonthNum} months, year will be ${returnYear(
+          dateObj,
+          newMonthNum
+        )}`
+      )
     </script>
   </body>
 </html>
