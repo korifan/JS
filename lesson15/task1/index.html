@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 15 Task 1</title>
+    <style>
+      table {
+        border: 1px solid #000;
+      }
+      td {
+        border: 1px solid #000;
+        vertical-align: top;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson15/index.html">Lesson 15</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є
+      заєць і 0 в іншому випадку.
+    </p>
+    <table>
+      <tr>
+        <td>Тир</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Поля(властивості)</td>
+        <td>Масив, у якому зберігається поле з зайцями</td>
+      </tr>
+      <tr>
+        <td>Методи (дії)</td>
+        <td>
+          Метод пострілу (задається позиція пострілу) Виведення ігрового поля
+        </td>
+      </tr>
+    </table>
+    <h2>Results</h2>
+
+    <script>
+      let rangeObject = {
+        //поле з зайцями
+        rabbitPositions: [0, 1, 0, 0, 1, 0],
+        // Метод пострілу
+        shooting: function () {
+          // render original
+          let rengeOrig = this.rabbitPositions
+          document.write(`Original range: [${rengeOrig}]`)
+
+          let rabbitsLeft = this.rabbitPositions.reduce(
+            (prev, el) => (el === 1 ? prev + 1 : prev),
+            0
+          )
+          console.log(rabbitsLeft)
+          // Start shooting
+          do {
+            const userShot = parseInt(
+              prompt(
+                `THere are ${rabbitsLeft} rabbits left.\nEnter nuber from 0 to ${this.rabbitPositions.length}`
+              )
+            )
+            if (this.rabbitPositions[userShot] === 1) {
+              alert("Hit")
+              rabbitsLeft--
+              this.rabbitPositions[userShot] = 0
+            } else alert("Missed")
+          } while (confirm(`THere are ${rabbitsLeft} rabbits left. Continue?`))
+          document.write(`<br>After shooting: [${this.rabbitPositions}]`)
+        }
+      }
+
+      let tyre = rangeObject.shooting()
+    </script>
+  </body>
+</html>
