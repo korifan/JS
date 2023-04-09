@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 15 Task 5</title>
+    <style>
+      table {
+        border: 1px solid #000;
+      }
+      td {
+        border: 1px solid #000;
+        vertical-align: top;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson15/index.html">Lesson 15</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>Розробити клас «Керівник танців»</p>
+    <table>
+      <tr>
+        <td>Поля</td>
+        <td>
+          Масив імен хлопців
+          <br />
+          Масив імен дівчат
+        </td>
+      </tr>
+      <tr>
+        <td>методи</td>
+        <td>
+          Метод випадкового вибору імені хлопця
+          <br />
+          Метод випадкового вибору імені дівчини
+          <br />
+          Метод виведення пари для танців
+          <br />
+          Метод run , який ініціює через кожні 5 секунд виведення нової пари для
+          танців
+        </td>
+      </tr>
+    </table>
+    <h2>Results</h2>
+    <div class="results"></div>
+    <script>
+      const results = document.querySelector(".results")
+      const boysArr = ["Vasya", "Petro", "Mycola"]
+      const girlsArr = ["Lina", "Vera", "Zoya"]
+      class DanceManager {
+        constructor(initBoysArray, initGirlsArray) {
+          // Масив імен хлопців
+          this.boysArray = initBoysArray
+          // Масив імен дівчат
+          this.girlsArray = initGirlsArray
+        }
+        //  Methods
+        // Метод випадкового вибору імені хлопця
+        getRandomBoy() {
+          let index = Math.floor(Math.random() * this.boysArray.length)
+          return this.boysArray[index]
+        }
+        // Метод випадкового вибору імені дівчини
+        getRandomGirl() {
+          let index = Math.floor(Math.random() * this.girlsArray.length)
+          return this.girlsArray[index]
+        }
+        // Метод виведення пари для танців
+        getPair() {
+          return `${this.getRandomBoy()} and ${this.getRandomGirl()}`
+        }
+
+        // Метод run , який ініціює через кожні 5 секунд виведення нової пари для
+        run() {
+          setInterval(() => {
+            results.innerHTML = `${this.getPair()}<br>`
+          }, 5000)
+        }
+      }
+
+      let danceAdmin = new DanceManager(boysArr, girlsArr)
+      danceAdmin.run()
+    </script>
+  </body>
+</html>

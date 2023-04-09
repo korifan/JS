@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 15 Task 3</title>
+    <style>
+      table {
+        border: 1px solid #000;
+      }
+      td {
+        border: 1px solid #000;
+        vertical-align: top;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson15/index.html">Lesson 15</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>Pозробити клас MultChecker для перевірки таблиці множення</p>
+    <table>
+      <tr>
+        <td>Поля</td>
+        <td>
+          Число, яке перевіряємо (наприклад, перевірка частини таблиці множення
+          на 7)
+          <br />
+          Кількість правильних відповідей
+          <br />
+          Кількість неправильних відповідей
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>Методи</td>
+        <td>
+          Генерування прикладу (метод випадковим чином визначає друге число,
+          перше число фіксоване)
+          <br />
+          Перевірка правильності вказаної відповіді
+          <br />
+          render - виведення інформації про тестування на екран
+        </td>
+      </tr>
+    </table>
+    <h2>Results</h2>
+
+    <script>
+      class MultChecker {
+        constructor(initFixedNumber) {
+          // Число, яке перевіряємо
+          this.fixedNumber = initFixedNumber
+          //Кількість правильних відповідей
+          this.rightAnswerNum = 0
+          //Кількість неправильних відповідей
+          this.wrongAnswerNum = 0
+        }
+
+        // Methods
+        // Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+        generateProblem() {
+          let max = 10
+          let min = 1
+          let randomNum = Math.floor(Math.random() * (max - min + 1) + min)
+          let userAnswer = parseInt(
+            prompt(`${this.fixedNumber} * ${randomNum}`)
+          )
+          let rightAnswer = this.fixedNumber * randomNum
+          if (userAnswer == rightAnswer) {
+            return true
+          } else {
+            return false
+          }
+        }
+
+        // Перевірка правильності вказаної відповіді
+        checkUserAnswers() {
+          do {
+            this.generateProblem()
+              ? this.rightAnswerNum++
+              : this.wrongAnswerNum++
+          } while (confirm("Continue?"))
+        }
+
+        // render - виведення інформації про тестування на екран
+        render() {
+          let fixedNum = document.write(`Fixed number: ${this.fixedNumber}<br>`)
+          let rightAnswers = document.write(
+            `Number of right answers: ${this.rightAnswerNum}<br>`
+          )
+          let wrongAnswers = document.write(
+            `Number of wrong answers: ${this.wrongAnswerNum}<br>`
+          )
+        }
+      }
+
+      let multChecker = new MultChecker(5)
+      multChecker.checkUserAnswers()
+      multChecker.render()
+    </script>
+  </body>
+</html>

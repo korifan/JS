@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 16 Task 1</title>
+    <style>
+      table {
+        border: 1px solid #000;
+      }
+      td {
+        border: 1px solid #000;
+        vertical-align: top;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson15/index.html">Lesson 16</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата
+      представляється структурою із трьома полями. Реалізувати методи
+      збільшення/зменшення дати на певну кількість днів, місяців чи років.
+      Введення та виведення дати реалізувати за допомогою методу toString.
+    </p>
+
+    <script>
+      class TDate {
+        //---- Властивості
+        //  * days
+        //  * months
+        //  * years
+        constructor(days, months, years) {
+          this.days = days
+          this.months = months
+          this.years = years
+        }
+        //---- Методи (дії, які треба робити)
+        //  increase days method
+        increaseDays(value) {
+          let daysToAdd = value
+
+          while (daysToAdd > 0) {
+            const daysInMonth = this.getDaysNumber()
+            const daysToMonthEnd = daysInMonth - this.days + 1
+            if (daysToAdd >= daysToMonthEnd) {
+              daysToAdd -= daysToMonthEnd
+              this.days = 1
+              this.increaseMonths(1)
+            } else {
+              this.days += daysToAdd
+              daysToAdd = 0
+            }
+          }
+        }
+
+        //  increase months method
+        increaseMonths(value) {
+          this.months = this.months + value - 1
+          this.increaseYears(Math.floor(this.months / 12))
+          this.months = (this.months % 12) + 1
+        }
+        //  increase years method
+        increaseYears(value) {
+          this.years = this.years + value
+        }
+
+        //  decrease days method
+        decreaseDays(value) {
+          let daysToAdd = value
+
+          while (daysToAdd > 0) {
+            const daysInMonth = this.getDaysNumber()
+            const daysToMonthEnd = daysInMonth - this.days + 1
+            if (daysToAdd >= daysToMonthEnd) {
+              daysToAdd -= daysToMonthEnd
+              this.days = 1
+              this.increaseMonths(1)
+            } else {
+              this.days += daysToAdd
+              daysToAdd = 0
+            }
+          }
+        }
+        //   decrease months method
+        decreaseMonths(value) {
+          //this.months = (this.months - value) % 12
+          this.months = this.months - value - 1
+          this.increaseYears(Math.floor(this.months / 12))
+          this.months = (((this.months % 12) + 12) % 12) + 1
+        }
+        //   decrease years method
+        decreaseYears(value) {
+          this.years = this.years - value
+        }
+
+        // Find leap year function
+        isLeapYear() {
+          return (
+            this.years % 4 === 0 &&
+            (this.years % 100 !== 0 || this.years % 400 === 0)
+          )
+        }
+
+        // days in month function
+        getDaysNumber() {
+          let monthDays
+          switch (this.months) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+              monthDays = 31
+              break
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+              monthDays = 30
+              break
+            case 2:
+              this.isLeapYear() ? (monthDays = 29) : (monthDays = 28)
+              break
+          }
+          return monthDays
+        }
+
+        // Use toSring method to display results
+        toString() {
+          return `${this.days}.${this.months}.${this.years}`
+        }
+      }
+
+      const date = new Date()
+      let day = date.getDate()
+      let month = date.getMonth() + 1
+      let year = date.getFullYear()
+
+      // Call the class object
+      const myDate = new TDate(day, month, year)
+
+      // Use the methods
+      myDate.increaseDays(34)
+      myDate.increaseMonths(5)
+      myDate.increaseYears(5)
+
+      myDate.decreaseDays(33)
+      myDate.decreaseMonths(4)
+      myDate.decreaseYears(4)
+
+      // show
+      document.write(`${myDate}`)
+    </script>
+  </body>
+</html>
