@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 15 Task 3</title>
+    <title>Lesson 16 Task 3</title>
     <style>
       table {
         border: 1px solid #000;
@@ -20,90 +20,184 @@
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson15/index.html">Lesson 15</a>
+    <a href="../../lesson16/index.html">Lesson 16</a>
     / Task 3
 
     <h1>Task 3</h1>
-    <p>Pозробити клас MultChecker для перевірки таблиці множення</p>
+    <p>
+      <strong>Задача 3.</strong>
+      Об’єкт “Фірма” (використати члени-класи)
+    </p>
     <table>
       <tr>
         <td>Поля</td>
         <td>
-          Число, яке перевіряємо (наприклад, перевірка частини таблиці множення
-          на 7)
-          <br />
-          Кількість правильних відповідей
-          <br />
-          Кількість неправильних відповідей
-          <br />
+          <ul>
+            <li>назва фірми;</li>
+            <li>дата заснування (рік, місяць);</li>
+            <li>послуги (назва послуги, вартість, термін виконання);</li>
+            <li>адреси філіалів (країна, місто, вулиця, номер будинку);</li>
+          </ul>
         </td>
       </tr>
       <tr>
         <td>Методи</td>
         <td>
-          Генерування прикладу (метод випадковим чином визначає друге число,
-          перше число фіксоване)
-          <br />
-          Перевірка правильності вказаної відповіді
-          <br />
-          render - виведення інформації про тестування на екран
+          <ul>
+            <li>визначення кількості років існування фірми;</li>
+            <li>виведення всіх філіалів фірми у вказаному місті;</li>
+            <li>
+              виведення на екран послуг, що можуть бути виконані за вказану суму
+              грошей та вказаний термін часу;
+            </li>
+          </ul>
         </td>
       </tr>
     </table>
-    <h2>Results</h2>
 
     <script>
-      class MultChecker {
-        constructor(initFixedNumber) {
-          // Число, яке перевіряємо
-          this.fixedNumber = initFixedNumber
-          //Кількість правильних відповідей
-          this.rightAnswerNum = 0
-          //Кількість неправильних відповідей
-          this.wrongAnswerNum = 0
+      // ===== Create seaparate classes
+      // назва фірми;
+      class CompanyName {
+        constructor({ name }) {
+          this.name = name
         }
-
-        // Methods
-        // Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
-        generateProblem() {
-          let max = 10
-          let min = 1
-          let randomNum = Math.floor(Math.random() * (max - min + 1) + min)
-          let userAnswer = parseInt(
-            prompt(`${this.fixedNumber} * ${randomNum}`)
-          )
-          let rightAnswer = this.fixedNumber * randomNum
-          if (userAnswer == rightAnswer) {
-            return true
-          } else {
-            return false
-          }
-        }
-
-        // Перевірка правильності вказаної відповіді
-        checkUserAnswers() {
-          do {
-            this.generateProblem()
-              ? this.rightAnswerNum++
-              : this.wrongAnswerNum++
-          } while (confirm("Continue?"))
-        }
-
-        // render - виведення інформації про тестування на екран
-        render() {
-          let fixedNum = document.write(`Fixed number: ${this.fixedNumber}<br>`)
-          let rightAnswers = document.write(
-            `Number of right answers: ${this.rightAnswerNum}<br>`
-          )
-          let wrongAnswers = document.write(
-            `Number of wrong answers: ${this.wrongAnswerNum}<br>`
-          )
+        toString() {
+          return `${this.name} `
         }
       }
 
-      let multChecker = new MultChecker(5)
-      multChecker.checkUserAnswers()
-      multChecker.render()
+      // дата заснування (рік, місяць);
+      class Established {
+        constructor({ month, year }) {
+          this.month = month
+          this.year = year
+        }
+        // визначення кількості років існування фірми;
+        howOldCompany() {
+          const date = new Date()
+          let currentYear = date.getFullYear()
+          return `Years in business: ${currentYear - this.year}`
+        }
+        toString() {
+          return `Since ${this.month} ${this.year}  \n${this.howOldCompany()}`
+        }
+      }
+
+      // послуги (назва послуги, вартість, термін виконання)
+      class Service {
+        constructor(service, cost, timeNeeded) {
+          this.service = service
+          this.cost = cost
+          this.timeNeeded = timeNeeded
+        }
+
+        toString() {
+          return `\nService:\n ${this.service}\n Time needed: ${this.timeNeeded} hours\n cost: $${this.cost}\n`
+        }
+      }
+
+      // країна, місто, вулиця, номер будинку
+      class Location {
+        constructor(suitenumber, street, city, country) {
+          this.country = country
+          this.city = city
+          this.street = street
+          this.suitenumber = suitenumber
+        }
+
+        toString() {
+          return `\n${this.suitenumber} ${this.street}\n ${this.city}, ${this.country}\n`
+        }
+      }
+
+      // const designServices = [
+      //   {
+      //     service: "logo design",
+      //     cost: 500,
+      //     timeNeeded: 40
+      //   },
+      //   {
+      //     service: "Web design",
+      //     cost: 1000,
+      //     timeNeeded: 80
+      //   },
+      //   {
+      //     service: "UX Consultation",
+      //     cost: 300,
+      //     timeNeeded: 30
+      //   }
+      // ]
+
+      // Final class (use other classes using composition)
+      class Company {
+        constructor(initData) {
+          this.business = new CompanyName(initData)
+          this.operated = new Established(initData)
+          this.services = []
+          this.locations = []
+        }
+        addService(service) {
+          this.services.push(service)
+        }
+        addLocation(location) {
+          this.locations.push(location)
+        }
+
+        // виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+        getServices(cost, timeNeeded) {
+          for (const service of this.services) {
+            if (service.cost <= cost && service.timeNeeded <= timeNeeded)
+              document.write(`<br>Service: <br>${service}<br>`)
+          }
+        }
+
+        // виведення всіх філіалів фірми у вказаному місті;
+        getLocationsInCity(city) {
+          for (const location of this.locations) {
+            if (location.city === city)
+              document.write(`<br>Location: <br>${location}<br>`)
+          }
+        }
+
+        toString() {
+          return `${this.business}\n${this.operated}\n ${this.services}\n ${this.locations}`
+        }
+      }
+
+      // Company objects and data
+      let company1 = new Company({
+        name: "Cool Cat Design",
+        month: "May",
+        year: "1970"
+      })
+
+      // Add services
+      company1.addService(new Service("Logo design", 500, 20))
+      company1.addService(new Service("Web design", 1000, 40))
+      company1.addService(new Service("UX Consultation", 200, 10))
+
+      // Add locations
+      company1.addLocation(
+        new Location(3913, "Stockton Blvd", "San Francisco", "United States")
+      )
+      company1.addLocation(
+        new Location(2120, "Market Street", "San Francisco", "United States")
+      )
+      company1.addLocation(
+        new Location(900, "Main Street", "London", "United Kingdom")
+      )
+      company1.addLocation(
+        new Location(1209, "Central Lane", "Edingburg", "Scotland")
+      )
+
+      console.log(company1.toString())
+
+      // виведення всіх філіалів фірми у вказаному місті;
+      company1.getLocationsInCity("San Francisco")
+
+      // виведення на екран послуг, що можуть бути виконані завказану суму грошей та вказаний термін часу;
+      company1.getServices(500, 20)
     </script>
   </body>
 </html>
