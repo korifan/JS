@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 15 Task 4</title>
+    <title>Lesson 16 Task 4</title>
     <style>
       table {
         border: 1px solid #000;
@@ -20,73 +20,113 @@
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson15/index.html">Lesson 15</a>
+    <a href="../../lesson16/index.html">Lesson 16</a>
     / Task 4
 
     <h1>Task 4</h1>
-    <p>Розробити клас Baner</p>
-    <table>
-      <tr>
-        <td>Поля</td>
-        <td>Масив об’єктів ( графічних зображень та посилань на сайти)</td>
-      </tr>
-      <tr>
-        <td>методи</td>
-        <td>
-          Метод випадкового вибору об’єкта (графічного зображення та посилання)
-          <br />
-          Метод виведення випадкового банера
-        </td>
-      </tr>
-    </table>
+    <p>
+      Створити клас TBankomat, який моделює роботу банкомата. Клас повинен
+      містити поля для зберігання кількості купюр кожного із номіналів від 5 до
+      200 гривень. Реалізувати методи знаходження максимальної та мінімальної
+      сум, які може видати банкомат, та метод зняття деякої суми.
+    </p>
+
     <h2>Results</h2>
 
     <script>
-      // banners array
-      let array = [
-        {
-          image:
-            "https://california.azureedge.net/cdt/statetemplate/6.1.1/images/main-banner4.jpg",
-          link: "https://google.com"
-        },
-        {
-          image:
-            "https://california.azureedge.net/cdt/statetemplate/6.1.1/images/main-banner5.jpg",
-          link: "https://www.apple.com/"
-        },
-        {
-          image:
-            "https://california.azureedge.net/cdt/statetemplate/6.1.1/images/main-banner6.jpg",
-          link: "https://www.amazon.com/"
-        }
-      ]
-      // create class
-      class Banner {
-        constructor(initBannersArray) {
-          //  Масив об’єктів ( графічних зображень та посилань на сайти)
-          this.bannerArray = initBannersArray
+      class Banknote {
+        #value
+        constructor(billNomination, value) {
+          this.billNomination = billNomination
+          this.Value = value
         }
 
-        // Метод випадкового вибору об’єкта (графічного зображення та посилання)
-        getRandomBanner() {
-          let max = this.bannerArray.length - 1
-          let min = 0
-          let bannerIndex = Math.floor(Math.random() * (max - min + 1) + min)
-          return bannerIndex
+        get Value() {
+          return this.#value
         }
 
-        //  Метод виведення випадкового банера
-        render() {
-          let index = this.getRandomBanner()
-          let randomBanner = this.bannerArray[index]
-          document.write(
-            `<a href="${randomBanner.link}"><img src="${randomBanner.image}" style="max-width:400px"></a>`
-          )
+        set Value(val) {
+          if (val < 0) throw new Error("Incorrect value")
+          this.#value = val
+        }
+
+        toString() {
+          return `${this.billNomination} / ${this.Value}\n`
         }
       }
 
-      let banner = new Banner(array)
-      banner.render()
+      class TBankomat {
+        constructor(billsArray) {
+          this.billsArray = billsArray
+        }
+
+        // ===== Methods
+        // Min amount to withdraw
+        get minAmount() {
+          for (const banknote of this.billsArray) {
+            if (banknote.Value) return banknote.billNomination
+          }
+          return 0
+        }
+
+        // Max amount to withdraw
+        get maxAmount() {
+          return this.billsArray.reduce(
+            (prev, banknote) => prev + banknote.billNomination * banknote.Value,
+            0
+          )
+        }
+
+        // Money withdrawal method
+        withdraw(val) {
+          if (val < this.minAmount || val > this.maxAmount)
+            throw new Error("Value is incorrect")
+          for (let i = this.billsArray.length - 1; i >= 0 && val !== 0; i--) {
+            if (val / this.billsArray[i].billNomination >= 1) {
+              this.billsArray[i].Value -= Math.floor(
+                val / this.billsArray[i].billNomination
+              )
+              val = val % this.billsArray[i].billNomination
+            }
+          }
+
+          if (val > 0)
+            document.write(`
+            You can't get that amount, this ATM's smallest bill nomination is 5 (UAH). Your amount must be divisible by 5<br>
+         `)
+        }
+
+        toString() {
+          if (this.maxAmount === 0) return `ATM has no more money<br>`
+          return `
+         Minimum amount to withdraw: ${this.minAmount} (UAH)<br>
+         Minimum amount to withdraw: ${this.maxAmount} (UAH)<br>
+         `
+        }
+      }
+
+      let billsArray = [
+        new Banknote(5, 10),
+        new Banknote(10, 10),
+        new Banknote(20, 10),
+        new Banknote(50, 10),
+        new Banknote(100, 10),
+        new Banknote(200, 12)
+      ]
+
+      // Initiate class
+      let tBankomat = new TBankomat(billsArray)
+      let ATM = new Banknote(billsArray)
+      console.log(`${ATM}`)
+
+      document.write(`${tBankomat.toString()}`)
+
+      // Withdraw money
+      tBankomat.withdraw(2400)
+
+      document.write(
+        `<br>After withdrawal of 2400 (UAH):<br><br>  ${tBankomat.toString()}`
+      )
     </script>
   </body>
 </html>
