@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 17 task 4</title>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson17/index.html">Lesson 17</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      Склад. База товарів, які зберігаються на складі: назва товару, одиниця
+      виміру, кількість, фірма виробник (назва, реєстраційний номер).
+      Організувати реєстрацію/відвантаження товарів, фільтрація за назвою
+      товару, фільтрація за назвою фірми
+    </p>
+    <script>
+      class ManufacturerCompany {
+        static counter = 0
+        constructor(companyName) {
+          this.companyName = companyName
+          this.regNumber = ++ManufacturerCompany.counter
+        }
+        toString() {
+          return `${this.companyName}, ID ${this.regNumber}`
+        }
+      }
+
+      class Product {
+        constructor(name, measure, id, producer) {
+          this.name = name
+          this.measure = measure
+          this.Number = id
+          this.producer = new ManufacturerCompany(producer)
+        }
+
+        increaseNumber(value) {
+          this.Number += value
+        }
+
+        outOfStock(value) {
+          this.Number -= value
+        }
+
+        toString() {
+          return `${this.name}, ${this.Number} ${this.measure}., ${this.producer}`
+        }
+      }
+
+      class BAZA {
+        constructor() {
+          this.productsList = []
+        }
+
+        isProduct(name, producer) {
+          if (this.productsList.length)
+            return this.productsList.find(
+              product =>
+                product.name === name &&
+                product.producer.companyName === producer
+            )
+        }
+
+        itemRegistration(newItem) {
+          let product = this.isProduct(
+            newItem.name,
+            newItem.producer.companyName
+          )
+
+          if (product) product.increaseNumber(newItem.Number)
+          else this.productsList.push(newItem)
+        }
+
+        itemShipment(name, id, producer) {
+          let product = this.isProduct(name, producer)
+
+          if (product) product.outOfStock(id)
+          else throw new Error("This item is out of stock")
+        }
+
+        searchByProductName(name) {
+          let productList = this.productsList.filter(
+            product => product.name === name
+          )
+          return productList.length
+            ? productList.toString()
+            : "There is no such item"
+        }
+
+        searchByManufacturer(name) {
+          let productList = this.productsList.filter(
+            product => product.producer.companyName === name
+          )
+
+          return productList.length
+            ? productList.toString()
+            : "There is no such munufacturer"
+        }
+
+        toString() {
+          return `${this.productsList}`
+        }
+      }
+
+      let hubProducts = new BAZA()
+
+      hubProducts.itemRegistration(new Product("Avocados", "lb", 500, "Mexico"))
+      hubProducts.itemRegistration(
+        new Product("Bananas", "kg", 60, "Puerto Rico")
+      )
+      hubProducts.itemRegistration(new Product("Pineapple", "lb", 200, "Dole"))
+      hubProducts.itemRegistration(
+        new Product("Apples", "lb", 300, "California")
+      )
+
+      console.log(hubProducts.searchByProductName("Bananas"))
+      console.log(hubProducts.searchByManufacturer("Mexico"))
+    </script>
+  </body>
+</html>

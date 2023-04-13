@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 17 task 5</title>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson17/index.html">Lesson 17</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>
+      Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори
+      (піб, рік народження, короткий опис), назва книги, жанр, видавництво
+      (назва, реєстраційний номер, рік засування)). Реалізувати розділи
+      бібліотеки (спеціальна література, хобі, домашнє господарство і т.д.),
+      походження книги і наявність на даний час. Організувати
+      додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за
+      видавництвом.
+    </p>
+    <script>
+      class Author {
+        constructor({ firstName, lastName, birthYear, shortDescription }) {
+          this.firstName = firstName
+          this.lastName = lastName
+          this.FullName = { firstName, lastName }
+          this.birthYear = birthYear
+          this.shortDescription = shortDescription
+        }
+        get FullName() {
+          return this.fullName
+        }
+        set FullName({ firstName, lastName }) {
+          this.fullName = `${firstName} ${lastName}`
+        }
+        toString() {
+          return `Author: ${this.FullName}, birth year: ${this.birthYear}, short description: ${this.shortDescription}`
+        }
+      }
+
+      class Publisher {
+        constructor({ publisher, publisherID, foundingYear }) {
+          this.publisher = publisher
+          this.publisherID = publisherID
+          this.foundingYear = foundingYear
+        }
+        toString() {
+          return `Publisher title: ${this.publisher}, publisher ID: ${this.publisherID}, foundation year: ${this.foundingYear}`
+        }
+      }
+
+      class Book {
+        constructor(inputBook) {
+          this.authors = new Author(inputBook)
+          this.BookTitle = inputBook
+          this.BookType = inputBook
+          this.publisher = new Publisher(inputBook)
+        }
+        set BookTitle({ bookTitle }) {
+          this.bookTitle = bookTitle
+        }
+        set BookType({ type }) {
+          this.bookType = type
+        }
+
+        toString() {
+          return `
+    Authors: ${this.authors},
+    book title: ${this.bookTitle},
+    book type: ${this.bookType},
+    publisher: ${this.publisher}
+    `
+        }
+      }
+
+      class Library {
+        static booksList
+        constructor(booksList) {
+          Library.BooksList = booksList
+        }
+        static get BooksList() {
+          return Library.booksList
+        }
+        static set BooksList(booksList) {
+          Library.booksList = booksList
+        }
+        // Add book
+        static set AddBook(bookObj) {
+          Library.booksList.push(bookObj)
+        }
+        // Delete book
+        static set RemoveBook(inputBookTitle) {
+          Library.booksList = Library.booksList.filter(
+            book => book.bookTitle !== inputBookTitle
+          )
+        }
+
+        // Book type
+        static filterByBookType(value) {
+          return Library.booksList.filter(book => book.bookType.includes(value))
+        }
+        // Check availability
+        static isAvailable(inputBookTitle) {
+          return Library.booksList.some(
+            ({ bookTitle }) => bookTitle === inputBookTitle
+          )
+        }
+        // Filter books by title
+        static FindByTitle(inpTitle) {
+          return Library.booksList.filter(
+            ({ bookTitle }) => bookTitle === inpTitle
+          )
+        }
+        // Filter by aothor
+        static FilterByAuthor(author) {
+          return Library.booksList.filter(({ authors }) =>
+            authors.lastName.includes(author).toString()
+          )
+        }
+        // Filter by publisher
+        static FilterByPublisher(inpPublisher) {
+          return Library.booksList.filter(({ publisher }) =>
+            publisher.publisher.includes(inpPublisher)
+          )
+        }
+      }
+
+      const booksList = [
+        {
+          firstName: "Johannes",
+          lastName: "Reimer",
+          birthYear: 1942,
+          shortDescription:
+            "With the rise of the Pentecostal and charismatic movements, the interest and involvement in political activity is becoming a daily reality in evangelical circles",
+          bookTitle: "Missio Politica",
+          type: "religious",
+          publisher: "Biblos",
+          publisherID: 3,
+          foundingYear: 2021
+        },
+        {
+          firstName: "Тамара",
+          lastName: "Резникова",
+          birthYear: 1954,
+          shortDescription: "Повесть о судьбе приемной дочери Майи.",
+          bookTitle: "Дикарка",
+          type: "Повесть",
+          publisher: "Zondervan",
+          publisherID: 1,
+          foundingYear: 1930
+        },
+        {
+          firstName: "Давид",
+          lastName: "Вилкерсон",
+          birthYear: 1975,
+          shortDescription:
+            "Семь подростков на судебном процессе по делу о групповом убийстве",
+          bookTitle: "Крест и нож",
+          type: "истории",
+          publisher: "Pramount",
+          publisherID: 2,
+          foundingYear: 1922
+        }
+      ]
+      const books = booksList.map(book => new Book(book))
+      new Library(books)
+      Library.AddBook = new Book({
+        firstName: "Ширинай",
+        lastName: "Досова",
+        birthYear: 1967,
+        shortDescription:
+          "В книге “Пёстрые судьбы” собраны рассказы – трагические , трогательные или весёлые",
+        bookTitle: "Пестрые судьбы",
+        type: "Рассказы",
+        publisher: "Skinia",
+        publisherID: 4,
+        foundingYear: 1992
+      })
+      Library.RemoveBook = "Крест и нож"
+
+      console.log(Library.isAvailable("Дикарка").toString())
+      console.log(
+        `\n\nFILTERING BY TYTLE: ${Library.FindByTitle("Дикарка").toString()}`
+      )
+      console.log(
+        `\n\nFILTERING BY AUTHOR: ${Library.FilterByAuthor(
+          "Reimer"
+        ).toString()}`
+      )
+      console.log(
+        `\n\nFILTERING BY PUBLISHER: ${Library.FilterByPublisher(
+          "Biblos"
+        ).toString()}`
+      )
+      console.log(
+        `\n\nFILTERING BY TYPE: ${Library.filterByBookType(
+          "religious"
+        ).toString()}`
+      )
+    </script>
+  </body>
+</html>
