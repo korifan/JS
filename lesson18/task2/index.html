@@ -4,53 +4,89 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 17 task 2</title>
+    <title>Lesson 18 task 2</title>
+    <style>
+      .results {
+        border: 1px solid;
+        padding: 5px;
+        width: 200px;
+        height: 15px;
+        margin-bottom: 10px;
+      }
+    </style>
   </head>
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson17/index.html">Lesson 17</a>
+    <a href="../../lesson18/index.html">Lesson 18</a>
     / Task 2
 
     <h1>Task 2</h1>
-    <p>
-      Створити службове авто (водій, марка, номер). Створити клас таким чином,
-      щоб можна було створити тільки один екземпляр цього класу.
-    </p>
+    <p>Зробити конвертер валют (курси валют – константи у скрипті)</p>
+    <div id="container"></div>
     <script>
-      class CompanyVehicle {
-        static vehicleObject
-        constructor(carInfo) {
-          if (CompanyVehicle.vehicleObject) return CompanyVehicle.vehicleObject
-          this.vehicleObj = carInfo
-          CompanyVehicle.vehicleObject = this
+      // create class
+      class Converter {
+        constructor(dollarRate, euroRate) {
+          this.dollarRate = dollarRate
+          this.euroRate = euroRate
         }
-        get vehicleObj() {
-          return this.vehicleObject
+        // methods
+        getConversion() {
+          const currentValue = parseInt(this.inp.value)
+
+          let dollarAmount = currentValue / this.dollarRate
+          let euroAmount = currentValue / this.euroRate
+
+          this.showDollar.innerText = ""
+          this.showDollar.innerText = dollarAmount.toFixed(2)
+          this.showEuro.innerText = ""
+          this.showEuro.innerText = euroAmount.toFixed(2)
         }
-        set vehicleObj(carInfo) {
-          this.vehicleObject = Object.assign(carInfo)
-        }
-        toString() {
-          return `
-    driver: ${this.vehicleObject.driver}
-    make: ${this.vehicleObject.make}
-    plаtе number: ${this.vehicleObject.number}
-    `
+
+        // render
+        render(containerId) {
+          const lbl = document.createElement("label")
+          lbl.innerText = "UAH Amount: "
+          // create input
+          this.inp = document.createElement("input")
+          this.inp.setAttribute("type", "text")
+          lbl.append(this.inp)
+
+          // render button
+          const btn = document.createElement("button")
+          btn.innerText = "Convert: "
+
+          // Results
+          const resultsDiv = document.createElement("div")
+          const hr = document.createElement("hr")
+          // render dollars results
+          const lblUS = document.createElement("label")
+          lblUS.innerText = "Dollars amount: "
+          this.showDollar = document.createElement("div")
+          this.showDollar.setAttribute("class", "results")
+          this.showDollar.innerHTML = ""
+          lblUS.append(this.showDollar)
+
+          // render euro results
+          const lblEuro = document.createElement("label")
+          lblEuro.innerText = "Euro amount: "
+          this.showEuro = document.createElement("div")
+          this.showEuro.setAttribute("class", "results")
+          this.showEuro.innerHTML = ""
+          lblEuro.append(this.showEuro)
+          resultsDiv.append(hr, lblUS, lblEuro)
+
+          // Binding the function
+          btn.onclick = this.getConversion.bind(this)
+
+          // Target container
+          const targetContainer = document.getElementById(containerId)
+          targetContainer.append(lbl, btn, resultsDiv)
         }
       }
-
-      const vehicle = new CompanyVehicle({
-        driver: "Sam",
-        make: "Ford",
-        number: "4CAX345"
-      })
-      const vehicle2 = new CompanyVehicle({
-        driver: "Jose",
-        model: "Honda",
-        number: "4ACV321"
-      })
-      console.log(vehicle2.toString())
+      const convrt = new Converter(39, 45)
+      convrt.render("container")
     </script>
   </body>
 </html>
