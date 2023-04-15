@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 task 1</title>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      button {
+        margin: 0.5rem;
+      }
+      .res {
+        border: 1px solid;
+        padding: 10px;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson18/index.html">Lesson 18</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>Розробити калькулятор</p>
+    <div class="container"></div>
+    <script>
+      // Create the first number
+      const lbl1 = document.createElement("label")
+      lbl1.innerText = "First number: "
+      const inp1 = document.createElement("input")
+      inp1.setAttribute("type", "text")
+      inp1.value = 2
+      lbl1.append(inp1)
+
+      // Create the second number
+      const lbl2 = document.createElement("label")
+      lbl2.innerText = "Second number: "
+      const inp2 = document.createElement("input")
+      inp2.setAttribute("type", "text")
+      inp2.value = 2
+      lbl2.append(inp2)
+
+      // Create buttons
+      const btnGroup = document.createElement("div")
+      // addition btn
+      const btnAdd = document.createElement("button")
+      btnAdd.innerText = "Add"
+      btnAdd.onclick = getSum // bind function
+      // substruction btn
+      const btnSubs = document.createElement("button")
+      btnSubs.innerText = "Substract"
+      btnSubs.onclick = getSubstraction // bind function
+      // multiplication btn
+      const btnMult = document.createElement("button")
+      btnMult.innerText = "Multiply"
+      btnMult.onclick = getMultiplication // bind function
+      // division btn
+      const btnDiv = document.createElement("button")
+      btnDiv.innerText = "Divide"
+      btnDiv.onclick = getDiviion // bind function
+      // separator
+      const sep = document.createElement("hr")
+      btnGroup.append(btnAdd, btnSubs, btnMult, btnDiv, sep)
+
+      // Create results
+      const lbl3 = document.createElement("label")
+      lbl3.innerText = "Results: "
+      const inp3 = document.createElement("div")
+      inp3.setAttribute("class", "res")
+      lbl3.append(inp3)
+
+      // add function
+      function getSum() {
+        inp3.innerText = ""
+        let sum = parseInt(inp1.value) + parseInt(inp2.value)
+        console.log(sum)
+        inp3.innerText = `${sum}`
+      }
+
+      // substract function
+      function getSubstraction() {
+        inp3.innerText = ""
+        let diff = parseInt(inp1.value) - parseInt(inp2.value)
+        console.log(diff)
+        inp3.innerText = `${diff}`
+      }
+
+      // multiply function
+      function getMultiplication() {
+        inp3.innerText = ""
+        let product = parseInt(inp1.value) * parseInt(inp2.value)
+        console.log(product)
+        inp3.innerText = `${product}`
+      }
+
+      // divide function
+      function getDiviion() {
+        inp3.innerText = ""
+        let division = parseInt(inp1.value) / parseInt(inp2.value)
+        console.log(division)
+        inp3.innerText = `${division}`
+      }
+
+      // render
+      const res = document.querySelector(".container")
+      res.append(lbl1, lbl2, btnGroup, lbl3)
+    </script>
+  </body>
+</html>
