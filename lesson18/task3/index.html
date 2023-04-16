@@ -4,59 +4,70 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 17 task 3</title>
+    <title>Lesson 18 task 3</title>
   </head>
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson17/index.html">Lesson 17</a>
+    <a href="../../lesson18/index.html">Lesson 18</a>
     / Task 3
 
     <h1>Task 3</h1>
     <p>
-      Створити клас Нагадувач. Кожні вказані кількості секунд (використати
-      setInterval) програма нагадує про якусь подію (це просто текст) і також
-      виводиться порядковий номер скільки раз вже нагадування було. Зробити так,
-      щоб неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи
-      зупинки таймера, метод зміни повідомлення без зупинки таймера.
+      Користувач задає рік народження. Визначити кількість років користувача.
     </p>
+    <div id="container"></div>
     <script>
-      class Reminder {
-        static ReminderObj
-        constructor(message, interval) {
-          // Singleton
-          if (Reminder.ReminderObj) return Reminder.ReminderObj
-          this.message = message
-          this.interval = interval
-          this.alert
-          this.counter = 1
-          Reminder.ReminderObj = this
+      class UserAge {
+        constructor(currentyear) {
+          this.currentyear = currentyear
         }
-        set Message(text) {
-          this.message = text
+        // method
+        getUserAge() {
+          const birthyear = parseInt(this.inp.value)
+          this.showAge.innerText = ""
+          if (birthyear > this.currentyear) {
+            this.showAge.innerText = `Error: your birth year cannot be more than ${this.currentyear}`
+          } else {
+            let useryear = this.currentyear - birthyear
+            this.showAge.innerText = useryear
+          }
         }
-        stopReminder() {
-          clearInterval(this.alert)
-        }
-        start() {
-          this.alert = setInterval(() => {
-            console.log(`${this.message}. #${this.counter}`)
-            this.counter++
-          }, this.interval * 2000)
+
+        render(containerId) {
+          // create label and input filed
+          const lbl = document.createElement("label")
+          lbl.innerText = "Enter your birth year : "
+          // create input
+          this.inp = document.createElement("input")
+          this.inp.setAttribute("type", "text")
+          lbl.append(this.inp)
+
+          // render button
+          const btn = document.createElement("button")
+          btn.innerText = "Get my age"
+          // Binding the function
+          btn.onclick = this.getUserAge.bind(this)
+
+          // render results
+          const resultsDiv = document.createElement("div")
+          const hr = document.createElement("hr")
+          const lblAge = document.createElement("label")
+          lblAge.innerText = "your age is: "
+          this.showAge = document.createElement("div")
+          this.showAge.innerHTML = ""
+          lblAge.append(this.showAge)
+          resultsDiv.append(hr, lblAge)
+
+          // Target container
+          const targetContainer = document.getElementById(containerId)
+          targetContainer.append(lbl, btn, resultsDiv)
         }
       }
-
-      const alarm = new Reminder("Hello", 1)
-      // Start
-      alarm.start()
-      // Change text
-      setTimeout(() => {
-        alarm.Message = "Good bye"
-      }, 10000)
-      // Stop
-      setTimeout(() => {
-        alarm.stopReminder()
-      }, 20000)
+      const date = new Date()
+      this.currentyear = date.getFullYear()
+      const age = new UserAge(currentyear)
+      age.render("container")
     </script>
   </body>
 </html>
