@@ -4,122 +4,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 17 task 4</title>
+    <title>Lesson 18 task 4</title>
   </head>
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson17/index.html">Lesson 17</a>
+    <a href="../../lesson18/index.html">Lesson 18</a>
     / Task 4
 
     <h1>Task 4</h1>
     <p>
-      Склад. База товарів, які зберігаються на складі: назва товару, одиниця
-      виміру, кількість, фірма виробник (назва, реєстраційний номер).
-      Організувати реєстрацію/відвантаження товарів, фільтрація за назвою
-      товару, фільтрація за назвою фірми
+      Наперед задано у скрипті масив зі списком бажань. Після завантаження
+      сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх
+      треба створити і додати на сторінку)
     </p>
+    <div id="container"></div>
     <script>
-      class ManufacturerCompany {
-        static counter = 0
-        constructor(companyName) {
-          this.companyName = companyName
-          this.regNumber = ++ManufacturerCompany.counter
-        }
-        toString() {
-          return `${this.companyName}, ID ${this.regNumber}`
+      function getRandomIndex(arr) {
+        let index = Math.floor(Math.random() * arr.length)
+        return index
+      }
+      // choose three wishes
+      function renderThreeWishes(arr, numOfWishes, containerId) {
+        for (let i = 0; i < numOfWishes; i++) {
+          // choose one random index
+          let randomIndex = getRandomIndex(arr)
+          console.log(randomIndex)
+          // Create div and add chosen index wish to it
+          const wishdiv = document.createElement("div")
+          wishdiv.innerText = arr[randomIndex]
+          // append wishdiv to target container
+          const targetContainer = document.getElementById(containerId)
+          targetContainer.append(wishdiv)
+          // delete that index
+          arr.splice(randomIndex, 1)
         }
       }
-
-      class Product {
-        constructor(name, measure, id, producer) {
-          this.name = name
-          this.measure = measure
-          this.Number = id
-          this.producer = new ManufacturerCompany(producer)
-        }
-
-        increaseNumber(value) {
-          this.Number += value
-        }
-
-        outOfStock(value) {
-          this.Number -= value
-        }
-
-        toString() {
-          return `${this.name}, ${this.Number} ${this.measure}., ${this.producer}`
-        }
-      }
-
-      class BAZA {
-        constructor() {
-          this.productsList = []
-        }
-
-        isProduct(name, producer) {
-          if (this.productsList.length)
-            return this.productsList.find(
-              product =>
-                product.name === name &&
-                product.producer.companyName === producer
-            )
-        }
-
-        itemRegistration(newItem) {
-          let product = this.isProduct(
-            newItem.name,
-            newItem.producer.companyName
-          )
-
-          if (product) product.increaseNumber(newItem.Number)
-          else this.productsList.push(newItem)
-        }
-
-        itemShipment(name, id, producer) {
-          let product = this.isProduct(name, producer)
-
-          if (product) product.outOfStock(id)
-          else throw new Error("This item is out of stock")
-        }
-
-        searchByProductName(name) {
-          let productList = this.productsList.filter(
-            product => product.name === name
-          )
-          return productList.length
-            ? productList.toString()
-            : "There is no such item"
-        }
-
-        searchByManufacturer(name) {
-          let productList = this.productsList.filter(
-            product => product.producer.companyName === name
-          )
-
-          return productList.length
-            ? productList.toString()
-            : "There is no such munufacturer"
-        }
-
-        toString() {
-          return `${this.productsList}`
-        }
-      }
-
-      let hubProducts = new BAZA()
-
-      hubProducts.itemRegistration(new Product("Avocados", "lb", 500, "Mexico"))
-      hubProducts.itemRegistration(
-        new Product("Bananas", "kg", 60, "Puerto Rico")
-      )
-      hubProducts.itemRegistration(new Product("Pineapple", "lb", 200, "Dole"))
-      hubProducts.itemRegistration(
-        new Product("Apples", "lb", 300, "California")
-      )
-
-      console.log(hubProducts.searchByProductName("Bananas"))
-      console.log(hubProducts.searchByManufacturer("Mexico"))
+      // Data
+      const wishes = [
+        "Money",
+        "Travel the World",
+        "Never falling sick",
+        "Stay forever young",
+        "Meet favorite celebrity",
+        "Travel time machine",
+        "Eat but not get fat"
+      ]
+      // get new array
+      let wishArray = new Array(...wishes)
+      console.log(wishArray)
+      // how many wishes to display
+      const numberOfWishes = 3
+      // run the function
+      renderThreeWishes(wishArray, numberOfWishes, "container")
+      console.log(wishArray)
     </script>
   </body>
 </html>
