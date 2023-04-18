@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 task 7</title>
+    <style>
+      button,
+      label {
+        display: block;
+      }
+      button {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson18/index.html">Lesson 18</a>
+    / Task 7
+
+    <h1>Task 7</h1>
+    <p>
+      Подорож складається з 3 Stageів. На кожному Stageі користувач може вибрати
+      один з видів транспорту (авто, автобус, літак - випадаючий список),
+      харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х
+      гідів(використати - radio buttons). Ціни визначте самі. Підрахувати
+      загальну вартість.
+    </p>
+
+    <div id="container"></div>
+
+    <button onclick="getTotal()">Get total</button>
+
+    <div class="total-sum"></div>
+    <script>
+      class Stage {
+        constructor(
+          stageNum,
+          auto,
+          bus,
+          plane,
+          breakfast,
+          lunch,
+          dinner,
+          guide1,
+          guide2,
+          guide3
+        ) {
+          this.stageNum = stageNum
+          this.auto = auto
+          this.bus = bus
+          this.plane = plane
+          this.breakfast = breakfast
+          this.lunch = lunch
+          this.dinner = dinner
+          this.guide1 = guide1
+          this.guide2 = guide2
+          this.guide3 = guide3
+        }
+
+        render(containerId) {
+          const h2 = document.createElement("h2")
+          h2.innerText = `Stage ${this.stageNum}`
+          // transportation
+
+          const transH4 = document.createElement("h4")
+          transH4.innerText = "Trasportation"
+          const lblTrans = document.createElement("label")
+          lblTrans.innerText = "Choose transpotation: "
+          this.selectOpt = document.createElement("select")
+          this.selectOpt.setAttribute("id", `stage${this.bus}`)
+          const opt1 = document.createElement("option")
+          opt1.setAttribute("value", `${this.auto}`)
+          opt1.setAttribute("selected", "true")
+          opt1.innerText = `Car $${this.auto}`
+          const opt2 = document.createElement("option")
+          opt2.setAttribute("value", `${this.bus}`)
+          opt2.innerText = `Bus $${this.bus}`
+          const opt3 = document.createElement("option")
+          opt3.setAttribute("value", `${this.plane}`)
+          opt3.innerText = `Plane $${this.plane}`
+          this.selectOpt.append(opt1, opt2, opt3)
+          lblTrans.append(this.selectOpt)
+
+          // Food
+          const secFood = document.createElement("div")
+          const foodH4 = document.createElement("h4")
+          foodH4.innerText = "Food"
+          const check1lbl = document.createElement("label")
+          check1lbl.innerText = ` Breakfast $${this.breakfast}`
+          this.check1 = document.createElement("input")
+          this.check1.setAttribute("type", "checkbox")
+          this.check1.setAttribute("value", `${this.breakfast}`)
+          check1lbl.prepend(this.check1)
+
+          const check2lbl = document.createElement("label")
+          check2lbl.innerText = ` Lunch $${this.lunch}`
+          this.check2 = document.createElement("input")
+          this.check2.setAttribute("type", "checkbox")
+          this.check2.setAttribute("value", `${this.lunch}`)
+          check2lbl.prepend(this.check2)
+
+          const check3lbl = document.createElement("label")
+          check3lbl.innerText = ` Dinner $${this.dinner}`
+          this.check3 = document.createElement("input")
+          this.check3.setAttribute("type", "checkbox")
+          this.check3.setAttribute("value", `${this.dinner}`)
+          check3lbl.prepend(this.check3)
+
+          secFood.append(foodH4, check1lbl, check2lbl, check3lbl)
+
+          // guide
+          const secGuide = document.createElement("div")
+          const guideH4 = document.createElement("h4")
+          guideH4.innerText = "Guide"
+
+          const radio1lbl = document.createElement("label")
+          radio1lbl.innerText = ` Guide #1 $${this.guide1}`
+          this.radio1 = document.createElement("input")
+          this.radio1.setAttribute("type", "radio")
+          this.radio1.setAttribute("name", `radioStage${this.stageNum}`)
+          this.radio1.setAttribute("value", `${this.guide1}`)
+          radio1lbl.prepend(this.radio1)
+
+          const radio2lbl = document.createElement("label")
+          radio2lbl.innerText = ` Guide #2 $${this.guide2}`
+          this.radio2 = document.createElement("input")
+          this.radio2.setAttribute("type", "radio")
+          this.radio2.setAttribute("name", `radioStage${this.stageNum}`)
+          this.radio2.setAttribute("value", `${this.guide2}`)
+          radio2lbl.prepend(this.radio2)
+
+          const radio3lbl = document.createElement("label")
+          radio3lbl.innerText = ` Guide #3 $${this.guide3}`
+          this.radio3 = document.createElement("input")
+          this.radio3.setAttribute("type", "radio")
+          this.radio3.setAttribute("name", `radioStage${this.stageNum}`)
+          this.radio3.setAttribute("value", `${this.guide3}`)
+          radio3lbl.prepend(this.radio3)
+
+          secGuide.append(guideH4, radio1lbl, radio2lbl, radio3lbl)
+
+          // button
+          this.btn = document.createElement("button")
+          this.btn.innerText = `Calculate stage ${this.stageNum} cost`
+          this.btn.onclick = this.getCost.bind(this)
+
+          // Target container
+          this.targetContainer = document.getElementById(containerId)
+          this.targetContainer.append(
+            h2,
+            transH4,
+            lblTrans,
+            secFood,
+            secGuide,
+            this.btn
+          )
+        }
+        getCost() {
+          // remove if exists
+          const cst = document.querySelector(`.stage${this.stageNum}cost`)
+          if (cst) {
+            cst.remove()
+          }
+          // get select cost
+          let selectCost = parseInt(this.selectOpt.value)
+          // get chackboxes cost
+          let check1Cost = this.check1.checked ? parseInt(this.check1.value) : 0
+          let check2Cost = this.check2.checked ? parseInt(this.check2.value) : 0
+          let check3Cost = this.check3.checked ? parseInt(this.check3.value) : 0
+          // get radio cost
+          let radio1Cost = this.radio1.checked ? parseInt(this.radio1.value) : 0
+          let radio2Cost = this.radio2.checked ? parseInt(this.radio2.value) : 0
+          let radio3Cost = this.radio3.checked ? parseInt(this.radio3.value) : 0
+          // show cost
+          const costDiv = document.createElement("div")
+          costDiv.setAttribute("class", `stage${this.stageNum}cost`)
+          // calulate
+          this.sum =
+            selectCost +
+            check1Cost +
+            check2Cost +
+            check3Cost +
+            radio1Cost +
+            radio2Cost +
+            radio3Cost
+          costDiv.innerText = this.sum
+          this.btn.after(costDiv)
+          return this.sum
+        }
+      }
+      st1 = new Stage(1, 50, 15, 700, 15, 20, 40, 50, 60, 70)
+      st2 = new Stage(2, 70, 25, 1500, 20, 25, 50, 50, 60, 70)
+      st3 = new Stage(3, 60, 35, 1200, 25, 40, 80, 55, 65, 80)
+      st1.render("container")
+      st2.render("container")
+      st3.render("container")
+
+      function getTotal() {
+        const res = document.querySelector(".total-sum")
+        res.innerHTML = ""
+        let supercost = st1.getCost() + st2.getCost() + st3.getCost()
+        res.innerText = supercost
+      }
+    </script>
+  </body>
+</html>
