@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 task 4</title>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson18/index.html">Lesson 18</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      Наперед задано у скрипті масив зі списком бажань. Після завантаження
+      сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх
+      треба створити і додати на сторінку)
+    </p>
+    <div id="container"></div>
+    <script>
+      function getRandomIndex(arr) {
+        let index = Math.floor(Math.random() * arr.length)
+        return index
+      }
+      // choose three wishes
+      function renderThreeWishes(arr, numOfWishes, containerId) {
+        for (let i = 0; i < numOfWishes; i++) {
+          // choose one random index
+          let randomIndex = getRandomIndex(arr)
+          console.log(randomIndex)
+          // Create div and add chosen index wish to it
+          const wishdiv = document.createElement("div")
+          wishdiv.innerText = arr[randomIndex]
+          // append wishdiv to target container
+          const targetContainer = document.getElementById(containerId)
+          targetContainer.append(wishdiv)
+          // delete that index
+          arr.splice(randomIndex, 1)
+        }
+      }
+      // Data
+      const wishes = [
+        "Money",
+        "Travel the World",
+        "Never falling sick",
+        "Stay forever young",
+        "Meet favorite celebrity",
+        "Travel time machine",
+        "Eat but not get fat"
+      ]
+      // get new array
+      let wishArray = new Array(...wishes)
+      console.log(wishArray)
+      // how many wishes to display
+      const numberOfWishes = 3
+      // run the function
+      renderThreeWishes(wishArray, numberOfWishes, "container")
+      console.log(wishArray)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 task 3</title>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson18/index.html">Lesson 18</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>
+      Користувач задає рік народження. Визначити кількість років користувача.
+    </p>
+    <div id="container"></div>
+    <script>
+      class UserAge {
+        constructor(currentyear) {
+          this.currentyear = currentyear
+        }
+        // method
+        getUserAge() {
+          const birthyear = parseInt(this.inp.value)
+          this.showAge.innerText = ""
+          if (birthyear > this.currentyear) {
+            this.showAge.innerText = `Error: your birth year cannot be more than ${this.currentyear}`
+          } else {
+            let useryear = this.currentyear - birthyear
+            this.showAge.innerText = useryear
+          }
+        }
+
+        render(containerId) {
+          // create label and input filed
+          const lbl = document.createElement("label")
+          lbl.innerText = "Enter your birth year : "
+          // create input
+          this.inp = document.createElement("input")
+          this.inp.setAttribute("type", "text")
+          lbl.append(this.inp)
+
+          // render button
+          const btn = document.createElement("button")
+          btn.innerText = "Get my age"
+          // Binding the function
+          btn.onclick = this.getUserAge.bind(this)
+
+          // render results
+          const resultsDiv = document.createElement("div")
+          const hr = document.createElement("hr")
+          const lblAge = document.createElement("label")
+          lblAge.innerText = "your age is: "
+          this.showAge = document.createElement("div")
+          this.showAge.innerHTML = ""
+          lblAge.append(this.showAge)
+          resultsDiv.append(hr, lblAge)
+
+          // Target container
+          const targetContainer = document.getElementById(containerId)
+          targetContainer.append(lbl, btn, resultsDiv)
+        }
+      }
+      const date = new Date()
+      this.currentyear = date.getFullYear()
+      const age = new UserAge(currentyear)
+      age.render("container")
+    </script>
+  </body>
+</html>

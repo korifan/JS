@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 task 5</title>
+    <style>
+      table,
+      tr,
+      td {
+        border: 1px solid;
+        padding: 3px;
+      }
+      table {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson18/index.html">Lesson 18</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>
+      Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити
+      і вставити на сторінку)
+    </p>
+    <div id="container"></div>
+    <script>
+      // get random number
+      function getRandomNumber(max, min) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+      // create table
+      function createTable(containerId, rows, cols, maxNum, minNum) {
+        const table = document.createElement("table")
+        // Add  rows
+        for (let row = 1; row <= rows; row++) {
+          const tr = document.createElement("tr")
+          // add columns
+          for (let i = 1; i <= cols; i++) {
+            const td = document.createElement("td")
+            // add random number to the cell
+            td.innerText = getRandomNumber(maxNum, minNum)
+            // add column (td) into the tr element
+            tr.append(td)
+          }
+          table.append(tr)
+        }
+        // append table to target container
+        const targetContainer = document.getElementById(containerId)
+        targetContainer.append(table)
+      }
+
+      // Variables
+      const numberofRows = 3,
+        numberofCols = 4,
+        maxNumber = 100,
+        minNumber = 1
+      // run the function
+      createTable("container", numberofRows, numberofCols, maxNumber, minNumber)
+    </script>
+  </body>
+</html>

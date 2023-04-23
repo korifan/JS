@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 19 task 1</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .flex {
+        display: flex;
+        gap: 10px;
+      }
+      img {
+        width: 140px;
+      }
+      a {
+        color: black;
+        text-decoration: none;
+        margin: 0;
+      }
+      .product {
+        padding: 10px;
+        border: 2px solid #eee;
+      }
+      .product p {
+        margin: 0;
+        font-size: 0.85rem;
+      }
+      .product.green {
+        border-color: green;
+      }
+      .price {
+        font-size: 1.5rem !important;
+        margin-top: 1rem !important;
+        color: orangered;
+      }
+      .status {
+        background-color: orange;
+        display: inline-block;
+        color: #fff;
+        border-radius: 15px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin: 0 !important;
+      }
+      .status.sale {
+        background-color: orangered;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson19/index.html">Lesson 19</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Задача 1. Відображаємо картки товарів, які користувач може вибирати.
+      Вибраний товар має зелену рамку
+    </p>
+    <div id="container"></div>
+    <script>
+      const productObj = [
+        {
+          status: "Hot item",
+          img: "./img/1.jpg",
+          name: "Acer Aspire 7",
+          model: "A715-42G",
+          price: 30999,
+          link: "javascript:;" // disabled for now
+        },
+        {
+          status: "Hot item",
+          img: "./img/2.jpg",
+          name: "ASUS Laptop",
+          model: "X515EA-BQ2066",
+          price: 19999,
+          link: "javascript:;" // disabled for now
+        },
+        {
+          status: "Sale",
+          img: "./img/3.jpg",
+          name: "Levono",
+          model: "IdeaPad 1 15ADA7",
+          price: 13999,
+          link: "javascript:;" // disabled for now
+        },
+        {
+          status: "Hot item",
+          img: "./img/4.jpg",
+          name: "Apple",
+          model: 'MacBook Air 13" M1',
+          price: 39999,
+          link: "javascript:;" // disabled for now
+        }
+      ]
+
+      class Notebooks {
+        constructor(initData) {
+          this.data = initData
+        }
+
+        render(targetID) {
+          // create outer div
+          const container = document.createElement("div")
+          container.setAttribute("class", "flex")
+
+          // loop goes through the data object and creating the product
+          for (let i = 0; i < this.data.length; i++) {
+            // create product container
+            this.prodDiv = document.createElement("div")
+            this.prodDiv.setAttribute("class", "product")
+            // create product link
+            this.prodLink = document.createElement("a")
+            this.prodLink.setAttribute("href", `${this.data[i].link}`)
+            this.prodLink.setAttribute("class", "link")
+
+            // add status label
+            const statusDiv = document.createElement("div")
+            statusDiv.innerText = `${this.data[i].status}`
+            statusDiv.setAttribute("class", "status")
+            if (this.data[i].status === "Sale") {
+              statusDiv.classList.add("sale")
+            }
+
+            // add image
+            const prodImg = document.createElement("img")
+            prodImg.setAttribute("src", `${this.data[i].img}`)
+
+            // add prodName and prodModel
+            const prodName = document.createElement("p")
+            prodName.innerText = `${this.data[i].name}`
+            const prodModel = document.createElement("p")
+            prodModel.innerText = `${this.data[i].model}`
+
+            // add price
+            const prodPrice = document.createElement("p")
+            prodPrice.setAttribute("class", "price")
+            prodPrice.innerText = `$${this.data[i].price.toLocaleString()}`
+            // append product elements
+            this.prodLink.append(
+              statusDiv,
+              prodImg,
+              prodName,
+              prodModel,
+              prodPrice
+            )
+            this.prodDiv.append(this.prodLink)
+            container.append(this.prodDiv)
+          }
+          const targetContainer = document.getElementById(targetID)
+          targetContainer.append(container)
+
+          // add green border
+          this.allLinks = document.querySelectorAll("a.link")
+          console.log(this.allLinks)
+          this.allLinks.forEach(el => {
+            el.addEventListener("click", function (event) {
+              event.preventDefault()
+              el.closest("div.product").classList.toggle("green")
+            })
+          })
+        }
+      }
+      const nb = new Notebooks(productObj)
+      nb.render("container")
+    </script>
+  </body>
+</html>

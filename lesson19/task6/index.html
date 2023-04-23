@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 task 6</title>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson18/index.html">Lesson 18</a>
+    / Task 6
+
+    <h1>Task 6</h1>
+    <p>
+      Користувач задає кількість оцінок і натискає на кнопку «get table». В
+      результаті формується таблиця з input, куди користувач вводить оцінки.
+      Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+    </p>
+
+    <div>
+      <label for="numberOfGradesber"><b>Number of grades:</b></label>
+      <input type="text" class="grades-number" />
+    </div>
+    <button class="generate-table">Get Table</button>
+    <div>
+      <button class="get-average">Get average grade</button>
+    </div>
+
+    <script>
+      function getTable() {
+        // reset table if exists
+        const tbl = document.querySelector(".table")
+        if (tbl) {
+          tbl.innerHTML = ""
+        }
+        // reset avrerage
+        const avr = document.querySelector(".average-grade")
+        if (avr) {
+          avr.innerHTML = ""
+        }
+        const numberOfGrades = parseInt(
+          document.querySelector(".grades-number").value
+        )
+        const table = document.createElement("table")
+        table.setAttribute("class", "table")
+        document.querySelector(".generate-table").after(table)
+        for (let i = 0; i < numberOfGrades; i++) {
+          const row = document.createElement("tr")
+          table.append(row)
+          const column = document.createElement("td")
+          row.append(column)
+          const inp = document.createElement("input")
+          inp.setAttribute("name", "grade")
+          column.append(inp)
+        }
+      }
+
+      function getAverageGrade() {
+        //reset
+        const avr = document.querySelector(".average-grade")
+        if (avr) {
+          avr.innerHTML = ""
+        }
+        // get all the grades from inputs
+        const inpList = document.getElementsByName("grade")
+        let average = 0
+        console.log(inpList)
+
+        for (const input of inpList) {
+          average += parseInt(input.value)
+          console.log(average)
+        }
+        average = average / inpList.length
+        let div = document.createElement("div")
+        div.setAttribute("class", "average-grade")
+        div.innerHTML = `Average grade is: ${average.toFixed(2)}`
+        document.body.append(div)
+      }
+
+      document.querySelector(".generate-table").onclick = getTable
+      document.querySelector(".get-average").onclick = getAverageGrade
+    </script>
+  </body>
+</html>
