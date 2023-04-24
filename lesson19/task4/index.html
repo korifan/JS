@@ -4,60 +4,91 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 18 task 4</title>
+    <title>Lesson 19 task 4</title>
+    <style>
+      .star {
+        position: absolute;
+      }
+
+      .star svg polygon {
+        fill: yellow;
+      }
+    </style>
   </head>
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson18/index.html">Lesson 18</a>
+    <a href="../../lesson19/index.html">Lesson 19</a>
     / Task 4
 
     <h1>Task 4</h1>
     <p>
-      Наперед задано у скрипті масив зі списком бажань. Після завантаження
-      сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх
-      треба створити і додати на сторінку)
+      Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій
+      частині екрану. Кожна зірка з певним кроком і інтервалом збільшується від
+      мінімального до максимального розміру. Як тільки досягнути максимального
+      розміру зірочка повинна з’являтися у іншій випадковій позиції.
     </p>
     <div id="container"></div>
     <script>
-      function getRandomIndex(arr) {
-        let index = Math.floor(Math.random() * arr.length)
-        return index
-      }
-      // choose three wishes
-      function renderThreeWishes(arr, numOfWishes, containerId) {
-        for (let i = 0; i < numOfWishes; i++) {
-          // choose one random index
-          let randomIndex = getRandomIndex(arr)
-          console.log(randomIndex)
-          // Create div and add chosen index wish to it
-          const wishdiv = document.createElement("div")
-          wishdiv.innerText = arr[randomIndex]
-          // append wishdiv to target container
-          const targetContainer = document.getElementById(containerId)
-          targetContainer.append(wishdiv)
-          // delete that index
-          arr.splice(randomIndex, 1)
+      const starSVG = `<svg 
+	  viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+<polygon points="14.8,0.8 19.4,10 29.6,11.5 22.2,18.7 23.9,28.8 14.8,24 5.7,28.8 7.5,18.7 0.1,11.5 10.3,10 "/>
+</svg>`
+
+      class Star {
+        constructor(minSize, maxSize) {
+          this.minSize = minSize
+          this.maxSize = maxSize
+        }
+        getRandomLeftPosition() {
+          return Math.floor(Math.random() * 100)
+        }
+        getRandomTopPosition() {
+          return Math.floor(Math.random() * 100)
+        }
+        getRandomStep() {
+          return 1 + (Math.random() * 25) / 5
+        }
+
+        render(TargetContainer) {
+          const star = document.createElement("div")
+          star.className = "star"
+          // add image
+          star.innerHTML = starSVG
+          let svg = star.firstElementChild
+          star.style.width = this.minSize + "px"
+          star.style.height = this.minSize + "px"
+          star.style.left = this.getRandomLeftPosition() + "%"
+          star.style.top = this.getRandomTopPosition() + "%"
+
+          const step = this.getRandomStep()
+
+          setInterval(() => {
+            star.style.transition = "all 0.5s ease-in-out 0s"
+            star.style.width = parseFloat(star.style.width) + step + "px"
+            star.style.height = parseFloat(star.style.height) + step + "px"
+            if (parseFloat(star.style.width) > this.maxSize) {
+              star.style.transition = "none"
+              star.style.width = this.minSize + "px"
+              star.style.height = this.minSize + "px"
+              star.style.left = this.getRandomLeftPosition() + "%"
+              star.style.top = this.getRandomTopPosition() + "%"
+            }
+          }, 200)
+          // append star to target container
+          const TargetCont = document.getElementById(TargetContainer)
+          TargetCont.append(star)
         }
       }
-      // Data
-      const wishes = [
-        "Money",
-        "Travel the World",
-        "Never falling sick",
-        "Stay forever young",
-        "Meet favorite celebrity",
-        "Travel time machine",
-        "Eat but not get fat"
-      ]
-      // get new array
-      let wishArray = new Array(...wishes)
-      console.log(wishArray)
-      // how many wishes to display
-      const numberOfWishes = 3
-      // run the function
-      renderThreeWishes(wishArray, numberOfWishes, "container")
-      console.log(wishArray)
+
+      const numberOfStarts = 20
+      function loadStars(starsnum) {
+        for (let i = 0; i < starsnum; i++) {
+          let stars = new Star(10, 100)
+          stars.render("container")
+        }
+      }
+      loadStars(numberOfStarts)
     </script>
   </body>
 </html>
