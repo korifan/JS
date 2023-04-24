@@ -81,16 +81,34 @@
       ]
 
       class ChosingCompetitors {
-        render(targetID, generallist) {
+        constructor(generalList) {
+          this.generalList = generalList
+        }
+        render(targetID) {
           // create flex container
           this.flexCont = document.createElement("div")
           this.flexCont.setAttribute("class", "flex")
 
+          // append general and chosen containers into flex xontainer
+          this.flexCont.append(this.generalContainer(), this.chosenContainer())
+          // create target container and append everything in there
+          const TargetCont = document.getElementById(targetID)
+          TargetCont.append(this.flexCont)
+
+          // Add click event to the buttons
+          let allButtons = document.querySelectorAll("button")
+          allButtons.forEach(el => {
+            // adding button argument into (this) after bind
+            el.addEventListener("click", this.moveNames.bind(this, el))
+          })
+        }
+
+        generalContainer() {
           // create container for general list
           const genCont = document.createElement("div")
           genCont.setAttribute("class", "general")
           // populate the names
-          for (const name of generallist) {
+          for (const name of this.generalList) {
             // create container div
             const nameCont = document.createElement("div")
             nameCont.setAttribute("class", "name-container")
@@ -110,41 +128,31 @@
             // append name-container into general container
             genCont.append(nameCont)
           }
-          // append general container into flex xontainer
-          this.flexCont.append(genCont)
+          return genCont
+        }
 
-          // =================== CHOSEN
-          // create container for chosen list
+        chosenContainer() {
           const chosenCont = document.createElement("div")
           chosenCont.setAttribute("class", "chosen")
-          // Populate chosen
-          this.flexCont.append(chosenCont)
-
-          // create target container and append everything there
-          const TargetCont = document.getElementById(targetID)
-          TargetCont.append(this.flexCont)
-
-          // =======================
-          // Move names fuction
-          let allButtons = document.querySelectorAll("button")
-          allButtons.forEach(el => {
-            el.addEventListener("click", function () {
-              let namecont = el.closest(".name-container")
-              let closest = el.closest(".general")
-              let chosen = document.querySelector(".chosen")
-              let gen = document.querySelector(".general")
-              if (closest) {
-                chosen.append(namecont)
-              } else {
-                gen.append(namecont)
-              }
-            })
-          })
+          return chosenCont
+        }
+        // =======================
+        // Move names fuction
+        moveNames(button) {
+          let namecont = button.closest(".name-container")
+          let closest = button.closest(".general")
+          let chosen = document.querySelector(".chosen")
+          let gen = document.querySelector(".general")
+          if (closest) {
+            chosen.append(namecont)
+          } else {
+            gen.append(namecont)
+          }
         }
       }
 
-      const choose1 = new ChosingCompetitors()
-      choose1.render("container", generalList)
+      const choose1 = new ChosingCompetitors(generalList)
+      choose1.render("container")
     </script>
   </body>
 </html>
