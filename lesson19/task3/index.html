@@ -50,7 +50,7 @@
           return Math.floor(Math.random() * (100 - 25 + 1) + 25)
         }
 
-        render(containerSelector) {
+        render(TargetContainer) {
           this.snowflake = document.createElement("div")
           this.snowflake.className = "snowflake"
           // add image
@@ -95,18 +95,16 @@
           let svg = this.snowflake.firstElementChild
           svg.style.width = this.getRandomSize() + "px"
           svg.style.height = this.getRandomSize() + "px"
-          const speedsnowflake = this.getRandomSpeed()
+          const snowflakeSpeed = this.getRandomSpeed()
           setInterval(() => {
-            this.snowflake.style.transition = ""
             this.snowflake.style.top =
-              parseFloat(this.snowflake.style.top) + speedsnowflake + "%"
+              parseFloat(this.snowflake.style.top) + snowflakeSpeed + "%"
             if (parseFloat(this.snowflake.style.top) > 105) {
-              this.snowflake.style.transition = "none"
               this.snowflake.style.top = "-100px"
               this.snowflake.style.left = this.getRandomLeftPosition() + "%"
             }
           }, 100)
-          document.querySelector(containerSelector).append(this.snowflake)
+          document.querySelector(TargetContainer).append(this.snowflake)
         }
       }
       // render 50 snowflakes
