@@ -71,11 +71,17 @@
     <div id="container"></div>
     <script>
       // we need two arrays and to clear the name we are using filter.
-      let generalList = ["John Depp", "Sara Wick", "Den Miro", "Alan Woo"]
-      let chosenList = ["Olga Sich", "Ivan Hal"]
+      let generalList = [
+        "John Depp",
+        "Sara Wick",
+        "Den Miro",
+        "Alan Woo",
+        "Olga Sich",
+        "Ivan Hal"
+      ]
 
-      class ChosingCompetirots {
-        render(targetID, generallist, chosenlist) {
+      class ChosingCompetitors {
+        render(targetID, generallist) {
           // create flex container
           this.flexCont = document.createElement("div")
           this.flexCont.setAttribute("class", "flex")
@@ -112,26 +118,6 @@
           const chosenCont = document.createElement("div")
           chosenCont.setAttribute("class", "chosen")
           // Populate chosen
-          for (const name of chosenlist) {
-            // create container div
-            const chosenNameCont = document.createElement("div")
-            chosenNameCont.setAttribute("class", "name-container")
-            // create div for name
-            const chosenname = document.createElement("div")
-            chosenname.innerHTML = name
-            // create button
-            const chosenbutton = document.createElement("button")
-            // arrow
-            chosenbutton.innerHTML = `<svg  x="0px" y="0px"
-      	 width="35px" height="25px" viewBox="0 0 35 25" style="enable-background:new 0 0 35 25;" xml:space="preserve">
-      <path class="st0" d="M16.8,23.8v-5.6H0.5V6.8h16.3V1.1l17.7,11.3L16.8,23.8z M3.4,15.4h16.3v3.3l9.7-6.2l-9.7-6.2v3.3H3.4V15.4z"/>
-      </svg>`
-            // append name and button into name-container
-            chosenNameCont.append(chosenname, chosenbutton)
-            // append name-container into general container
-            chosenCont.append(chosenNameCont)
-          }
-
           this.flexCont.append(chosenCont)
 
           // create target container and append everything there
@@ -139,39 +125,26 @@
           TargetCont.append(this.flexCont)
 
           // =======================
-          // CLick event for general
-          let addLinks = document.querySelectorAll(".general button")
-          //let listOfSportsmen = this.generallist
-          addLinks.forEach(el => {
+          // Move names fuction
+          let allButtons = document.querySelectorAll("button")
+          allButtons.forEach(el => {
             el.addEventListener("click", function () {
-              let nameText = el.previousElementSibling.innerText
-              let newList = generallist.filter(name => name !== nameText)
-              chosenlist.push(nameText)
-              let closest = el.closest(".name-container")
+              let namecont = el.closest(".name-container")
+              let closest = el.closest(".general")
               let chosen = document.querySelector(".chosen")
-              chosen.append(closest)
-            })
-          })
-
-          // =======================
-          // CLick event for chosen
-          let removeLinks = document.querySelectorAll(".chosen button")
-          /// Doent' fully work
-          removeLinks.forEach(el => {
-            el.addEventListener("click", function () {
-              let nameText = el.previousElementSibling.innerText
-              let newcosenList = chosenlist.filter(name => name !== nameText)
-              generallist.push(nameText)
-              let closest = el.closest(".name-container")
               let gen = document.querySelector(".general")
-              gen.append(closest)
+              if (closest) {
+                chosen.append(namecont)
+              } else {
+                gen.append(namecont)
+              }
             })
           })
         }
       }
 
-      const choose1 = new ChosingCompetirots()
-      choose1.render("container", generalList, chosenList)
+      const choose1 = new ChosingCompetitors()
+      choose1.render("container", generalList)
     </script>
   </body>
 </html>
