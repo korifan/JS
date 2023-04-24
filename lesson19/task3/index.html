@@ -5,6 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 19 task 3</title>
+    <style>
+      .snowflake {
+        position: absolute;
+        min-width: 30px;
+        min-height: 30px;
+        animation: rotation 8s infinite linear;
+      }
+      .snowflake svg path {
+        fill: lightblue;
+      }
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <a href="../../index.html">JS Homeworks</a>
@@ -20,56 +39,83 @@
     </p>
     <div id="container"></div>
     <script>
-      class UserAge {
-        constructor(currentyear) {
-          this.currentyear = currentyear
+      class snowflake {
+        getRandomLeftPosition() {
+          return Math.floor(Math.random() * 100)
         }
-        // method
-        getUserAge() {
-          const birthyear = parseInt(this.inp.value)
-          this.showAge.innerText = ""
-          if (birthyear > this.currentyear) {
-            this.showAge.innerText = `Error: your birth year cannot be more than ${this.currentyear}`
-          } else {
-            let useryear = this.currentyear - birthyear
-            this.showAge.innerText = useryear
-          }
+        getRandomSpeed() {
+          return 1 + (Math.random() * 10) / 5
+        }
+        getRandomSize() {
+          return Math.floor(Math.random() * (100 - 25 + 1) + 25)
         }
 
-        render(containerId) {
-          // create label and input filed
-          const lbl = document.createElement("label")
-          lbl.innerText = "Enter your birth year : "
-          // create input
-          this.inp = document.createElement("input")
-          this.inp.setAttribute("type", "text")
-          lbl.append(this.inp)
-
-          // render button
-          const btn = document.createElement("button")
-          btn.innerText = "Get my age"
-          // Binding the function
-          btn.onclick = this.getUserAge.bind(this)
-
-          // render results
-          const resultsDiv = document.createElement("div")
-          const hr = document.createElement("hr")
-          const lblAge = document.createElement("label")
-          lblAge.innerText = "your age is: "
-          this.showAge = document.createElement("div")
-          this.showAge.innerHTML = ""
-          lblAge.append(this.showAge)
-          resultsDiv.append(hr, lblAge)
-
-          // Target container
-          const targetContainer = document.getElementById(containerId)
-          targetContainer.append(lbl, btn, resultsDiv)
+        render(containerSelector) {
+          this.snowflake = document.createElement("div")
+          this.snowflake.className = "snowflake"
+          // add image
+          this.snowflake.innerHTML = `<svg
+	 width="30px" height="30px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+<path d="M27.4,21.6l-3-1.7l2.8-1.3c0.3-0.2,0.5-0.6,0.3-0.9c-0.2-0.3-0.6-0.5-0.9-0.3L22.9,19l-2.1-1.2l4.2-1.9c0,0,0,0,0.1,0
+	c0,0,0,0,0,0c0,0,0.1-0.1,0.1-0.1c0,0,0,0,0,0c0,0,0.1-0.1,0.1-0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0-0.1c0,0,0,0,0-0.1
+	c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0-0.1
+	c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0,0,0l-4.2-1.9l2.1-1.2l3.6,1.7c0.1,0,0.2,0.1,0.3,0.1
+	c0.3,0,0.5-0.1,0.6-0.4c0.2-0.3,0-0.8-0.3-0.9l-2.8-1.3l3-1.7c0.3-0.2,0.4-0.6,0.3-0.9c-0.2-0.3-0.6-0.4-0.9-0.3l-3,1.7l0.3-3
+	c0-0.4-0.2-0.7-0.6-0.8c-0.4,0-0.7,0.2-0.8,0.6l-0.4,4l-2.1,1.2L20.6,7c0,0,0,0,0,0c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1
+	c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0-0.1c0,0,0,0,0,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0
+	c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0
+	c0,0-0.1,0-0.1,0c0,0,0,0,0,0c0,0-0.1,0-0.1,0c0,0,0,0,0,0L15.8,9V6.6L19,4.3c0.3-0.2,0.4-0.7,0.2-1c-0.2-0.3-0.7-0.4-1-0.2
+	l-2.5,1.8V1.5c0-0.4-0.3-0.7-0.7-0.7s-0.7,0.3-0.7,0.7v3.4l-2.5-1.8c-0.3-0.2-0.7-0.1-1,0.2c-0.2,0.3-0.1,0.7,0.2,1l3.3,2.3V9
+	l-3.7-2.7c0,0,0,0,0,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0,0,0
+	c0,0,0,0,0,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0-0.1,0c0,0,0,0,0,0c0,0,0,0,0,0.1
+	c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0.1,0,0.1c0,0,0,0,0,0
+	l0.5,4.6l-2.1-1.2l-0.4-4c0-0.4-0.4-0.7-0.8-0.6c-0.4,0-0.7,0.4-0.6,0.8l0.3,3l-3-1.7C3.1,7.6,2.7,7.7,2.5,8C2.3,8.4,2.4,8.8,2.7,9
+	l3,1.7L3,12c-0.3,0.2-0.5,0.6-0.3,0.9c0.1,0.3,0.4,0.4,0.6,0.4c0.1,0,0.2,0,0.3-0.1l3.6-1.7l2.1,1.2l-4.2,1.9c0,0,0,0,0,0
+	c0,0,0,0-0.1,0c0,0,0,0,0,0c0,0,0,0-0.1,0c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0.1
+	c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0
+	c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0c0,0,0,0,0.1,0l4.2,1.9L7.2,19l-3.6-1.7c-0.3-0.2-0.8,0-0.9,0.3
+	c-0.2,0.3,0,0.8,0.3,0.9l2.8,1.3l-3,1.7c-0.3,0.2-0.4,0.6-0.3,0.9c0.1,0.2,0.4,0.3,0.6,0.3c0.1,0,0.2,0,0.3-0.1l3-1.7l-0.3,3
+	c0,0.4,0.2,0.7,0.6,0.8c0,0,0,0,0.1,0c0.4,0,0.7-0.3,0.7-0.6l0.4-4L10,19l-0.5,4.6c0,0,0,0,0,0c0,0,0,0.1,0,0.1c0,0,0,0,0,0.1
+	c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0
+	c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0c0,0,0.1,0,0.1,0c0,0,0,0,0.1,0c0,0,0,0,0.1,0c0,0,0,0,0.1,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0
+	c0.1,0,0.1,0,0.2,0c0,0,0,0,0,0c0.1,0,0.1,0,0.2-0.1c0,0,0,0,0,0l3.7-2.7V24l-3.3,2.3c-0.3,0.2-0.4,0.7-0.2,1
+	c0.1,0.2,0.3,0.3,0.6,0.3c0.1,0,0.3,0,0.4-0.1l2.5-1.8v3.4c0,0.4,0.3,0.7,0.7,0.7s0.7-0.3,0.7-0.7v-3.4l2.5,1.8
+	c0.1,0.1,0.3,0.1,0.4,0.1c0.2,0,0.4-0.1,0.6-0.3c0.2-0.3,0.1-0.7-0.2-1L15.8,24v-2.4l3.7,2.7c0,0,0,0,0,0c0.1,0,0.1,0.1,0.2,0.1
+	c0,0,0,0,0,0c0.1,0,0.1,0,0.2,0c0,0,0,0,0.1,0c0,0,0,0,0.1,0c0,0,0,0,0.1,0c0,0,0.1,0,0.1,0c0,0,0,0,0,0c0,0,0.1-0.1,0.1-0.1
+	c0,0,0,0,0,0c0,0,0.1-0.1,0.1-0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1
+	c0,0,0,0,0-0.1c0,0,0,0,0,0L20.1,19l2.1,1.2l0.4,4c0,0.4,0.3,0.6,0.7,0.6c0,0,0,0,0.1,0c0.4,0,0.7-0.4,0.6-0.8l-0.3-3l3,1.7
+	c0.1,0.1,0.2,0.1,0.3,0.1c0.2,0,0.5-0.1,0.6-0.3C27.8,22.2,27.7,21.8,27.4,21.6z M23.1,15.3L19.3,17l-2.9-1.7l2.9-1.7L23.1,15.3z
+	 M19.1,8.4l-0.4,4.1l-2.9,1.7v-3.3L19.1,8.4z M11.1,8.4l3.3,2.4v3.3l-2.9-1.7L11.1,8.4z M13.7,15.3L10.8,17l-3.7-1.7l3.7-1.7
+	L13.7,15.3z M11.1,22.2l0.4-4.1l2.9-1.7v3.3L11.1,22.2z M19.1,22.2l-3.3-2.4v-3.3l2.9,1.7L19.1,22.2z"/>
+</svg>`
+          this.snowflake.style.left = this.getRandomLeftPosition() + "%"
+          this.snowflake.style.top = "-105px"
+          this.snowflake.style.width = this.getRandomSize() + "px"
+          this.snowflake.style.height = this.getRandomSize() + "px"
+          let svg = this.snowflake.firstElementChild
+          svg.style.width = this.getRandomSize() + "px"
+          svg.style.height = this.getRandomSize() + "px"
+          const speedsnowflake = this.getRandomSpeed()
+          setInterval(() => {
+            this.snowflake.style.transition = ""
+            this.snowflake.style.top =
+              parseFloat(this.snowflake.style.top) + speedsnowflake + "%"
+            if (parseFloat(this.snowflake.style.top) > 105) {
+              this.snowflake.style.transition = "none"
+              this.snowflake.style.top = "-100px"
+              this.snowflake.style.left = this.getRandomLeftPosition() + "%"
+            }
+          }, 100)
+          document.querySelector(containerSelector).append(this.snowflake)
         }
       }
-      const date = new Date()
-      this.currentyear = date.getFullYear()
-      const age = new UserAge(currentyear)
-      age.render("container")
+      // render 50 snowflakes
+      window.onload = function () {
+        for (let i = 0; i < 50; i++) {
+          let flake = new snowflake()
+          flake.render("#container")
+        }
+      }
     </script>
   </body>
 </html>
