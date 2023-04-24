@@ -140,7 +140,7 @@
 
           // =======================
           // CLick event for general
-          const addLinks = document.querySelectorAll(".general button")
+          let addLinks = document.querySelectorAll(".general button")
           //let listOfSportsmen = this.generallist
           addLinks.forEach(el => {
             el.addEventListener("click", function () {
@@ -153,7 +153,9 @@
             })
           })
 
-          const removeLinks = document.querySelectorAll(".chosen button")
+          // =======================
+          // CLick event for chosen
+          let removeLinks = document.querySelectorAll(".chosen button")
           /// Doent' fully work
           removeLinks.forEach(el => {
             el.addEventListener("click", function () {
