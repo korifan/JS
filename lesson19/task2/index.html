@@ -5,7 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 19 task 2</title>
-    <style></style>
+    <style>
+      .flex {
+        display: flex;
+        gap: 10px;
+      }
+      .general,
+      .chosen {
+        width: 50%;
+        border: 1px solid #777;
+      }
+      .name-container {
+        display: flex;
+        padding: 1rem;
+      }
+      .general button,
+      .chosen button {
+        margin-left: auto;
+        width: 50px;
+        height: 35;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .general button svg,
+      .chosen button svg {
+        width: 35px;
+        height: 25px;
+      }
+
+      .chosen button {
+        transform: rotate(180deg);
+      }
+
+      .general button svg path {
+        fill: green;
+      }
+      .chosen button svg path {
+        fill: red;
+      }
+
+      .general button:hover svg path {
+        fill: darkgreen;
+      }
+      .chosen button:hover svg path {
+        fill: darkred;
+      }
+    </style>
   </head>
   <body>
     <a href="../../index.html">JS Homeworks</a>
@@ -14,70 +61,115 @@
     / Task 2
 
     <h1>Task 2</h1>
-    <p>Зробити конвертер валют (курси валют – константи у скрипті)</p>
+    <p>
+      Дано список спортсменів. Потрібно сформувати список тих, які будуть брати
+      участь у змаганні. При цьому є два стовпці. В одному відображені всі
+      спортсмени, в іншому – список тих, хто був вибраний. При натисканні на
+      зелену стрілку спортсмен переміщається у список для змагань. При
+      натисканні на червону стрілку спортсмен переміщається у загальний список.
+    </p>
     <div id="container"></div>
     <script>
-      // create class
-      class Converter {
-        constructor(dollarRate, euroRate) {
-          this.dollarRate = dollarRate
-          this.euroRate = euroRate
-        }
-        // methods
-        getConversion() {
-          const currentValue = parseInt(this.inp.value)
+      // we need two arrays and to clear the name we are using filter.
+      let generalList = ["John Depp", "Sara Wick", "Den Miro", "Alan Woo"]
+      let chosenList = ["Olga Sich", "Ivan Hal"]
 
-          let dollarAmount = currentValue / this.dollarRate
-          let euroAmount = currentValue / this.euroRate
+      class ChosingCompetirots {
+        render(targetID, generallist, chosenlist) {
+          // create flex container
+          this.flexCont = document.createElement("div")
+          this.flexCont.setAttribute("class", "flex")
 
-          this.showDollar.innerText = ""
-          this.showDollar.innerText = dollarAmount.toFixed(2)
-          this.showEuro.innerText = ""
-          this.showEuro.innerText = euroAmount.toFixed(2)
-        }
+          // create container for general list
+          const genCont = document.createElement("div")
+          genCont.setAttribute("class", "general")
+          // populate the names
+          for (const name of generallist) {
+            // create container div
+            const nameCont = document.createElement("div")
+            nameCont.setAttribute("class", "name-container")
+            // create div for name
+            const genname = document.createElement("div")
+            genname.innerHTML = name
+            // create button
+            const genbutton = document.createElement("button")
+            // arrow
+            genbutton.innerHTML = `<svg  x="0px" y="0px"
+      	 width="35px" height="25px" viewBox="0 0 35 25" style="enable-background:new 0 0 35 25;" xml:space="preserve">
+      <path class="st0" d="M16.8,23.8v-5.6H0.5V6.8h16.3V1.1l17.7,11.3L16.8,23.8z M3.4,15.4h16.3v3.3l9.7-6.2l-9.7-6.2v3.3H3.4V15.4z"/>
+      </svg>`
 
-        // render
-        render(containerId) {
-          const lbl = document.createElement("label")
-          lbl.innerText = "UAH Amount: "
-          // create input
-          this.inp = document.createElement("input")
-          this.inp.setAttribute("type", "text")
-          lbl.append(this.inp)
+            // append name and button into name-container
+            nameCont.append(genname, genbutton)
+            // append name-container into general container
+            genCont.append(nameCont)
+          }
+          // append general container into flex xontainer
+          this.flexCont.append(genCont)
 
-          // render button
-          const btn = document.createElement("button")
-          btn.innerText = "Convert: "
-          // Binding the function
-          btn.onclick = this.getConversion.bind(this)
+          // =================== CHOSEN
+          // create container for chosen list
+          const chosenCont = document.createElement("div")
+          chosenCont.setAttribute("class", "chosen")
+          // Populate chosen
+          for (const name of chosenlist) {
+            // create container div
+            const chosenNameCont = document.createElement("div")
+            chosenNameCont.setAttribute("class", "name-container")
+            // create div for name
+            const chosenname = document.createElement("div")
+            chosenname.innerHTML = name
+            // create button
+            const chosenbutton = document.createElement("button")
+            // arrow
+            chosenbutton.innerHTML = `<svg  x="0px" y="0px"
+      	 width="35px" height="25px" viewBox="0 0 35 25" style="enable-background:new 0 0 35 25;" xml:space="preserve">
+      <path class="st0" d="M16.8,23.8v-5.6H0.5V6.8h16.3V1.1l17.7,11.3L16.8,23.8z M3.4,15.4h16.3v3.3l9.7-6.2l-9.7-6.2v3.3H3.4V15.4z"/>
+      </svg>`
+            // append name and button into name-container
+            chosenNameCont.append(chosenname, chosenbutton)
+            // append name-container into general container
+            chosenCont.append(chosenNameCont)
+          }
 
-          // Results
-          const resultsDiv = document.createElement("div")
-          const hr = document.createElement("hr")
-          // render dollars results
-          const lblUS = document.createElement("label")
-          lblUS.innerText = "Dollars amount: "
-          this.showDollar = document.createElement("div")
-          this.showDollar.setAttribute("class", "results")
-          this.showDollar.innerHTML = ""
-          lblUS.append(this.showDollar)
+          this.flexCont.append(chosenCont)
 
-          // render euro results
-          const lblEuro = document.createElement("label")
-          lblEuro.innerText = "Euro amount: "
-          this.showEuro = document.createElement("div")
-          this.showEuro.setAttribute("class", "results")
-          this.showEuro.innerHTML = ""
-          lblEuro.append(this.showEuro)
-          resultsDiv.append(hr, lblUS, lblEuro)
+          // create target container and append everything there
+          const TargetCont = document.getElementById(targetID)
+          TargetCont.append(this.flexCont)
 
-          // Target container
-          const targetContainer = document.getElementById(containerId)
-          targetContainer.append(lbl, btn, resultsDiv)
+          // =======================
+          // CLick event for general
+          const addLinks = document.querySelectorAll(".general button")
+          //let listOfSportsmen = this.generallist
+          addLinks.forEach(el => {
+            el.addEventListener("click", function () {
+              let nameText = el.previousElementSibling.innerText
+              let newList = generallist.filter(name => name !== nameText)
+              chosenlist.push(nameText)
+              let closest = el.closest(".name-container")
+              let chosen = document.querySelector(".chosen")
+              chosen.append(closest)
+            })
+          })
+
+          const removeLinks = document.querySelectorAll(".chosen button")
+          /// Doent' fully work
+          removeLinks.forEach(el => {
+            el.addEventListener("click", function () {
+              let nameText = el.previousElementSibling.innerText
+              let newcosenList = chosenlist.filter(name => name !== nameText)
+              generallist.push(nameText)
+              let closest = el.closest(".name-container")
+              let gen = document.querySelector(".general")
+              gen.append(closest)
+            })
+          })
         }
       }
-      const convrt = new Converter(39, 45)
-      convrt.render("container")
+
+      const choose1 = new ChosingCompetirots()
+      choose1.render("container", generalList, chosenList)
     </script>
   </body>
 </html>
