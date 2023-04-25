@@ -4,16 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 18 task 5</title>
+    <title>Lesson 19 task 5</title>
     <style>
-      table,
-      tr,
-      td {
-        border: 1px solid;
-        padding: 3px;
+      .tank {
+        width: 50px;
+        height: 70px;
+        position: absolute;
+        background: darkolivegreen;
+        transition: opacity 1s, width 1s, height 1s;
+        opacity: 1;
+        cursor: pointer;
       }
-      table {
-        margin-top: 1rem;
+      .red {
+        background-color: red;
+        opacity: 0;
+        width: 0px;
+        height: 0px;
       }
     </style>
   </head>
@@ -25,43 +31,58 @@
 
     <h1>Task 5</h1>
     <p>
-      Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити
-      і вставити на сторінку)
+      Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі
+      з’являються танки, які їдуть вниз. При кліку на танк він вибухає і зникає
+      з екрану.
     </p>
     <div id="container"></div>
     <script>
-      // get random number
-      function getRandomNumber(max, min) {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-      }
-      // create table
-      function createTable(containerId, rows, cols, maxNum, minNum) {
-        const table = document.createElement("table")
-        // Add  rows
-        for (let row = 1; row <= rows; row++) {
-          const tr = document.createElement("tr")
-          // add columns
-          for (let i = 1; i <= cols; i++) {
-            const td = document.createElement("td")
-            // add random number to the cell
-            td.innerText = getRandomNumber(maxNum, minNum)
-            // add column (td) into the tr element
-            tr.append(td)
-          }
-          table.append(tr)
+      class Bayraktar {
+        getRandomLeftPosition() {
+          return Math.floor(Math.random() * 100)
         }
-        // append table to target container
-        const targetContainer = document.getElementById(containerId)
-        targetContainer.append(table)
+        getRandomSpeed() {
+          return 1 + Math.random() * 0.6
+        }
+
+        destroyTank() {
+          this.tank.classList.add("red")
+          // setTimeout(() => {
+          //   this.tank.remove()
+          // }, 1000)
+        }
+
+        render(TargetContainer) {
+          this.tank = document.createElement("div")
+          this.tank.className = "tank"
+          this.tank.style.left = this.getRandomLeftPosition() + "%"
+          this.tank.style.top = "-50px"
+          const tankSpeed = this.getRandomSpeed()
+          setInterval(() => {
+            this.tank.style.top =
+              parseFloat(this.tank.style.top) + tankSpeed + "%"
+            if (parseFloat(this.tank.style.top) > 105) {
+              this.tank.style.top = "-100px"
+              this.tank.style.left = this.getRandomLeftPosition() + "%"
+            }
+          }, 100)
+
+          this.tank.onclick = this.destroyTank.bind(this)
+          // append tank to target container
+          const TargetCont = document.getElementById(TargetContainer)
+          TargetCont.append(this.tank)
+        }
       }
 
-      // Variables
-      const numberofRows = 3,
-        numberofCols = 4,
-        maxNumber = 100,
-        minNumber = 1
-      // run the function
-      createTable("container", numberofRows, numberofCols, maxNumber, minNumber)
+      const numberOfTanks = 8
+      function tanks(tanksnum) {
+        for (let i = 0; i < tanksnum; i++) {
+          let tnks = new Bayraktar()
+          tnks.render("container")
+        }
+      }
+
+      tanks(numberOfTanks)
     </script>
   </body>
 </html>
