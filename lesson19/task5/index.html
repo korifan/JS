@@ -10,16 +10,26 @@
         width: 50px;
         height: 70px;
         position: absolute;
-        background: darkolivegreen;
         transition: opacity 1s, width 1s, height 1s;
         opacity: 1;
         cursor: pointer;
       }
+      .tank svg polygon,
+      .tank svg rect {
+        fill: darkolivegreen;
+        transition: fill 1s;
+      }
       .red {
-        background-color: red;
         opacity: 0;
         width: 0px;
         height: 0px;
+      }
+
+      .red svg polygon,
+      .red svg rect {
+        fill: red;
+        width: 100px;
+        height: 100px;
       }
     </style>
   </head>
@@ -37,6 +47,15 @@
     </p>
     <div id="container"></div>
     <script>
+      const tankImg = `<svg 
+	 width="50px" height="70px" viewBox="0 0 50 70" >
+<g>
+	<rect x="1.9" y="1.8" class="st0" width="7.5" height="58"/>
+	<polygon class="st0" points="12.1,59.8 22.6,59.8 22.6,70 27.5,70 27.5,59.8 37.3,59.8 37.3,1.8 12.1,1.8 	"/>
+	<rect x="40.5" y="1.8" class="st0" width="7.6" height="58"/>
+</g>
+</svg>
+`
       class Bayraktar {
         getRandomLeftPosition() {
           return Math.floor(Math.random() * 100)
@@ -55,6 +74,7 @@
         render(TargetContainer) {
           this.tank = document.createElement("div")
           this.tank.className = "tank"
+          this.tank.innerHTML = tankImg
           this.tank.style.left = this.getRandomLeftPosition() + "%"
           this.tank.style.top = "-50px"
           const tankSpeed = this.getRandomSpeed()
