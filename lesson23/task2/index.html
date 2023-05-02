@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 23 task 2</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson23/index.html">Lesson 23</a>
+    / Task 2
+
+    <h1>Task 2</h1>
+    <p>
+      Дано дата виробництва йогурта (вводимо рік, місяць, день) та кількість
+      днів придатності. Визначити чи є він придатним на даний момент.
+    </p>
+
+    <script>
+      let currentDate = new Date()
+      let yearMade = parseInt(prompt(`Enter the year the yougurt was made: `))
+      let monthMade =
+        parseInt(prompt(`Enter the month the yougurt was made: `)) - 1
+      let dayMade = parseInt(prompt(`Enter the day the yougurt was made: `))
+      let expirationDays = parseInt(
+        prompt(`Enter number of days the yogurt is good before it's expired: `)
+      )
+
+      function getYogurtExpiration(currdate, year, month, day, shelfdays) {
+        let today = Date.parse(currdate)
+        let prodDate = new Date(year, month, day)
+        let beforeExpired = shelfdays * 86400000 // adding 30 days of shelf life
+        let expiration = Date.parse(prodDate) + beforeExpired
+        let diff = (expiration - today) / 86400000 // finding days expired
+        if (expiration < today) {
+          document.write(
+            `Bad yogurt. It's expired for ${Math.abs(diff).toFixed()} days`
+          )
+        } else {
+          document.write(
+            `Yogurt is good. There are ${Math.abs(
+              diff
+            ).toFixed()} days until the expiration date`
+          )
+        }
+      }
+      getYogurtExpiration(
+        currentDate,
+        yearMade,
+        monthMade,
+        dayMade,
+        expirationDays
+      )
+    </script>
+  </body>
+</html>

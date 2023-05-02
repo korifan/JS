@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 19 task 5</title>
+    <style>
+      .tank {
+        width: 50px;
+        height: 70px;
+        position: absolute;
+        transition: opacity 1s, width 1s, height 1s;
+        opacity: 1;
+        cursor: pointer;
+      }
+      .tank svg polygon,
+      .tank svg rect {
+        fill: darkolivegreen;
+        transition: fill 1s;
+      }
+      .red {
+        opacity: 0;
+        width: 0px;
+        height: 0px;
+      }
+
+      .red svg polygon,
+      .red svg rect {
+        fill: red;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson19/index.html">Lesson 19</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>
+      Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі
+      з’являються танки, які їдуть вниз. При кліку на танк він вибухає і зникає
+      з екрану.
+    </p>
+    <div id="container"></div>
+    <script>
+      const tankImg = `<svg 
+	 width="50px" height="70px" viewBox="0 0 50 70" >
+<g>
+	<rect x="1.9" y="1.8" class="st0" width="7.5" height="58"/>
+	<polygon class="st0" points="12.1,59.8 22.6,59.8 22.6,70 27.5,70 27.5,59.8 37.3,59.8 37.3,1.8 12.1,1.8 	"/>
+	<rect x="40.5" y="1.8" class="st0" width="7.6" height="58"/>
+</g>
+</svg>
+`
+      class Bayraktar {
+        getRandomLeftPosition() {
+          return Math.floor(Math.random() * 100)
+        }
+        getRandomSpeed() {
+          return 1 + Math.random() * 0.6
+        }
+
+        destroyTank() {
+          this.tank.classList.add("red")
+          // setTimeout(() => {
+          //   this.tank.remove()
+          // }, 1000)
+        }
+
+        render(TargetContainer) {
+          this.tank = document.createElement("div")
+          this.tank.className = "tank"
+          this.tank.innerHTML = tankImg
+          this.tank.style.left = this.getRandomLeftPosition() + "%"
+          this.tank.style.top = "-50px"
+          const tankSpeed = this.getRandomSpeed()
+          setInterval(() => {
+            this.tank.style.top =
+              parseFloat(this.tank.style.top) + tankSpeed + "%"
+            if (parseFloat(this.tank.style.top) > 105) {
+              this.tank.style.top = "-100px"
+              this.tank.style.left = this.getRandomLeftPosition() + "%"
+            }
+          }, 100)
+
+          this.tank.onclick = this.destroyTank.bind(this)
+          // append tank to target container
+          const TargetCont = document.getElementById(TargetContainer)
+          TargetCont.append(this.tank)
+        }
+      }
+
+      const numberOfTanks = 8
+      function tanks(tanksnum) {
+        for (let i = 0; i < tanksnum; i++) {
+          let tnks = new Bayraktar()
+          tnks.render("container")
+        }
+      }
+
+      tanks(numberOfTanks)
+    </script>
+  </body>
+</html>

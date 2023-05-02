@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 23 task 5</title>
+    <style>
+      li p {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson23/index.html">Lesson 23</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>
+      Усі задачі можете оформити у одному файлі (так, як ми робимо на лекції)
+    </p>
+    <ul>
+      <li>
+        Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати
+        метод test та регулярні вирази).
+
+        <p class="task1"></p>
+      </li>
+      <li>
+        Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+        <p class="task2"></p>
+      </li>
+      <li>
+        Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+        <p class="task3"></p>
+      </li>
+
+      <li>
+        Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
+        <p class="task4"></p>
+      </li>
+      <li>
+        Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра
+        3.
+        <p class="task5"></p>
+      </li>
+      <li>
+        Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+        <p class="task6"></p>
+      </li>
+      <li>
+        Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були
+        використано.
+        <p class="task7"></p>
+      </li>
+      <li>
+        Задача 8. Дано рядок тексту. Вивести усі складові, які розділені
+        розділовими знаками.
+        <p class="task8"></p>
+      </li>
+      <li>
+        Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі
+        dd.mm.yyyy (dd- день, mm- місяць, yyyy- рік).
+        <p class="task9"></p>
+      </li>
+      <li>
+        Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у
+        рядку.
+        <p class="task10"></p>
+      </li>
+      <li>
+        Задача 11. Визначити чи може бути рядок тексту номером банківської
+        картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+        <p class="task11"></p>
+      </li>
+
+      <li>
+        Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить
+        домен “gov”)
+        <p class="task12"></p>
+      </li>
+      <li>
+        Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+        <p class="task13"></p>
+      </li>
+      <li>
+        Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з
+        України (починаєтсья на «+38»)
+        <p class="task14"></p>
+      </li>
+      <li>
+        Задача 15. Користувач вводить прізвище та ім’я в одному рядку через
+        пробіл. Замінити пробіл на дефіс.
+        <p class="task15"></p>
+      </li>
+      <li>
+        Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати
+        рядкове представлення дати у форматі «день/місяць/рік»
+        <p class="task16"></p>
+      </li>
+      <li>
+        Задача 17. Користувач вводить день (номер дня (0-6) або
+        «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи є це день вихідним
+        <p class="task17"></p>
+      </li>
+    </ul>
+
+    <script>
+      let sometext =
+        "This is regular text that has  couple of numbers in it, such as 49.99 or 100. Also, it might include some date such as 02-04-2023. Plus card number 4142-3433-2323-3434."
+      let govUrl = "https://goverment.gov"
+      let years = "1980 1990 2021 2023 2025 2045 2050"
+      let phoneNumber = "+3809165858086"
+      let rowsArr = [
+        "Hi",
+        "$49.99",
+        "Lego",
+        "Star Wars",
+        "916 area code",
+        "3913 Market St",
+        "HSS"
+      ]
+
+      // Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати
+      // метод test та регулярні вирази).
+      const task1 = document.querySelector(".task1")
+      let newNumArr = []
+      let emptySpace = " "
+      for (const numbs of rowsArr) {
+        if (/\d/.test(numbs)) {
+          newNumArr.push(emptySpace + numbs)
+        }
+        task1.innerText = newNumArr
+      }
+
+      // Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+      const task2 = document.querySelector(".task2")
+      let noNumArr = []
+      for (const row of rowsArr) {
+        if (/^[a-zA-Z]/.test(row)) {
+          noNumArr.push(emptySpace + row)
+        }
+        task2.innerText = noNumArr
+      }
+
+      // Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+      const task3 = document.querySelector(".task3")
+      let withVowels = []
+      for (const row of rowsArr) {
+        if (/[aeiou]/.test(row)) {
+          withVowels.push(emptySpace + row)
+        }
+        task3.innerText = withVowels
+      }
+
+      // Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер
+      const task4 = document.querySelector(".task4")
+      let noVowels = []
+      for (const row of rowsArr) {
+        if (/^[qwrtplkjhgfdszxcvbnm]+$/i.test(row)) {
+          noVowels.push(emptySpace + row)
+        }
+        task4.innerText = noVowels
+      }
+
+      // Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.
+      const task5 = document.querySelector(".task5")
+      let oneorthree = []
+      for (const row of rowsArr) {
+        if (/(1|3)/.test(row)) {
+          oneorthree.push(emptySpace + row)
+        }
+        task5.innerText = oneorthree
+      }
+
+      // Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті
+      const task6 = document.querySelector(".task6")
+      let num = sometext.match(/\d/g)
+      task6.innerHTML = `${sometext}<br><br>Showing  only numbers from the text above:<br><br>${num}`
+
+      // Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.
+      const task7 = document.querySelector(".task7")
+      let punctuation = sometext.match(/[,.!]/g)
+      task7.innerHTML = `${sometext}<br><br>Showing only punctuation from the text above:<br><br>${punctuation}`
+
+      // Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.
+      const task8 = document.querySelector(".task8")
+      let sep = sometext.match(/[a-z]*[.,]\s[a-z]*/gi)
+      task8.innerHTML = `${sometext}<br><br>Swowing text that goes in conjuction with punctuation marks:<br><br>${sep}`
+
+      // Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm- місяць, yyyy- рік).
+      const task9 = document.querySelector(".task9")
+      let dateExp = /\d{2}[-]\d{2}[-]\d{4}/
+      let date = dateExp.test(sometext)
+      if (date) {
+        task9.innerHTML = `There is date in format dd.mm.yyyy`
+      } else task9.innerHTML = `There is no date in format dd.mm.yyyy`
+
+      // Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.
+      const task10 = document.querySelector(".task10")
+
+      let doubledigits = sometext.match(/\b\d{2}\b/g)
+      task10.innerHTML = `Number of instances with double digits: ${doubledigits.length}`
+
+      // Завдання 11. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+      const task11 = document.querySelector(".task11")
+      let creditCard = sometext.match(/\d{4}-\d{4}-\d{4}-\d{4}/g)
+      task11.innerHTML = `Credit card number: ${creditCard}`
+
+      // Завдання 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)
+      const task12 = document.querySelector(".task12")
+      if (/\bgov$/g.test(govUrl)) {
+        task12.innerHTML = `it's a government website`
+      } else task12.innerHTML = `it's not a govermnemtn website`
+
+      // Завдання 13.  Вибрати усі роки після 2021 року з отриманого повідомлення
+      const task13 = document.querySelector(".task13")
+      let yearsExp = years.match(/\b\d{4}\b/g)
+      for (const year of yearsExp) {
+        if (year > 2021) {
+          let div = document.createElement("div")
+          div.innerText = `${year} `
+          task13.append(div)
+        }
+      }
+
+      // Завдання 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+      const task14 = document.querySelector(".task14")
+
+      if (/\+38/g.test(phoneNumber)) {
+        task14.innerText = `It's Ukrainian number`
+      } else task14.innerText = `Not Ukrainian`
+
+      // Завдання 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл.  Замінити пробіл на дефіс.
+      const task15 = document.querySelector(".task15")
+      let fullname = prompt(`Enter your name, space and last name`)
+      fullname = fullname.replace(" ", "-")
+      task15.innerHTML = `Full name that is using dash: ${fullname}`
+
+      // Завдання 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у форматі «день/місяць/рік»
+      const task16 = document.querySelector(".task16")
+      let dateEntry = prompt(`Enter date in this format:  dd.mm.yyyy`)
+      dateEntry = dateEntry.replaceAll(".", "/")
+      task16.innerHTML = `Date entry that is using froward slashes: ${dateEntry}`
+
+      // Завдання 17. ККористувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи  є це день вихідним
+      const task17 = document.querySelector(".task17")
+      const userDay = prompt(
+        `Enter the weekday in nuber format (0-6) or sun,mon,tue,wed,thu,fri,sat`
+      )
+      const genEx = /0|6|sun|sat/
+      if (genEx.test(userDay)) {
+        task17.innerText = `Weekend`
+      } else {
+        task17.innerText = `Workday`
+      }
+    </script>
+  </body>
+</html>

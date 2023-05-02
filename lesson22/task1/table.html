@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 task 1</title>
+    <style>
+      table,
+      tr,
+      td {
+        border: 1px solid;
+        padding: 3px;
+      }
+      table {
+        margin-top: 1rem;
+      }
+      .green {
+        background: green;
+      }
+      .red {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson19/index.html">Lesson 18</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Develop class table that allow to set up number os columns and rows.
+      Populate column cels with random numbers. Cells with mininal values woud
+      have green background colors, whereas cells with maximum numbers range
+      would have red background.
+    </p>
+    <div id="container"></div>
+    <script>
+      class Table {
+        constructor(rows, cols, maxnum, minmum) {
+          this.rows = rows
+          this.cols = cols
+          this.maxnum = maxnum
+          this.minmum = minmum
+        }
+
+        getRandomNumber(max, min) {
+          return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        createTable() {
+          const table = document.createElement("table")
+          // Add  rows
+          for (let row = 1; row <= this.rows; row++) {
+            const tr = document.createElement("tr")
+            // add columns
+            for (let i = 1; i <= this.cols; i++) {
+              const td = document.createElement("td")
+              // add random number to the cell
+              td.innerText = this.getRandomNumber(this.maxnum, this.minmum)
+              // add green or red class
+              let tdValue = parseInt(td.innerText)
+              if (tdValue > 5) {
+                td.setAttribute("class", "green")
+              } else {
+                td.setAttribute("class", "red")
+              }
+
+              // add column (td) into the tr element
+              tr.append(td)
+            }
+            table.append(tr)
+          }
+          return table
+        }
+        render(containerId) {
+          const targetContainer = document.getElementById(containerId)
+          targetContainer.append(this.createTable())
+        }
+      }
+
+      const tabl1 = new Table(5, 4, 10, 0)
+      tabl1.render("container")
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 23 task 3</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson23/index.html">Lesson 23</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>
+      Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування
+      бульбашкою і вставкою.
+    </p>
+    <script>
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+
+      function bubbles(array) {
+        let newArr = Array.from(array)
+        let start = Date.now()
+        let changed
+        do {
+          changed = false
+          for (let i = 1; i < newArr.length; i++) {
+            if (newArr[i - 1] > newArr[i]) {
+              let temp = newArr[i - 1]
+              newArr[i - 1] = newArr[i]
+              newArr[i] = temp
+              changed = true
+            }
+          }
+        } while (changed)
+        let end = Date.now()
+        let result = end - start
+        document.write(`Bubble sorting took: ${result} milliseconds.<br>`)
+      }
+
+      function insert(array) {
+        let newArr = Array.from(array)
+        let start = Date.now()
+        for (let k = 1; k < newArr.length; k++) {
+          const current = newArr[k]
+          let i = k - 1
+          while (i >= 0 && newArr[i] > current) {
+            newArr[i + 1] = newArr[i]
+            i = i - 1
+          }
+          newArr[i + 1] = current
+        }
+        let end = Date.now()
+        let result = end - start
+        document.write(`Insertion sorting took ${result} milliseconds.`)
+      }
+      //  variables
+      const maxNum = 800
+      const minNum = 1
+      // create array
+      let numArray = []
+      for (let i = 0; i < 1000; i++) {
+        let num = getRandom(minNum, maxNum)
+        numArray.push(num)
+      }
+      bubbles(numArray)
+      insert(numArray)
+    </script>
+  </body>
+</html>

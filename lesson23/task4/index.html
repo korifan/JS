@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 23 task 4</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson23/index.html">Lesson 23</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      Задаємо користувачу задачу з додавання двох чисел. Визначити скільки
+      секунд було використано для розв’язання задачі.
+    </p>
+    <div id="container"></div>
+    <script>
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+      function getSum(min, max) {
+        let start = Date.now()
+        let rand1 = getRandom(min, max)
+        let rand2 = getRandom(min, max)
+        let userResult = parseInt(prompt(`${rand1} + ${rand2}`))
+        let end = Date.now()
+        let totalTime = end - start
+        document.write(`Solving took ${(totalTime / 1000).toFixed(2)} seconds`)
+      }
+      const minNum = 1
+      const maxNum = 10
+      getSum(minNum, maxNum)
+    </script>
+  </body>
+</html>

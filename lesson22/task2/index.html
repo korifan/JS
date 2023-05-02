@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 19 task 2</title>
+    <style>
+      .flex {
+        display: flex;
+        gap: 10px;
+      }
+      .general,
+      .chosen {
+        width: 50%;
+        border: 1px solid #777;
+      }
+      .name-container {
+        display: flex;
+        padding: 1rem;
+      }
+      .general button,
+      .chosen button {
+        margin-left: auto;
+        width: 50px;
+        height: 35;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .general button svg,
+      .chosen button svg {
+        width: 35px;
+        height: 25px;
+      }
+
+      .chosen button {
+        transform: rotate(180deg);
+      }
+
+      .general button svg path {
+        fill: green;
+      }
+      .chosen button svg path {
+        fill: red;
+      }
+
+      .general button:hover svg path {
+        fill: darkgreen;
+      }
+      .chosen button:hover svg path {
+        fill: darkred;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson19/index.html">Lesson 19</a>
+    / Task 2
+
+    <h1>Task 2</h1>
+    <p>
+      Дано список спортсменів. Потрібно сформувати список тих, які будуть брати
+      участь у змаганні. При цьому є два стовпці. В одному відображені всі
+      спортсмени, в іншому – список тих, хто був вибраний. При натисканні на
+      зелену стрілку спортсмен переміщається у список для змагань. При
+      натисканні на червону стрілку спортсмен переміщається у загальний список.
+    </p>
+    <div id="container"></div>
+    <script>
+      let generalList = [
+        "John Depp",
+        "Sara Wick",
+        "Den Miro",
+        "Alan Woo",
+        "Olga Sich",
+        "Ivan Hal"
+      ]
+
+      class ChosingCompetitors {
+        constructor(generalList) {
+          this.generalList = generalList
+        }
+        render(targetID) {
+          // create flex container
+          this.flexCont = document.createElement("div")
+          this.flexCont.setAttribute("class", "flex")
+
+          // append general and chosen containers into flex xontainer
+          this.flexCont.append(this.generalContainer(), this.chosenContainer())
+          // create target container and append everything in there
+          const TargetCont = document.getElementById(targetID)
+          TargetCont.append(this.flexCont)
+
+          // Add click event to the buttons
+          let allButtons = document.querySelectorAll("button")
+          allButtons.forEach(el => {
+            // adding button argument into (this) after bind
+            el.addEventListener("click", this.moveNames.bind(this, el))
+          })
+        }
+
+        generalContainer() {
+          // create container for general list
+          const genCont = document.createElement("div")
+          genCont.setAttribute("class", "general")
+          // populate the names
+          for (const name of this.generalList) {
+            // create container div
+            const nameCont = document.createElement("div")
+            nameCont.setAttribute("class", "name-container")
+            // create div for name
+            const genname = document.createElement("div")
+            genname.innerHTML = name
+            // create button
+            const genbutton = document.createElement("button")
+            // arrow
+            genbutton.innerHTML = `<svg  x="0px" y="0px"
+      	 width="35px" height="25px" viewBox="0 0 35 25" style="enable-background:new 0 0 35 25;" xml:space="preserve">
+      <path class="st0" d="M16.8,23.8v-5.6H0.5V6.8h16.3V1.1l17.7,11.3L16.8,23.8z M3.4,15.4h16.3v3.3l9.7-6.2l-9.7-6.2v3.3H3.4V15.4z"/>
+      </svg>`
+
+            // append name and button into name-container
+            nameCont.append(genname, genbutton)
+            // append name-container into general container
+            genCont.append(nameCont)
+          }
+          return genCont
+        }
+
+        chosenContainer() {
+          const chosenCont = document.createElement("div")
+          chosenCont.setAttribute("class", "chosen")
+          return chosenCont
+        }
+        // =======================
+        // Move names fuction
+        moveNames(button) {
+          let namecont = button.closest(".name-container")
+          let closest = button.closest(".general")
+          let chosen = document.querySelector(".chosen")
+          let gen = document.querySelector(".general")
+          if (closest) {
+            chosen.append(namecont)
+          } else {
+            gen.append(namecont)
+          }
+        }
+      }
+
+      const choose1 = new ChosingCompetitors(generalList)
+      choose1.render("container")
+    </script>
+  </body>
+</html>
