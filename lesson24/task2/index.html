@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 24 task 2</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson24/index.html">Lesson 24</a>
+    / Task 2
+
+    <h1>Task 2</h1>
+    <p>
+      Замінити номер розділяючи послідовності цифр дефісом згідно з форматом
+    </p>
+    <code>0504546626 => +380-50-45-466-26</code>
+    <script>
+      let phoneNumber = "0504546626"
+      const ex = /(\d)(\d{2})(\d{2})(\d{3})(\d{2})/
+      phoneNumber = phoneNumber.replace(ex, "+38$1-$2-$3-$4-$5")
+      console.log(phoneNumber)
+    </script>
+  </body>
+</html>

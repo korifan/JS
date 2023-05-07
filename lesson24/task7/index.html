@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 24 task 7</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson24/index.html">Lesson 24</a>
+    / Task 7
+
+    <h1>Task 7</h1>
+    <p>
+      Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача
+      зберігається логін). Підрахувати для кожного клієнта кількість
+      відвідувань.
+    </p>
+
+    <script>
+      const userList = [
+        "user1",
+        "user2",
+        "user3",
+        "user1",
+        "user2",
+        "user2",
+        "user1",
+        "user1"
+      ]
+      let map = new Map()
+      for (const el of userList) {
+        let elCount = map.get(el) || 0
+        map.set(el, elCount + 1)
+      }
+
+      console.log(map)
+    </script>
+  </body>
+</html>

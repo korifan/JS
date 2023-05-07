@@ -4,64 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 19 task 1</title>
+    <title>Lesson 22 task 1</title>
     <style>
-      body {
-        font-family: sans-serif;
-      }
-      .flex {
-        display: flex;
-        gap: 10px;
-      }
-      img {
-        width: 140px;
-      }
-      a {
-        color: black;
-        text-decoration: none;
-        margin: 0;
-      }
-      .product {
-        padding: 10px;
-        border: 2px solid #eee;
-      }
-      .product p {
-        margin: 0;
-        font-size: 0.85rem;
-      }
-      .product.green {
-        border-color: green;
-      }
-      .price {
-        font-size: 1.5rem !important;
-        margin-top: 1rem !important;
-        color: orangered;
-      }
-      .status {
-        background-color: orange;
-        display: inline-block;
-        color: #fff;
-        border-radius: 15px;
-        padding-left: 5px;
-        padding-right: 5px;
-        margin: 0 !important;
-      }
-      .status.sale {
-        background-color: orangered;
-      }
+     
     </style>
   </head>
   <body>
     <a href="../../index.html">JS Homeworks</a>
     /
-    <a href="../../lesson19/index.html">Lesson 19</a>
+    <a href="../../lesson22/index.html">Lesson 22</a>
     / Task 1
 
     <h1>Task 1</h1>
     <p>
-      Задача 1. Відображаємо картки товарів, які користувач може вибирати.
-      Вибраний товар має зелену рамку
+      Створити клас Client
     </p>
+    <p>Властивості</p>
+    <ul>
+      <li>ID</li>
+      <li>ПІБ</li>
+      <li>Кількість грошей на рахунку</li>
+    </ul>
+
+    <p>Методи</p>
+    <ul>
+      <li>Додавання грошей</li>
+      <li>Зняття грошей</li>
+      <li>ToString</li>
+    </ul>
+
+    <p>На основі цього класу створити клас GoldenClient</p>
+    <p>Властивості</p>
+    <ul>
+      <li>ID</li>
+      <li>ПІБ</li>
+      <li>Кількість грошей на рахунку</li>
+      <li>Ліміт кредитних коштів</li>
+      <li>Відсоток за використання кредитних коштів</li>
+    </ul>
+
+    <p>Методи</p>
+    <ul>
+      <li>Додавання грошей</li>
+      <li>Зняття грошей</li>
+      <li>Визначення пені за використання кредитних коштів</li>
+      <li>ToString</li>
+    </ul>
+
+
+    <p>Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції</p>
+    <ul>
+      <li>Вивести усіх простих клієнтів;</li>
+      <li>Вивести усіх клієнтів GoldenClient;</li>
+      <li>Знати сумарну кількість грошей на рахунку;</li>
+    </ul>
+
     <div id="container"></div>
     <script>
       const productObj = [

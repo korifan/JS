@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 24 task 8</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson24/index.html">Lesson 24</a>
+    / Task 8
+
+    <h1>Task 8</h1>
+    <p>
+      Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних
+      факультетів, та кількість студентів кожного з курсів.
+    </p>
+
+    <script>
+      const studentsArr = [
+        {
+          students: 20,
+          courses: "course1",
+          faculty: "faculty2"
+        },
+        {
+          students: 45,
+          courses: "course3",
+          faculty: "faculty1"
+        },
+        {
+          students: 55,
+          courses: "course3",
+          faculty: "faculty2"
+        },
+        {
+          students: 15,
+          courses: "course2",
+          faculty: "faculty1"
+        },
+        {
+          students: 38,
+          courses: "course2",
+          faculty: "faculty3"
+        },
+        {
+          students: 70,
+          courses: "course3",
+          faculty: "faculty1"
+        },
+        {
+          students: 31,
+          courses: "course1",
+          faculty: "faculty3"
+        }
+      ]
+
+      function getNumberOfDiferentFaculties(dataArr) {
+        const faculties = []
+        for (const data of dataArr) {
+          faculties[data.faculty]
+            ? (faculties[data.faculty] += 1)
+            : (faculties[data.faculty] = 1)
+        }
+        return faculties
+      }
+
+      function getNumberOfStudentsOnEachCourse(dataArr) {
+        const studentsOnCourses = []
+        for (const data of dataArr) {
+          studentsOnCourses[data.courses]
+            ? (studentsOnCourses[data.courses] += parseInt([data.students]))
+            : (studentsOnCourses[data.courses] = parseInt([data.students]))
+        }
+        return studentsOnCourses
+      }
+
+      console.log(getNumberOfDiferentFaculties(studentsArr))
+
+      console.log(getNumberOfStudentsOnEachCourse(studentsArr))
+    </script>
+  </body>
+</html>

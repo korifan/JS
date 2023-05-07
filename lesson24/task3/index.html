@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 24 task 3</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson24/index.html">Lesson 24</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>Після кожного значення року після 2000 року додати «р.»</p>
+    <p>
+      «Я народився 2001, а в школі пішов 2007» «Я народився
+      <strong>2001р</strong>
+      ., а в школі пішов
+      <strong>2007р</strong>
+      .»
+    </p>
+    <script>
+      let str = "Я народився 2001, а в школі пішов 2007"
+
+      ex = /(.*?)(\d{4})(.*?)(\d{4})/
+      str = str.replace(ex, "$1$2р$3$4р")
+      console.log(str)
+    </script>
+  </body>
+</html>
