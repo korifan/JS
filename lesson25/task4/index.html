@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 25 task 4</title>
+    <style>
+      .api-content {
+        background-color: #ccc;
+        border: 1px solid #222;
+        border-radius: 1rem;
+        padding: 2rem;
+        font-size: 3rem;
+        color: darkslateblue;
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson25/index.html">Lesson 25</a>
+    / Task 4
+
+    <h1>Task 4</h1>
+    <p>
+      Використовуючи один з АРІ
+      <br />
+      <br />
+      https://github.com/public-apis/public-apis#animals
+      <br />
+      <br />
+      та функцію fetch організувати завантаження та відображення даних
+    </p>
+    <h2>Facts about cats</h2>
+    <div class="api-content"></div>
+    <script>
+      const res = document.querySelector(".api-content")
+      //---- З ВИКОРИСТАННЯМ fetch ----
+      let response = fetch("https://cat-fact.herokuapp.com/facts")
+
+      fetch("https://cat-fact.herokuapp.com/facts")
+        .then(response => response.json())
+
+        .then(data => {
+          for (let i = 0; i < data.length; i++) {
+            data.forEach(function (el, i) {
+              setTimeout(function () {
+                res.innerHTML = `${data[i].text}`
+              }, i * 5000)
+            })
+          }
+        })
+    </script>
+  </body>
+</html>

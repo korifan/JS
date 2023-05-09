@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 24 task 5</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson24/index.html">Lesson 24</a>
+    / Task 5
+
+    <h1>Task 5</h1>
+    <p>
+      Дано список з віком учнів. Підрахувати скільки разів кожне значення
+      зустрічається у списку і максимальне.
+    </p>
+
+    <script>
+      const studentAges = [
+        7, 8, 7, 9, 11, 10, 11, 12, 13, 13, 13, 14, 15, 15, 16, 17
+      ]
+      let set = new Set(studentAges)
+      console.log(`Number of unique ages: ${set.size}`)
+      let max = Math.max(...set)
+      console.log(`Max student age: ${max}`)
+    </script>
+  </body>
+</html>

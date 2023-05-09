@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 24 task 9</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson24/index.html">Lesson 24</a>
+    / Task 9
+
+    <h1>Task 9</h1>
+    <p>
+      Дано масив показів температур. Підрахувати кількість входжень кожного із
+      показів
+    </p>
+    <code>
+      let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9]
+    </code>
+    <p>Заокруглити вверх значення та підрахувати кількість різних показів.</p>
+    <script>
+      function getNumberOfEachTemperatureRecord(tempArr) {
+        let map = new Map()
+        for (const el of tempArr) {
+          let elCount = map.get(el) || 0
+          map.set(el, elCount + 1)
+        }
+        return map
+      }
+
+      function getUniqueRoundedValue(tempArr) {
+        let set = new Set()
+        tempArr.forEach(el => {
+          set.add(Math.ceil(el))
+        })
+        return set
+      }
+      let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9]
+      console.log(getNumberOfEachTemperatureRecord(temperatures))
+      console.log(getUniqueRoundedValue(temperatures))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 25 task 3</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson25/index.html">Lesson 25</a>
+    / Task 3
+
+    <h1>Task 3</h1>
+    <p>
+      Створити генератор, який би випадковим чином поступово генерував вказану
+      кількість парних чисел.
+    </p>
+    <script>
+      function getRandomNum(min, max) {
+        return min + Math.floor(Math.random() * (max - min + 1))
+      }
+
+      function* getEvenNumbers(quantityNum) {
+        let arr = []
+        for (let i = 0; i < quantityNum; i++) {
+          const randomNum = getRandomNum(1, 100)
+          randomNum % 2 === 0 ? arr.push(randomNum) : quantityNum++
+        }
+        yield arr
+      }
+
+      for (const num of getEvenNumbers(10)) {
+        console.log(num)
+      }
+    </script>
+  </body>
+</html>

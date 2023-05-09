@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 25 task 2</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson25/index.html">Lesson 25</a>
+    / Task 2
+
+    <h1>Task 2</h1>
+    <p>
+      Дано Shop -- клас, що містить список товарів (масив об’єктів класу Product
+      (назва, ціна, кількість одиниць). Додати можливість ітератора до класу
+      Shop, щоб при ітеруванні для кожного елмента виводився рядок
+      «товар-загальна вартість»
+    </p>
+    <script>
+      class Product {
+        constructor(name, price, quantity) {
+          this.name = name
+          this.price = price
+          this.quantity = quantity
+        }
+        //-- toString + valueOf
+        [Symbol.toPrimitive](hint) {
+          switch (hint) {
+            case "number":
+              return this.price
+              break
+            case "string":
+              return `${this.name} total price: $${this.price * this.quantity}`
+              break
+            default:
+              result = `${this.name}`
+              break
+          }
+        }
+      }
+
+      class Shop {
+        constructor(products) {
+          this.products = products
+        }
+        [Symbol.iterator]() {
+          this.currentIndex = 0
+          return this
+        }
+        next() {
+          if (this.currentIndex < this.products.length) {
+            const currentProduct = this.products[this.currentIndex]
+            this.currentIndex++
+            return { done: false, value: String(currentProduct) }
+          } else return { done: true }
+        }
+      }
+
+      const productsArr = [
+        new Product("product1", 20, 3),
+        new Product("product2", 10, 5),
+        new Product("product3", 15, 7),
+        new Product("product4", 25, 1),
+        new Product("product5", 5, 10)
+      ]
+      // console.log(productsArr)
+      const shop = new Shop(productsArr)
+      const prodArr = [...shop]
+
+      console.log(prodArr)
+    </script>
+  </body>
+</html>

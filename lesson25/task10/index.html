@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 24 task 10</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson24/index.html">Lesson 24</a>
+    / Task 10
+
+    <h1>Task 10</h1>
+    <p>
+      Дано два списки прізвищ студентів, що відвідують гуртки з математики і
+      історії. Підрахувати скільки студентів з гуртка з історії також відвідують
+      гурток з математики. Також підрахувати скільки всього студентів відвідують
+      хоча б один гурток.
+    </p>
+    <script>
+      let sudentsHistory = ["Student1", "Student4", "Student6", "Student7"]
+      let sudentsMath = [
+        "Student1",
+        "Student2",
+        "Student3",
+        "Student4",
+        "Student5",
+        "Student6"
+      ]
+
+      let set = new Set()
+      let map = new Map()
+      for (const student of sudentsHistory) {
+        let count = map.get(student) || 0
+        map.set(student, count + 1)
+        set.add(student)
+      }
+      for (const student of sudentsMath) {
+        let count = map.get(student) || 0
+        map.set(student, count + 1)
+        set.add(student)
+      }
+      const twoCoursesStudents = []
+      map.forEach((val, key) => {
+        if (val === 2) twoCoursesStudents.push(key)
+      })
+      const totalStudents = set.size
+
+      console.log(twoCoursesStudents)
+      console.log(totalStudents)
+    </script>
+  </body>
+</html>

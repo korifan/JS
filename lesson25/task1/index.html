@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 25 task 1</title>
+    <style></style>
+  </head>
+  <body>
+    <a href="../../index.html">JS Homeworks</a>
+    /
+    <a href="../../lesson25/index.html">Lesson 25</a>
+    / Task 1
+
+    <h1>Task 1</h1>
+    <p>
+      Дано клас PhoneNumber. Створити функцію перетворення до string, при якому
+      на основі номера виводиться оператор (050…. MTC, 096… Kyivstar, ….)
+    </p>
+
+    <script>
+      class PhoneNumber {
+        constructor(num) {
+          this.num = num
+        }
+        //-- toString + valueOf
+        [Symbol.toPrimitive](hint) {
+          let result
+          switch (hint) {
+            case "string":
+              if (this.num.includes("+38067")) return `${this.num} - Kyivstar`
+              else if (this.num.includes("+38050"))
+                return `${this.num} - Vodafone`
+              else if (this.num.includes("+38063"))
+                return `${this.num} - lifecell`
+              break
+            default:
+              result = `${this.num}  - Unknown carrier`
+              break
+          }
+          return result
+        }
+      }
+      //----------------------
+
+      const tel = new PhoneNumber("+380675958154")
+
+      console.log(String(tel))
+    </script>
+  </body>
+</html>
